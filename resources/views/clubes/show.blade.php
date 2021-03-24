@@ -15,6 +15,5 @@
         </section>
     </section>
 </div>
-
 @include('footer')
     

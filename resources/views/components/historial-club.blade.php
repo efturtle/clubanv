@@ -1,6 +1,9 @@
 <div class="card">
     <div class="card-header">
         <h6>Historial de Creacion</h6>
+            @if (session('message'))
+                <p class="text-success">{{ session('message') }}</p>
+            @endif
     </div>
     <div class="card-body">
         <table class="table table-striped">

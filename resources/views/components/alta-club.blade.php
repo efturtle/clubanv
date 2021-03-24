@@ -5,11 +5,6 @@
             <h4>Registra un nuevo club</h4>
             <button class="btn btn-success" data-toggle="modal" data-target="#altaClubModal">Registrar</button>
         </div>
-        <div class="card-footer">
-            @if (session('message'))
-                <p class="text-success">{{ session('message') }}</p>
-            @endif
-        </div>
     </div>
 
     <!-- The Modal -->

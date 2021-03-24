@@ -35,7 +35,7 @@ class ClubsController extends Controller
             'fechaAprobacion' => '',
             'numeroVoto' => ''
         ]));
-        return redirect('/#historialClubes')
+        return redirect('/club')
         ->with('message', '¡club registrado!');
     }
 
