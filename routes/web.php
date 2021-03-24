@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ClubsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('nav');
-});
-
-Route::get('/clubes', function(){
+/* Route::get('/clubes', function(){
     return view('clubes');
 });
+ */
+
+
+
+/* Clubs */
+    Route::get('/club', [ClubsController::class, 'index']);
+    Route::post('/club', [ClubsController::class, 'store']);
+    Route::get('club/{club}', [ClubsController::class, 'show'])->name('club.show');
+    
+
+
