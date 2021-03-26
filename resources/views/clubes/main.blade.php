@@ -67,7 +67,7 @@
             <!-- /.card -->
           </div>
         </div>
-
+      </div>
     </section>
     <!-- /.content -->
   </div>

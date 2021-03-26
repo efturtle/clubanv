@@ -14,13 +14,21 @@
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
             </li>
           </ul>
         
           <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-            <a href="../controlador/salir.php" class="nav-link">Cerrar Sesion</a>
+            <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log out') }}
+                    </x-responsive-nav-link>
+                </form>
         </u>
         </nav>
         <!-- /.navbar -->
@@ -33,7 +41,7 @@
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">Sistema</span>
+            <span class="brand-text font-weight-light">ANV</span>
           </a>
         
           <!-- Sidebar -->
@@ -44,11 +52,9 @@
                 <img src="{{ asset('assets/img/avatar04.png') }}" class="img-circle elevation-2" alt="User Image">
               </div>
               <div class="info">
-                <a href="#" class="d-block">Pr. Montejo
-                    <!--< ?php
-                    echo $_SESSION['nombre_us'];
-                    ?> -->
-                </a>
+                @if (Auth::user()->name)
+                    <p class="text-gray-300"> {{ Auth::user()->name }} </p>
+                @endif
               </div>
             </div>
         
@@ -67,18 +73,26 @@
                     </p>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="/miembros" class="nav-link">
+                    <i class="nav-icon fa fa-user" aria-hidden="true"></i>
+                    <p>Miembros</p>
+                  </a>
+                </li>
+
                 <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fa fa-cubes"></i>
                     <p>
                       Estadisticas
-                      <i class="right fas fa-angle-left"></i>
+                      <i class="right fa fa-angle-left"></i>
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../vistas/asoc_estadisticas.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Asociación</p>
                         </a>
                       </li>
@@ -86,7 +100,7 @@
                   <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../vistas/dtto_estadisticas.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Distrito</p>
                         </a>
                       </li>
@@ -96,32 +110,32 @@
                     <a href="#" class="nav-link">
                       <i class="nav-icon fa fa-users"></i>
                       <p>Clubes
-                        <i class="right fas fa-angle-left"></i>
+                        <i class="right fa fa-angle-left"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../vistas/Clubes2.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Alta de clubes</p>
                          <!--<script src="../js/sweetAlert.js"></script>-->
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="../vistas/Navbar_club.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Miembros</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="../vistas/traspasos.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Traspasos</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="../vistas/solicitud-inv.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Solicitud de Investidura</p>
                         </a>
                       </li>
@@ -140,13 +154,13 @@
                     <i class="nav-icon fa fa-folder"></i>
                     <p>
                       Recursos
-                      <i class="right fas fa-angle-left"></i>
+                      <i class="right fa fa-angle-left"></i>
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../vistas/asoc_estadisticas.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Manuales</p>
                         </a>
                       </li>
@@ -154,7 +168,7 @@
                   <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../vistas/dtto_estadisticas.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="fa fa-circle nav-icon"></i>
                           <p>Curso bautismal</p>
                         </a>
                       </li>
