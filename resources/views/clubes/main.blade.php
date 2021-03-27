@@ -73,5 +73,3 @@
   </div>
 
   @include('footer')
-
-  <script src="../js/SAsystems/swa_save.js"></script>

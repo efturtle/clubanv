@@ -7,7 +7,7 @@
 
 /* eslint-disable camelcase */
 
-(function ($) {
+/* (function ($) {
   'use strict'
 
   function capitalizeFirstLetter(string) {
@@ -684,3 +684,4 @@
     $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
   }
 })(jQuery)
+ */

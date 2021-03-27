@@ -13,17 +13,17 @@
   <!-- ./wrapper -->
   
   <!-- jQuery -->
-  <script src="../js/jquery.min.js"></script>
+  {{-- <script src="../js/jquery.min.js"></script> --}}
   <!-- Bootstrap 4 -->
   <!--<script src="../js/bootstrap.bundle.min.js"></script>-->
   <!-- AdminLTE App -->
-  <script src="assets/js/adminlte.min.js"></script>
+  {{-- <script src="assets/js/adminlte.min.js"></script> --}}
   <!-- AdminLTE for demo purposes -->
-  <script src="assets/js/demo.js"></script>
+  {{-- <script src="assets/js/demo.js"></script> --}}
   <!--AdminLTE plantilla para el DataTable -->
   <!--<script src="../pluggin/DataTables/datatables.min.js"></script>-->
   <!--AdminLTE plantilla para el DataTable -->
-  <script src="assets/DataTables/datatables.min.js"></script>
+  {{-- <script src="assets/DataTables/datatables.min.js"></script> --}}
   <!-- Sweet Alert 2 Libreria -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   {{-- <script src="../js/main.js"></script> --}}

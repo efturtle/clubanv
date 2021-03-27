@@ -17,7 +17,8 @@
             <img src="{{ asset('assets/img/camping1.svg') }}">
         </div>
         <div class="contenido-login">
-            <form action="{{ route('login') }}" method="post">
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
                 <img src="{{ asset('assets/img/campin.png') }}">
                 <h2>CLUBES</h2>
                 <div class="input-div dni">

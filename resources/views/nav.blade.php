@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @include('librarys')
+    @include('libraries')
 </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <!-- Site wrapper -->

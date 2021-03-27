@@ -29,7 +29,7 @@
                   <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="miembros" role="tabpanel" aria-labelledby="miembrosTab">
                       <section class="content">
-                        <x-lista-miembros :list="$miembros"/>
+                        {{-- <x-lista-miembros :list="$miembros"/> --}}
                       </section>
                     </div>
                     <div class="tab-pane fade " id="altaMiembros" role="tabpanel" aria-labelledby="altaMiembrosTab">

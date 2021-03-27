@@ -4,7 +4,7 @@
             <div class="col-lg-6">
                 <label for="exampleInputEmail1">Buscar</label>
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
                     <input type="text" class="form-control form-control-sm" placeholder="Insertar nombre">
                 </div>
             </div>
@@ -23,9 +23,6 @@
                 </div>
             </div>
         </div>
-        <!--<center><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
-           Resgistrar
-          </button></center>  -->
     
         <!-- The Modal -->
         <div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -34,7 +31,7 @@
     
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Datos Personales</h4>
+                        <h4 class="modal-title text-indigo-800">Datos Personales</h4>
                         <button type="button" class="close" data-dismiss="modal">×</button>
                     </div>
                     <!-- Modal body -->
@@ -43,14 +40,14 @@
                             <div class="col-6">
                                 <label for="exampleInputEmail1">Nombre</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-user-o"></i></span>
                                     <input type="text" class="form-control form-control-sm" placeholder="Inserte el nombre">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <label for="exampleInputEmail1">Apellidos</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
                                     <input type="text" class="form-control form-control-sm" placeholder="">
                                 </div>
                             </div>
@@ -60,7 +57,7 @@
                             <div class="col-6">
                                 <label for="exampleInputEmail1">Fecha de nacimiento</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     <input type="date" class="form-control form-control-sm" placeholder="">
                                 </div>
                             </div>
@@ -69,14 +66,14 @@
                             <div class="col-8">
                                 <label for="exampleInputEmail1">Direccion</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
                                     <input type="text" class="form-control form-control-sm" placeholder="Ejemplo: Calle, No.#">
                                 </div>
                             </div>
                             <div class="col-4">
                                 <label for="exampleInputEmail1">Provincia/Colonia</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-bullseye"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-bullseye"></i></span>
                                     <input type="text" class="form-control form-control-sm" placeholder="Ejemplo: Col. Tajín">
                                 </div>
                             </div>
@@ -89,14 +86,14 @@
                             <div class="col-3">
                                 <label for="exampleInputEmail1">Nacionalidad</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-globe-americas"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-globe"></i></span>
                                     <input type="text" class="form-control form-control-sm" placeholder="">
                                 </div>
                             </div>
                             <div class="col-3">
                                 <label for="exampleInputEmail1">Estado</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-flag"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-flag"></i></span>
                                     <!--<select name="select" data-select2-id="19">-->
                                     <select class="form-control form-control-sm" id="inputGroupSelect02">
                                         <option selected>Seleccione</option>
@@ -138,7 +135,7 @@
                             <div class="col-3">
                                 <label for="exampleInputEmail1">Ciudad</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-building"></i></span>
                                     <input type="text" class="form-control form-control-sm" placeholder="Ejemplo: Poza Rica">
                                 </div>
                             </div>
@@ -147,7 +144,7 @@
                             <div class="col-3">
                                 <label for="exampleInputEmail1">Tipo de sangre</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fab fa-gratipay"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-heartbeat"></i></span>
                                     <select class="form-control form-control-sm" id="inputGroupSelect02">
                                         <option selected>Seleccione</option>
                                         <option value="1">A+</option>
@@ -177,7 +174,7 @@
                             <div class="col-3">
                                 <label for="exampleInputEmail1">Sexo</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-genderless"></i></span>
+                                    <span class="input-group-text"><i class="fa fa-circle-thin"></i></span>
                                     <select class="form-control form-control-sm" id="inputGroupSelect02">
                                         <option selected>Seleccione</option>
                                         <option value="1">Femenino</option>
@@ -186,14 +183,70 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="text-indigo-800">Datos Familiares</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleInputEmail1">Padre</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-user-o"></i></span>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Inserte el nombre del padre">
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <label for="exampleInputEmail1">Apellidos</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="exampleInputEmail1">Contacto</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-address-card"></i></span>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleInputEmail1">Madre</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-user-o"></i></i></span>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre">
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <label for="exampleInputEmail1">Apellidos</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="exampleInputEmail1">Contacto</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-address-card"></i></span>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" id="btn_sa1"><i class="far fa-save"></i></button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" id="btn_sa1"><i class="fa fa-floppy-o"></i></button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#myModal2" id="btn_sa2"><i class="fas fa-arrow-right"></i></button>
+                        {{-- <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#myModal2" id="btn_sa2"><i class="fa fa-arrow-right"></i></button> --}}
                     </div>
     
                 </div>
