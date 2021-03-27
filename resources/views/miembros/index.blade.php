@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    
+      
     </section>
         <!-- Main content -->
     <section class="content">
@@ -29,6 +29,9 @@
                   <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="miembros" role="tabpanel" aria-labelledby="miembrosTab">
                       <section class="content">
+                        @if (session('message'))
+                          <p class="text-success">{{ session('message') }}</p>
+                        @endif
                         {{-- <x-lista-miembros :list="$miembros"/> --}}
                       </section>
                     </div>

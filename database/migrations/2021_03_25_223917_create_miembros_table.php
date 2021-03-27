@@ -17,9 +17,8 @@ class CreateMiembrosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellidos');
-            $table->string('correo');
             $table->string('usuario');
-            $table->string('contraseña');
+            $table->string('clave');
             $table->date('fechaNacimiento');
             $table->string('direccion');
             $table->string('provincia_colonia');
@@ -28,9 +27,16 @@ class CreateMiembrosTable extends Migration
             $table->string('estado');
             $table->string('ciudad');
             $table->string('tipoSangre');
-            $table->boolean('alergias');
-            $table->string('cuales');
+            $table->integer('confirmaAlergias'); //1 = si; 0 = no; 2 = desconoce 
+            $table->string('alergia');
             $table->string('sexo');
+            $table->string('nombrePadre');
+            $table->string('apellidosPadre');
+            $table->string('contactoPadre');
+            $table->string('nombreMadre');
+            $table->string('apellidosMadre');
+            $table->string('contactoMadre');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

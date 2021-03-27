@@ -34,6 +34,8 @@ Route::get('/', function () {
 
 /* Miembros */
     Route::get('/miembros', [MiembrosController::class, 'index']);
+    Route::post('/miembro', [MiembrosController::class, 'store'])->middleware(['auth']);
+    Route::get('/miembros/{miembros}', [MiembrosController::class, 'show']);
 
 
 require __DIR__.'/auth.php';
