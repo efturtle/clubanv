@@ -80,6 +80,12 @@
                     <p>Miembros</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="/user" class="nav-link">
+                    <i class="nav-icon fa fa-user" aria-hidden="true"></i>
+                    <p>Usuarios</p>
+                  </a>
+                </li>
 
                 <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">

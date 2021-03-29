@@ -41,23 +41,41 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
     
-    public function edit() {
-        //return view('user.edit');
+    public function edit(User $user) {
+        return view('user.edit', compact('user'));
     }
 
-    public function delete() {
-
+    public function update(User $user){
+        $user->update($this->validarUsuario());
+        return redirect(route('user.show', $user))
+        ->with('message', 'usuario ha sido actualizado');
     }
 
-    public function show() {
+    public function destroy(User $user) {
+        $user->forceDelete();
+        return redirect('/user')
+        ->with('message', 'usuario ha ');
+    }
 
+    public function show(User $user) {
+        return view('user.show', compact('user'));
     }
 
     public function index() {
-
+        return view('user.index');
     }
 
-    public function softDelete() {
+    public function softDelete(User $user) {
+        $user->delete();
+        return redirect('/user')
+        ->with('message', 'Se ha dado de baja un usuario');
+    }
 
+    protected function validarUsuario(){
+        return request()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8'
+        ]);
     }
 }
