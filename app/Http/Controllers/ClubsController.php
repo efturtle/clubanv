@@ -9,27 +9,14 @@ class ClubsController extends Controller
 {
     public function index()
     {
-        return view('clubes.main', [
+    return view('clubes.main', [
             'clublist' => clubs::all()
         ]);
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        clubs::create($request->validate([
-            'nombreClub' => 'required',
-            'significado' => 'required',
-            'iglesia' => 'required',
-            'director' => 'required',
-            'subdirector' => '',
-            'subdirectora' => '',
-            'tesorero' => '',
-            'secretario' => '',
-            'pastor' => '',
-            'anciano' => '',
-            'fechaAprobacion' => '',
-            'numeroVoto' => ''
-        ]));
+        clubs::create($this->validarClub());
         return redirect('/club')
         ->with('message', '¡club registrado!');
     }
@@ -46,22 +33,9 @@ class ClubsController extends Controller
     }
 
     
-    public function update(Request $request, clubs $clubs)
+    public function update(clubs $clubs)
     {
-        $clubs->update($request->validate([
-            'nombreClub' => 'required',
-            'significado' => 'required',
-            'iglesia' => 'required',
-            'director' => 'required',
-            'subdirector' => '',
-            'subdirectora' => '',
-            'tesorero' => '',
-            'secretario' => '',
-            'pastor' => '',
-            'anciano' => '',
-            'fechaAprobacion' => '',
-            'numeroVoto' => ''
-        ]));
+        $clubs->update($this->validarClub());
         return redirect(route('club.show', $clubs))
         ->with('message', '¡Club ha sido actualizado!');
     }
@@ -78,5 +52,22 @@ class ClubsController extends Controller
         $clubs->delete();
         return redirect('/club')
         ->with('message', 'Se ha dado de baja un club');
+    }
+
+    protected function validarClub(){
+        return request()->validate([
+            'nombreClub' => 'required',
+            'significado' => 'required',
+            'iglesia' => 'required',
+            'director' => 'required',
+            'subdirector' => '',
+            'subdirectora' => '',
+            'tesorero' => '',
+            'secretario' => '',
+            'pastor' => '',
+            'anciano' => '',
+            'fechaAprobacion' => '',
+            'numeroVoto' => ''
+        ]);
     }
 }

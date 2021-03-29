@@ -27,8 +27,8 @@ class CreateMiembrosTable extends Migration
             $table->string('estado');
             $table->string('ciudad');
             $table->string('tipoSangre');
-            $table->integer('confirmaAlergias'); //1 = si; 0 = no; 2 = desconoce 
-            $table->string('alergia');
+            $table->string('confirmaAlergias');
+            $table->string('alergia')->nullable();
             $table->string('sexo');
             $table->string('nombrePadre');
             $table->string('apellidosPadre');

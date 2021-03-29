@@ -8,13 +8,13 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title">¿Eliminar club?</h5>
+                <h5 class="modal-title">¿Eliminar miembro?</h5>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <h5>Esta accion no se puede deshacer, ¿Eliminar <mark class="text-uppercase">{{ $miembroName }} </mark> ?</h5>
-                <form action="/club/{{ $miembroId }}" method="post">
+                <form action="/miembro/{{ $miembroId }}" method="post">
                     @csrf
                     @method('DELETE')
                     <!-- Modal footer -->

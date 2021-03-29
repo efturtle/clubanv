@@ -164,9 +164,9 @@
                                     <label for="exampleInputEmail1">¿Padece de alergias?</label>
                                     <select class="form-control form-control-sm" name="confirmaAlergias" id="confirmaAlergias" required>
                                         <option selected>Seleccione</option>
-                                        <option value="0">Si</option>
-                                        <option value="1">No</option>
-                                        <option value="2">Desconozco</option>
+                                        <option value="si">Si</option>
+                                        <option value="no">No</option>
+                                        <option value="desconoce">Desconozco</option>
                                     </select>
                                 </div>
                                 <div class="col-3">

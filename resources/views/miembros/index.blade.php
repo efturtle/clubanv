@@ -29,10 +29,7 @@
                   <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="miembros" role="tabpanel" aria-labelledby="miembrosTab">
                       <section class="content">
-                        @if (session('message'))
-                          <p class="text-success">{{ session('message') }}</p>
-                        @endif
-                        {{-- <x-lista-miembros :list="$miembros"/> --}}
+                        <x-lista-miembros :list="$miembroslist"/>
                       </section>
                     </div>
                     <div class="tab-pane fade " id="altaMiembros" role="tabpanel" aria-labelledby="altaMiembrosTab">

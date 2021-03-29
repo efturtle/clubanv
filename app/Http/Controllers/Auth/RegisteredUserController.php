@@ -21,15 +21,7 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -47,5 +39,25 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
+    }
+    
+    public function edit() {
+        //return view('user.edit');
+    }
+
+    public function delete() {
+
+    }
+
+    public function show() {
+
+    }
+
+    public function index() {
+
+    }
+
+    public function softDelete() {
+
     }
 }

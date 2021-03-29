@@ -53,6 +53,7 @@
                         <div class="col-6">
                             <label>Codigo Postal</label>
                             <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $miembros->codigoPostal }}</h5>
                             </div>
                         </div>

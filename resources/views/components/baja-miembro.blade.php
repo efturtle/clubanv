@@ -8,13 +8,13 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title">¿Dar de baja a este club?</h5>
+                <h5 class="modal-title">¿Dar de baja a este miembro?</h5>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <h5>Esta accion da de baja temporal al miembro <mark class="text-uppercase">{{ $miembroName }} </mark></h5>
-                <form action="/club/soft/{{ $miembroId }}" method="post">
+                <form action="/miembro/soft/{{ $miembroId }}" method="post">
                     @csrf
                     @method('DELETE')
                     <!-- Modal footer -->

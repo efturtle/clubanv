@@ -24,9 +24,8 @@ class MiembrosFactory extends Factory
         return [
             'nombre' => $this->faker->name,
             'apellidos' => $this->faker->lastName,
-            'correo' => $this->faker->email,
             'usuario' => $this->faker->userName,
-            'contraseña' => $this->faker->password,
+            'clave' => $this->faker->password,
             'fechaNacimiento' => $this->faker->date,
             'direccion' => $this->faker->address,
             'provincia_colonia' => $this->faker->city,
@@ -35,9 +34,15 @@ class MiembrosFactory extends Factory
             'estado' => $this->faker->state,
             'ciudad' => $this->faker->city,
             'tipoSangre' => $this->faker->bloodType,
-            'alergias' => $this->faker->boolean(0),
-            'cuales' => $this->faker->randomElement([$this->faker->words(1,true),$this->faker->words(2,true), $this->faker->words(3,true)]),
-            'sexo' => $this->faker->randomElement(['hombre', 'mujer'])
+            'confirmaAlergias' => $this->faker->randomElement(['si', 'no', 'desconoce']),
+            'alergia' => $this->faker->randomElement([$this->faker->words(1,true),$this->faker->words(2,true), $this->faker->words(3,true)]),
+            'sexo' => $this->faker->randomElement(['hombre', 'mujer']), 
+            'nombrePadre' => $this->faker->name,
+            'apellidosPadre' => $this->faker->lastName,
+            'contactoPadre' => $this->faker->phoneNumber,
+            'nombreMadre' => $this->faker->name,
+            'apellidosMadre' => $this->faker->lastName,
+            'contactoMadre' => $this->faker->phoneNumber
         ];
     }
 }

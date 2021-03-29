@@ -10,14 +10,49 @@ class MiembrosController extends Controller
     public function index()
     {
         return view('miembros.index', [
-            'miembros' => Miembros::all()
+            'miembroslist' => Miembros::all()
         ]);
     }
-    //create is done with a modal.
 
-    public function store(Request $request)
+    public function store()
     {
-        Miembros::create($request->validate([
+        Miembros::create($this->validarMiembro());
+            return redirect('/miembros')
+            ->with('message', 'miembro registrado');
+    }
+
+    public function show(Miembros $miembros)
+    {
+        return view('miembros.show', compact('miembros'));
+    }
+
+    public function edit(Miembros $miembros)
+    {
+        return view('miembros.edit', compact('miembros'));
+    }
+
+    public function update(Miembros $miembros)
+    {
+        $miembros->update($this->validarMiembro());
+        return redirect (route('miembro.show', $miembros));
+    }
+
+    public function destroy(Miembros $miembros)
+    {
+        $miembros->forceDelete();
+        return redirect('/miembros')
+        ->with('message', 'Se ha eliminado un miembro');
+    }
+
+    public function softDelete(Miembros $miembros){
+        $miembros->delete();
+        return redirect('/miembros')
+        ->with('message', 'un miembro fue dado de baja');
+    }
+
+
+    protected function validarMiembro(){
+        return request()->validate([
             'nombre' => 'required',
             'apellidos' => 'required',
             'usuario' => '',
@@ -39,28 +74,6 @@ class MiembrosController extends Controller
             'nombreMadre' => '',
             'apellidosMadre' => '',
             'contactoMadre' => ''
-            ]));
-            return redirect('/miembros')
-            ->with('message', 'miembro registrado');
-    }
-
-    public function show(Miembros $miembros)
-    {
-        return view('miembros.show', compact('miembros'));
-    }
-
-    public function edit(Miembros $miembros)
-    {
-        
-    }
-
-    public function update(Request $request, Miembros $miembros)
-    {
-        //
-    }
-
-    public function destroy(Miembros $miembros)
-    {
-        //
+        ]);
     }
 }
