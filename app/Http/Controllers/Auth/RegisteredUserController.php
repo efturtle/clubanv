@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -21,7 +20,15 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-    
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -30,52 +37,21 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Auth::login($user = User::create([
+        /* Auth::login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]));
+        ])); */
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
-    }
-    
-    public function edit(User $user) {
-        return view('user.edit', compact('user'));
-    }
-
-    public function update(User $user){
-        $user->update($this->validarUsuario());
-        return redirect(route('user.show', $user))
-        ->with('message', 'usuario ha sido actualizado');
-    }
-
-    public function destroy(User $user) {
-        $user->forceDelete();
         return redirect('/user')
-        ->with('message', 'usuario ha ');
-    }
-
-    public function show(User $user) {
-        return view('user.show', compact('user'));
-    }
-
-    public function index() {
-        return view('user.index');
-    }
-
-    public function softDelete(User $user) {
-        $user->delete();
-        return redirect('/user')
-        ->with('message', 'Se ha dado de baja un usuario');
-    }
-
-    protected function validarUsuario(){
-        return request()->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8'
-        ]);
+        ->with('message', '¡usuario administrador registrado!');
     }
 }
+

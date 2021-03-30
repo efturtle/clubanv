@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembrosController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\UsuarioAdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,11 +46,12 @@ Route::get('/', function () {
     Route::delete('/miembro/{miembros}', [MiembrosController::class, 'destroy'])->middleware('auth');
 
 /* Users */
-    /* index */Route::get('/user', [RegisteredUserController::class, 'index'])->middleware('auth');
-    /* show */Route::get('/user/{user}', [RegisteredUserController::class, 'show'])->middleware('auth');
-    /* edit */Route::get('/user/{user}/edit', [RegisteredUserController::class, 'edit'])->middleware('auth');
-    /* update */ Route::put('user/{user}', [RegisteredUserController::class, 'update'])->middleware('auth');
-    /* soft delete */ Route::delete('/user/soft/{user}', [RegisteredUserController::class, 'softDelete'])->middleware('auth');
-    /* destroy */ Route::delete('/user/{user}', [RegisteredUserController::class, 'destroy'])->middleware('auth');
+    /* index */Route::get('/user', [UsuarioAdminController::class, 'index'])->middleware('auth');
+    /* store is inside the /route/auth called */  ///register
+    /* show */Route::get('/user/{user}', [UsuarioAdminController::class, 'show'])->middleware('auth')->name('user.show');
+    /* edit */Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
+    /* update */ Route::put('user/{user}', [UsuarioAdminController::class, 'update'])->middleware('auth');
+    /* soft delete */ Route::delete('/user/soft/{user}', [UsuarioAdminController::class, 'softDelete'])->middleware('auth');
+    /* destroy */ Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
 
 require __DIR__.'/auth.php';

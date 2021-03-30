@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/loginStyles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
@@ -20,6 +22,8 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <img src="{{ asset('assets/img/campin.png') }}">
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <h2>CLUBES</h2>
                 <div class="input-div dni">
                     <div class="1">
