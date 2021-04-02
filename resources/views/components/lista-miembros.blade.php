@@ -32,12 +32,12 @@
                         
                         <td>
                             <a href="/miembros/edit/{{ $miembro->id }}">
-                                <button class="btn btn-outline-warning" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
                             </a>
                         </td>
                         <td>
                             <a href="/miembros/{{ $miembro->id }}">
-                                <button class="btn btn-outline-info"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
                             </a>
                         </td>
                     </tr>

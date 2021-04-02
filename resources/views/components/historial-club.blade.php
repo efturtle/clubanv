@@ -28,12 +28,12 @@
                         <td class="fw-bold"> barfoo</td>
                         <td>
                             <a href="/club/edit/{{ $clubs->id }}">
-                                <button class="btn btn-outline-warning" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
                             </a>
                         </td>
                         <td>
                             <a href="/club/{{ $clubs->id }}">
-                                <button class="btn btn-outline-info"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
                             </a>
                         </td>
                     </tr>
