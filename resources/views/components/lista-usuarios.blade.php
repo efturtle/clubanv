@@ -20,12 +20,12 @@
                         <td class="fw-bold"> {{ $user->email }}</td>
                         <td>
                             <a href="/user/{{ $user->id }}/edit">
-                                <button class="btn btn-outline-warning" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
                             </a>
                         </td>
                         <td>
                             <a href="/user/{{ $user->id }}">
-                                <button class="btn btn-outline-info"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
                             </a>
                         </td>
                     </tr>
