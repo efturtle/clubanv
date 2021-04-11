@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Miembros;
+use App\Models\miembrosinfo;
 use Illuminate\Http\Request;
 
 class MiembrosController extends Controller
@@ -10,41 +10,41 @@ class MiembrosController extends Controller
     public function index()
     {
         return view('miembros.index', [
-            'miembroslist' => Miembros::all()
+            'miembroslist' => miembrosinfo::all()
         ]);
     }
 
     public function store()
     {
-        Miembros::create($this->validarMiembro());
+        miembrosinfo::create($this->validarMiembro());
             return redirect('/miembros')
             ->with('message', 'miembro registrado');
     }
 
-    public function show(Miembros $miembros)
+    public function show(miembrosinfo $miembros)
     {
         return view('miembros.show', compact('miembros'));
     }
 
-    public function edit(Miembros $miembros)
+    public function edit(miembrosinfo $miembros)
     {
         return view('miembros.edit', compact('miembros'));
     }
 
-    public function update(Miembros $miembros)
+    public function update(miembrosinfo $miembros)
     {
         $miembros->update($this->validarMiembro());
         return redirect (route('miembro.show', $miembros));
     }
 
-    public function destroy(Miembros $miembros)
+    public function destroy(miembrosinfo $miembros)
     {
         $miembros->forceDelete();
         return redirect('/miembros')
         ->with('message', 'Se ha eliminado un miembro');
     }
 
-    public function softDelete(Miembros $miembros){
+    public function softDelete(miembrosinfo $miembros){
         $miembros->delete();
         return redirect('/miembros')
         ->with('message', 'un miembro fue dado de baja');

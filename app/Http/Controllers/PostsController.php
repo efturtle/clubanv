@@ -4,9 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posts;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
+
+    public function info()
+    {
+        $userinfo = DB::table('users')
+        ->where('id', '=', Auth::id())
+        ->get();
+        return $userinfo->directorinfo->club;
+
+        /* $var = Posts::create([
+            'titulo' => 'toma mucha agua',
+            'sobre' => 'salud',
+            'cuerpo' => 'cuida tu salud bebe agua',
+            'club' => $userinfo->directorinfo->club,
+            'category' => '',
+            'user_id' => '',
+        ]); */
+    }
     
     public function index()
     {

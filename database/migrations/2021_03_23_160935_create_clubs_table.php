@@ -14,14 +14,10 @@ class CreateClubsTable extends Migration
     public function up()
     {
         Schema::create('clubs', function (Blueprint $table) {
-            /* hacer privilegios con una migracion futura
-            $table->integer('privilegio'); */
-            //Realizar privilegios y ponerlo en este formulario.
-
             $table->bigIncrements('id');
-            //$table->unsignedBigInteger('user_id');
             $table->string('nombreClub');
             $table->string('significado');
+            $table->unsignedBigInteger('user_id');
             $table->string('iglesia');
             $table->string('director');
             $table->string('subdirector')->nullable();
@@ -32,6 +28,7 @@ class CreateClubsTable extends Migration
             $table->string('anciano');
             $table->date('fechaAprobacion');        
             $table->integer('numeroVoto');
+            $table->string('foto');
             $table->softDeletes();
             $table->timestamps();
         });
