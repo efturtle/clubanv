@@ -12,22 +12,22 @@ class PostsController extends Controller
     public function index()
     {
         //who is trying to see posts
-        $tempo = DB::table('users')->where('id', '=', Auth::id());
+        //$tempo = DB::table('users')->where('id', '=', Auth::id());
 
         //if is a member
-        if($tempo->memberinfo->id != 0){
+        if(Auth::user()->memberinfo->id != 0){
             return view('posts.index', [
                 'postlist' => Posts::all()
-                ->where('club', '=', $tempo->memberinfo->club)
-                ->where('category', '=', $tempo->memberinfo->category )
+                ->where('club', '=', Auth::user()->memberinfo->club)
+                ->where('category', '=', Auth::user()->memberinfo->category )
             ]);
         }
         //if is a Director
-        if($tempo->directorinfo->id != 0){
+        if(Auth::user()->directorinfo->id != 0){
             return view('posts.index', [
                 'postlist' => Posts::all()
-                ->where('club', '=', $tempo->directorinfo->club)
-                ->where('category', '=', $tempo->directorinfo->category )
+                ->where('club', '=', Auth::user()->directorinfo->club)
+                ->where('category', '=', Auth::user()->directorinfo->category )
             ]);
         }
     }
@@ -40,7 +40,7 @@ class PostsController extends Controller
         ]);
     } */
 
-
+/* try out Auth::user()->name */
     public function store(Request $request)
     {
         //query the current user

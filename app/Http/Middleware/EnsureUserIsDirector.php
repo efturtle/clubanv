@@ -18,11 +18,11 @@ class EnsureUserIsDirector
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = DB::table('users')
+/*         $user = DB::table('users')
         ->where('id', '=', Auth::id())
         ->first();
-
-        if($user->directorinfo->id != 0 && $user->directorinfo->rol === 'director de categoria'){
+ */
+        if(Auth::user()->directorinfo->id != 0 && Auth::user()->directorinfo->rol === 'director de categoria'){
             return $next($request);    
         }
 

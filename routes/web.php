@@ -98,6 +98,23 @@ Route::get('/', function () {
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
     /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'postable']);
     /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'postable']);
+    Route::get('turtle', function(){
+        /* DirectorInfo::create([
+            'rol' => 'director de categoria', 
+            'email' => Auth::user()->email,
+            'club' => 'tigres', 
+            'categoria' => 'aventuras', 
+            'direccion' => 'tonala norte 9153', 
+            'codigoPostal' => '44700', 
+            'sexo' => 'hombre', 
+            'tipoSangre' => 'o+', 
+            'nacionalidad' => 'mexicana', 
+            'estado' => 'Jalisco', 
+            'ciudad' => 'Zapopan', 
+            'user_id' => Auth::user()->id,
+        ]); */
+        return view('tester');
+    })->middleware('postable');
 
     /* Route::get('asd', function(){
         $temp = User::create([
@@ -127,7 +144,7 @@ Route::get('/', function () {
 
 
 
-    Route::get('/tester', function(){
+    /* Route::get('/tester', function(){
         $user = DB::table('users')->where('email','=','cglover@example.net')->first();
 
         $director = DirectorInfo::create([
@@ -145,7 +162,7 @@ Route::get('/', function () {
             'user_id' => $user->id,
         ]);
         return view('tester', ['user' => $user]);
-    });
+    }); */
 //DB::table('users')->take(1)->latest()->get() +1
 
 
