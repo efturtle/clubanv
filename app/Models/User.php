@@ -50,4 +50,9 @@ class User extends Authenticatable
     public function directorinfo(){
         return $this->hasOne(DirectorInfo::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Posts::class);
+    }
 }

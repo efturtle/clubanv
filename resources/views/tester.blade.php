@@ -9,6 +9,7 @@
 <body>
     <h1>hello world</h1>
 
-    <p>{{ $user }}</p>
+    <p>{{ $user->directorinfo->categoria }}</p>
+    <p>{{ $user->directorinfo->codigoPostal }}</p>
 </body>
 </html>

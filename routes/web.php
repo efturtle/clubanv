@@ -37,6 +37,7 @@ Route::get('/', function () {
     return 'hi';
 }); */
 
+//$user = DB::table('users')->where('email','=','cglover@example.net')->first();
 /* Route::get('tester', function(){
     miembrosinfo::create([
         'nombre_completo'=>'beto',
@@ -51,13 +52,9 @@ Route::get('/', function () {
         'nacionalidad'=>'mexicana',
         'estado'=>'Jalisco',
         'ciudad'=>'Guadalajara',
-        'user_id'=> Auth::id(),
+        'user_id'=> $user->id,
     ]);
 })->middleware('auth'); */
-
-
-
-
 
 
 
@@ -79,13 +76,13 @@ Route::get('/', function () {
     Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth']);
 
 /* Miembros */
-    Route::get('/miembros', [MiembrosController::class, 'index'])->middleware('auth');
-    Route::post('/miembro', [MiembrosController::class, 'store'])->middleware('auth');
-    Route::get('/miembros/{miembros}', [MiembrosController::class, 'show'])->middleware('auth')->name('miembro.show');
-    Route::get('/miembros/edit/{miembros}', [MiembrosController::class, 'edit'])->middleware('auth');
-    Route::put('/miembro/{miembros}', [MiembrosController::class, 'update'])->middleware('auth');
-    Route::delete('/miembro/soft/{miembros}', [MiembrosController::class, 'softDelete'])->middleware('auth');
-    Route::delete('/miembro/{miembros}', [MiembrosController::class, 'destroy'])->middleware('auth');
+    Route::get('/miembros', [MiembrosInfoController::class, 'index'])->middleware('auth');
+    Route::post('/miembro', [MiembrosInfoController::class, 'store'])->middleware('auth');
+    Route::get('/miembros/{miembros}', [MiembrosInfoController::class, 'show'])->middleware('auth')->name('miembro.show');
+    Route::get('/miembros/edit/{miembros}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
+    Route::put('/miembro/{miembros}', [MiembrosInfoController::class, 'update'])->middleware('auth');
+    Route::delete('/miembro/soft/{miembros}', [MiembrosInfoController::class, 'softDelete'])->middleware('auth');
+    Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');
 
 /* Users */
     /* index */Route::get('/user', [UsuarioAdminController::class, 'index'])->middleware('auth');
@@ -96,9 +93,46 @@ Route::get('/', function () {
     /* soft delete */ Route::delete('/user/soft/{user}', [UsuarioAdminController::class, 'softDelete'])->middleware('auth');
     /* destroy */ Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
 
-/* $director = DirectorInfo::create([
+
+/* Posts */
+    /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
+    /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'postable']);
+    /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'postable']);
+
+    /* Route::get('asd', function(){
+        $temp = User::create([
+            'name'=>'tim',
+            'email'=>'asdf@mail.com',
+            'password'=>'trejo1234',
+            'rol'=>'member',
+        ]);
+        DirectorInfo::create([
             'rol' => 'director de categoria', 
-            'email' => '',
+            'email' => $temp->email,
+            'club' => 'tigres', 
+            'categoria' => 'aventuras', 
+            'direccion' => 'tonala norte 9153', 
+            'codigoPostal' => '44700', 
+            'sexo' => 'hombre', 
+            'tipoSangre' => 'o+', 
+            'nacionalidad' => 'mexicana', 
+            'estado' => 'Jalisco', 
+            'ciudad' => 'Zapopan', 
+            'user_id' => $temp->id,
+        ]);
+
+        return view('tester', ['user'=>$temp]);
+    }); */
+
+
+
+
+    Route::get('/tester', function(){
+        $user = DB::table('users')->where('email','=','cglover@example.net')->first();
+
+        $director = DirectorInfo::create([
+            'rol' => 'director de categoria', 
+            'email' => 'cglover@example.net',
             'club' => 'tigres', 
             'categoria' => 'aventuras', 
             'direccion' => 'tonala norte 9153', 
@@ -109,10 +143,7 @@ Route::get('/', function () {
             'estado' => 'Jalisco', 
             'ciudad' => 'Zapopan', 
             'user_id' => $user->id,
-        ]); */
-
-    Route::get('/tester', function(){
-        $user = DB::table('users')->where('email','=','cglover@example.net')->get();
+        ]);
         return view('tester', ['user' => $user]);
     });
 //DB::table('users')->take(1)->latest()->get() +1

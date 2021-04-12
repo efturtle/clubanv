@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\miembrosinfo;
 use Illuminate\Http\Request;
 
-class MiembrosController extends Controller
+class MiembrosInfoController extends Controller
 {
     public function index()
     {
@@ -17,8 +17,8 @@ class MiembrosController extends Controller
     public function store()
     {
         miembrosinfo::create($this->validarMiembro());
-            return redirect('/miembros')
-            ->with('message', 'miembro registrado');
+        return redirect('/miembros')
+        ->with('message', 'miembro registrado');
     }
 
     public function show(miembrosinfo $miembros)
