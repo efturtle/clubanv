@@ -1,6 +1,9 @@
 {{-- Modal Trigger --}}
-<span class="text-danger">Eliminar Club</span>
-<button class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteClub"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+<div>
+    <span class="text-danger ml-2">Eliminar Club</span>
+    <button class="btn btn-outline-danger ml-1 mr-2" data-toggle="modal" data-target="#deleteClub"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+</div>
+
 
 <!-- The Modal -->
 <div class="modal fade" id="deleteClub">

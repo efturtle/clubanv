@@ -1,6 +1,8 @@
 {{-- Modal Trigger --}}
-<span class="text-warning">Dar de baja</span>
-<button class="btn btn-outline-warning" data-toggle="modal" data-target="#softDeleteClub"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+<div>
+    <span class="text-yellow-600 mr-2">Dar de baja</span>
+    <button class="btn btn-outline-warning" data-toggle="modal" data-target="#softDeleteClub"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+</div>
 
 <!-- The Modal -->
 <div class="modal fade" id="softDeleteClub">

@@ -31,9 +31,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" id="historialClubesTab" data-toggle="pill" href="#historialClubes" role="tab" aria-controls="historialClubes" aria-selected="false">Historial</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="alta-club-tab" data-toggle="pill" href="#alta-club" role="tab" aria-controls="alta-club" aria-selected="true">Alta</a>
-                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Fotos</a>
                 </li>
@@ -49,12 +47,7 @@
                     <x-historial-club :list="$clublist"> </x-historial-club>
                   </section>
                 </div>
-                <div class="tab-pane fade " id="alta-club" role="tabpanel" aria-labelledby="alta-club-tab">
-                  <!-- Main content -->
-                  <section class="content">
-                      <x-alta-club></x-alta-club>
-                  </section>
-                </div>
+                
                 <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
                   
                 </div>

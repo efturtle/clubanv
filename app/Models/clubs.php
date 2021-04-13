@@ -11,5 +11,10 @@ class clubs extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['nombreClub', 'significado', 'iglesia', 'director', 'subdirector', 
-    'subdirectora', 'tesorero', 'secretario', 'pastor', 'anciano', 'fechaAprobacion', 'numeroVoto'];
+    'subdirectora', 'tesorero', 'secretario', 'pastor', 'anciano', 'fechaAprobacion', 'numeroVoto', 'foto', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

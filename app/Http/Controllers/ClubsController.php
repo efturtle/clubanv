@@ -4,38 +4,59 @@ namespace App\Http\Controllers;
 
 use App\Models\clubs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClubsController extends Controller
 {
     public function index()
     {
-    return view('clubes.main', [
+    return view('club.index', [
             'clublist' => clubs::all()
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        clubs::create($this->validarClub());
+        //get the request info
+        $validated = $this->validarClub();
+
+        //set the user id 
+        $validated += ['user_id' => Auth::id()];
+
+        //create club
+        clubs::create($validated);
+
+        //redirect with success message
         return redirect('/club')
         ->with('message', '¡club registrado!');
+    }
+
+    public function create()
+    {
+        return view('club.create');
     }
 
     
     public function show(clubs $clubs)
     {
-        return view('clubes.show', compact('clubs'));
+        return view('club.show', compact('clubs'));
     }
 
     public function edit(clubs $clubs)
     {
-        return view('clubes.edit', compact('clubs'));
+        return view('club.edit', compact('clubs'));
     }
 
     
     public function update(clubs $clubs)
     {
-        $clubs->update($this->validarClub());
+        //get the request
+        $temp = $this->validarClub();
+        //user id
+        $temp += ['user_id' => Auth::id()];
+        //update method
+        $clubs->update($temp);
+        //return
         return redirect(route('club.show', $clubs))
         ->with('message', '¡Club ha sido actualizado!');
     }
@@ -67,7 +88,8 @@ class ClubsController extends Controller
             'pastor' => '',
             'anciano' => '',
             'fechaAprobacion' => '',
-            'numeroVoto' => ''
+            'numeroVoto' => '',
+            'foto' => ''
         ]);
     }
 }

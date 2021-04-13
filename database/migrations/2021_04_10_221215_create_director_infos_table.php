@@ -15,7 +15,7 @@ class CreateDirectorInfosTable extends Migration
     {
         Schema::create('director_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rol');
+            $table->smallInteger('rol');
             $table->string('email');
             $table->string('club');
             $table->string('categoria');

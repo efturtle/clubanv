@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureUserIsDirector
+class EnsureClubMaker
 {
     /**
      * Handle an incoming request.
@@ -17,15 +17,10 @@ class EnsureUserIsDirector
      */
     public function handle(Request $request, Closure $next)
     {
-/*         $user = DB::table('users')
-        ->where('id', '=', Auth::id())
-        ->first();
- */
-        if(Auth::user()->directorinfo->id == 0 && Auth::user()->directorinfo->rol > 3){
-            return $next($request);    
+        if(Auth::user()->directorinfo->id == 0 && Auth::user()->directorinfo->rol > 2){
+            return redirect('/club')
+            ->with('message', 'Accion no permitida, pedir ayuda');
         }
-
-        return redirect('/posts');
-        
+        return $next($request);
     }
 }

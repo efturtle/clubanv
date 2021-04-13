@@ -5,6 +5,7 @@ use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembrosController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsuarioAdminController;
+use App\Http\Controllers\DirectorInfoController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -67,13 +68,14 @@ Route::get('/', function () {
         return redirect('/club');
     })->middleware(['auth']);
 
-    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth']);
-    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth']);
-    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth'])->name('club.show');
-    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth']);
-    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth']);
-    Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth']);
-    Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth']);
+    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'chief']);
+    Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'chief']);
+    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'chief'])->name('club.show');
+    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'chief']);
+    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'chief']);
+    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'chief']);
+    //Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth']);
+    //Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth']);
 
 /* Miembros */
     Route::get('/miembros', [MiembrosInfoController::class, 'index'])->middleware('auth');
@@ -85,6 +87,9 @@ Route::get('/', function () {
     Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');
 
 /* Users */
+    /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
+    /* store */ Route::post('/user', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
+
     /* index */Route::get('/user', [UsuarioAdminController::class, 'index'])->middleware('auth');
     /* store is inside the /route/auth called */  ///register
     /* show */Route::get('/user/{user}', [UsuarioAdminController::class, 'show'])->middleware('auth')->name('user.show');
@@ -96,11 +101,11 @@ Route::get('/', function () {
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
-    /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'postable']);
-    /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'postable']);
+    /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'director']);
+    /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'director']);
     Route::get('turtle', function(){
-        /* DirectorInfo::create([
-            'rol' => 'director de categoria', 
+        DirectorInfo::create([
+            'rol' => 1, 
             'email' => Auth::user()->email,
             'club' => 'tigres', 
             'categoria' => 'aventuras', 
@@ -112,9 +117,9 @@ Route::get('/', function () {
             'estado' => 'Jalisco', 
             'ciudad' => 'Zapopan', 
             'user_id' => Auth::user()->id,
-        ]); */
+        ]);
         return view('tester');
-    })->middleware('postable');
+    });
 
     /* Route::get('asd', function(){
         $temp = User::create([
