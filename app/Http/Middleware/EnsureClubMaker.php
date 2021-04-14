@@ -17,9 +17,11 @@ class EnsureClubMaker
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->directorinfo->id == 0 && Auth::user()->directorinfo->rol > 2){
-            return redirect('/club')
-            ->with('message', 'Accion no permitida, pedir ayuda');
+        if(Auth::user()->directorinfo != null){
+            if(Auth::user()->directorinfo->rol>2){
+                return redirect('/club')
+                ->with('message', 'Accion no permitida, pedir ayuda');
+            }
         }
         return $next($request);
     }

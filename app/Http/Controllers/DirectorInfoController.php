@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\DirectorInfo;
+use Illuminate\Auth\Events\Registered;
 
 class DirectorInfoController extends Controller
 {
@@ -14,23 +16,43 @@ class DirectorInfoController extends Controller
         return view('user.create', ['clubs' => DB::table('clubs')->get()]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $user = User::create($this->validarUser());
+        //request info // ask for the validation of unique email address
+        //hash password
+        $this->validarUser();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-        $temp = $this->validarDirectorInfo();
-
-        $temp += [
-            'user_id' => $user->id,
-            'email' => $user->email
-        ];
+        event(new Registered($user));
         
-        
+        /* director creation */
+        $this->validarDirectorInfo();
 
-        return [
-            'asd' => DirectorInfo::create($temp),
-            'qwe' => $user 
-        ];
+        $director = DirectorInfo::create([
+            'rol' => 3,
+            'email' => $user->email,
+            'club' => $request->club,
+            'categoria' => $request->category,
+            'direccion' => $request->direccion,
+            'codigoPostal' => $request->codigoPostal,
+            'sexo' => $request->sexo,
+            'tipoSangre' => $request->tipoSangre,
+            'nacionalidad' => $request->nacionalidad,
+            'estado' => $request->estado,
+            'ciudad' => $request->ciudad,
+            'user_id' => $user->id
+        ]);
+        
+        return redirect(route('user.show', ['user'=>$director]))
+        ->with('message', 'Usuario Director Registrado');
+    }
+
+    public function show(User $user) {
+        return view('user.show', compact('user'));
     }
 
     protected function validarUser(){
@@ -42,9 +64,8 @@ class DirectorInfoController extends Controller
     }
     protected function validarDirectorInfo(){
         return request()->validate([
-            'rol' => 'required',
             'club' => 'required',
-            'categoria' => 'required',
+            'category' => 'required',
             'direccion' => 'required',
             'codigoPostal' => 'required',
             'sexo' => 'required',

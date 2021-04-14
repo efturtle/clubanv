@@ -16,9 +16,10 @@ class MiembrosInfoController extends Controller
 
     public function store()
     {
-        miembrosinfo::create($this->validarMiembro());
+        
+        /* miembrosinfo::create($this->validarMiembroInfo());
         return redirect('/miembros')
-        ->with('message', 'miembro registrado');
+        ->with('message', 'miembro registrado'); */
     }
 
     public function show(miembrosinfo $miembros)
@@ -33,7 +34,7 @@ class MiembrosInfoController extends Controller
 
     public function update(miembrosinfo $miembros)
     {
-        $miembros->update($this->validarMiembro());
+        $miembros->update($this->validarMiembroInfo());
         return redirect (route('miembro.show', $miembros));
     }
 
@@ -50,8 +51,16 @@ class MiembrosInfoController extends Controller
         ->with('message', 'un miembro fue dado de baja');
     }
 
+    protected function validarUser(){
+        return request()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',    
+        ]);
+    }
 
-    protected function validarMiembro(){
+
+    protected function validarMiembroInfo(){
         return request()->validate([
             'nombre' => 'required',
             'apellidos' => 'required',

@@ -6,7 +6,7 @@
     </section>
         <!-- Main content -->
     <section class="content">
-        <form action="/user" method="POST">        
+        <form action="/newuser" method="POST">        
             @csrf
             <div class="row">
                 <div class="col-6">
@@ -51,8 +51,8 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <label for="category-select">Elija el club</label>
-                    <select class="form-control form-control-sm" name="category" id="category-select">
+                    <label for="club">Elija el club</label>
+                    <select class="form-control form-control-sm" name="club" id="club">
                         <option value="">--Porfavor elija un club--</option>
                         @foreach ($clubs as $club)
                             <option value="{{ $club->nombreClub }}">{{ $club->nombreClub }}</option>    
@@ -60,8 +60,8 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <label for="category-select">Elija la categoria</label>
-                    <select class="form-control form-control-sm" name="category" id="category-select">
+                    <label for="category">Elija la categoria</label>
+                    <select class="form-control form-control-sm" name="category" id="category" value="{{ old('category') }}" required>
                         <option value="">--Porfavor elija una Categoria--</option>
                         <option value="1">Aventuras</option>
                         <option value="2">Conquistadores</option>
@@ -74,7 +74,7 @@
                     <label for="exampleInputEmail1">Fecha de nacimiento</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form-control form-control-sm" required>
+                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form-control form-control-sm" value="{{ old('fechaNacimiento') }}" required>
                     </div>
                 </div>
             </div>
@@ -83,34 +83,34 @@
                     <label for="exampleInputEmail1">Direccion</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-                        <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" placeholder="Ejemplo: Calle, No.#" required>
+                        <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" placeholder="Ejemplo: Calle, No.#" value="{{ old('direccion') }}" required>
                     </div>
                 </div>
                 <div class="col-4">
                     <label for="exampleInputEmail1">Provincia/Colonia</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-bullseye"></i></span>
-                        <input type="text" name="provincia_colonia" id="provincia_colonia" class="form-control form-control-sm" placeholder="Ejemplo: Col. Tajín" required>
+                        <input type="text" name="provincia_colonia" id="provincia_colonia" class="form-control form-control-sm" value="{{ old('provincia_colonia') }}" placeholder="Ejemplo: Col. Tajín" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-3">
                     <label for="exampleInputEmail1">Código Postal</label>
-                    <input type="text" name="codigoPostal" id="codigoPostal" class="form-control form-control-sm" placeholder="#####" required>
+                    <input type="text" name="codigoPostal" id="codigoPostal" class="form-control form-control-sm" value="{{ old('codigoPostal') }}" placeholder="#####" required>
                 </div>
                 <div class="col-3">
                     <label for="exampleInputEmail1">Nacionalidad</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-globe"></i></span>
-                        <input type="text" name="nacionalidad" id="nacionalidad" class="form-control form-control-sm" placeholder="" required>
+                        <input type="text" name="nacionalidad" id="nacionalidad" class="form-control form-control-sm" value="{{ old('nacionalidad') }}" placeholder="" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <label for="exampleInputEmail1">Estado</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-flag"></i></span>
-                        <select class="form-control form-control-sm" name="estado" id="estado" required> 
+                        <select class="form-control form-control-sm" name="estado" id="estado" value="{{ old('estado') }}" required> 
                             <option selected>Seleccione</option>
                             <option value="Aguascalientes">Aguascalientes</option>
                             <option value="Baja California">Baja California</option>
@@ -151,7 +151,7 @@
                     <label for="exampleInputEmail1">Ciudad</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-building"></i></span>
-                        <input type="text" name="ciudad" id="ciudad" class="form-control form-control-sm" placeholder="Ejemplo: Poza Rica" required>
+                        <input type="text" name="ciudad" id="ciudad" class="form-control form-control-sm" value="{{ old('ciudad') }}" placeholder="Ejemplo: Poza Rica" required>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
                     <label for="exampleInputEmail1">Tipo de sangre</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-heartbeat"></i></span>
-                        <select class="form-control form-control-sm" name="tipoSangre" id="tipoSangre" required>
+                        <select class="form-control form-control-sm" name="tipoSangre" id="tipoSangre" value="{{ old('tipoSangre') }}" required>
                             <option selected>Seleccione</option>
                             <option value="A+">A+</option>
                             <option value="B+">B+</option>
@@ -175,7 +175,7 @@
                 </div>
                 <div class="col-3">
                     <label for="exampleInputEmail1">¿Padece de alergias?</label>
-                    <select class="form-control form-control-sm" name="confirmaAlergias" id="confirmaAlergias" required>
+                    <select class="form-control form-control-sm" name="confirmaAlergias" id="confirmaAlergias" value="{{ old('confirmaAlergias') }}" required>
                         <option selected>Seleccione</option>
                         <option value="si">Si</option>
                         <option value="no">No</option>
@@ -184,13 +184,13 @@
                 </div>
                 <div class="col-3">
                     <label for="exampleInputEmail1">¿Cuál?</label>
-                    <input type="text" name="alergia" id="alergia" class="form-control form-control-sm" placeholder="Describa el tipo de alergia" >
+                    <input type="text" name="alergia" id="alergia" class="form-control form-control-sm" value="{{ old('alergia') }}" placeholder="Describa el tipo de alergia" >
                 </div>
                 <div class="col-3">
                     <label for="exampleInputEmail1">Sexo</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-circle-thin"></i></span>
-                        <select class="form-control form-control-sm" name="sexo" id="sexo" required>
+                        <select class="form-control form-control-sm" name="sexo" id="sexo" value="{{ old('sexo') }}" required>
                             <option selected>Seleccione</option>
                             <option value="femenino">Femenino</option>
                             <option value="masculino">Masculino</option>

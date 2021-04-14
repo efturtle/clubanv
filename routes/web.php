@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubsController;
-use App\Http\Controllers\MiembrosController;
+use App\Http\Controllers\MiembrosInfoController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsuarioAdminController;
 use App\Http\Controllers\DirectorInfoController;
@@ -88,16 +88,20 @@ Route::get('/', function () {
 
 /* Users */
     /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
-    /* store */ Route::post('/user', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
-
+    /* store */ Route::post('/newuser', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
+    /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
     /* index */Route::get('/user', [UsuarioAdminController::class, 'index'])->middleware('auth');
-    /* store is inside the /route/auth called */  ///register
-    /* show */Route::get('/user/{user}', [UsuarioAdminController::class, 'show'])->middleware('auth')->name('user.show');
-    /* edit */Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
-    /* update */ Route::put('user/{user}', [UsuarioAdminController::class, 'update'])->middleware('auth');
-    /* soft delete */ Route::delete('/user/soft/{user}', [UsuarioAdminController::class, 'softDelete'])->middleware('auth');
-    /* destroy */ Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
+    
 
+    /* 
+    Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
+    
+    Route::put('user/{user}', [UsuarioAdminController::class, 'update'])->middleware('auth');
+    
+    Route::delete('/user/soft/{user}', [UsuarioAdminController::class, 'softDelete'])->middleware('auth');
+    
+    Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
+ */
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
