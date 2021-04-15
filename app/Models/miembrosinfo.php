@@ -9,8 +9,12 @@ class miembrosinfo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre_completo', 'fecha_nacimiento', 'edad','direccion','codigoPostal','sexo','tipoSangre', 'confirmaAlergias', 'alergia'
-    ,'nacionalidad', 'estado','ciudad', 'user_id'];
+    protected $fillable = ['nombre','club', 'categoria','fechaNacimiento', 'edad','direccion', 'provincia_colonia','codigoPostal','sexo',
+    'tipoSangre', 'confirmaAlergias', 'alergia', 'nacionalidad','estado','ciudad', 'user_id',
+    'nombrePadre', 'apellidosPadre', 'contactoPadre',
+    'nombreMadre', 'apellidosMadre', 'contactoMadre', 'iglesia', 'distrito', 'clasePorCursar', 'ultimaClaseCursada'
+    , 'investidoUtimaClase', 'bautizado', 'investido', 'tipoAspirante_consejero', 'fechaInvestidura', 'tiempoServicio'
+    , 'nombreCurso','cursoActual', 'libros', 'especialidad', 'estatus'];
 
     public function user()
     {

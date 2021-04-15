@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\DirectorInfo;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -37,17 +38,31 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        /* Auth::login($user = User::create([
+        Auth::login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])); */
-        $user = User::create([
+        ]));
+        /* $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+        ]); */
 
+        DirectorInfo::create([
+            'rol' => 1, 
+            'email' => $user->email,
+            'club' => 'tigres', 
+            'categoria' => 'aventuras', 
+            'direccion' => 'tonala norte 9153', 
+            'codigoPostal' => '44700', 
+            'sexo' => 'hombre', 
+            'tipoSangre' => 'o+', 
+            'nacionalidad' => 'mexicana', 
+            'estado' => 'Jalisco', 
+            'ciudad' => 'Zapopan', 
+            'user_id' => $user->id,
+        ]);
         event(new Registered($user));
 
         return redirect('/user')

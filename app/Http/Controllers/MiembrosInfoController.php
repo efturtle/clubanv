@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\miembrosinfo;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class MiembrosInfoController extends Controller
 {
@@ -14,17 +17,50 @@ class MiembrosInfoController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        
-        /* miembrosinfo::create($this->validarMiembroInfo());
-        return redirect('/miembros')
-        ->with('message', 'miembro registrado'); */
+        //get request info
+        $this->validarUser();
+        //create user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        //event(new Registered($user));
+
+        //validate request member info
+        $this->validarMiembroInfo();
+        //create memberinfo
+        $miembrosinfo = miembrosinfo::create([
+            'nombre' => $request->nombre,
+            'club' => $request->club,
+            'categoria' => $request->category,
+            'fechaNacimiento' => $request->fechaNacimiento,
+            'edad' => $request->edad,
+            'direccion' => $request->direccion,
+            'provincia_colonia' => $request->provincia_colonia,
+            'codigoPostal' => $request->codigoPostal,
+            'nacionalidad' => $request->nacionalidad,
+            'estado' => $request->estado,
+            'ciudad' => $request->ciudad,
+            'tipoSangre' => $request->tipoSangre,
+            'confirmaAlergias' => $request->confirmaAlergias,
+            'alergia' => $request->alergia,
+            'sexo' => $request->sexo,
+            'user_id' => $user->id
+        ]);
+
+        //return view with member info (show method)
+        return redirect(route('miembro.show', ['miembros', $miembrosinfo]))
+        ->with('message', 'miembro registrado satisfactoriamente');
+
     }
 
-    public function show(miembrosinfo $miembros)
-    {
-        return view('miembros.show', compact('miembros'));
+    public function show(miembrosinfo $miembrosinfo)
+    {   
+        return view('miembros.show', ['miembros'=> $miembrosinfo]);
     }
 
     public function edit(miembrosinfo $miembros)
@@ -63,9 +99,8 @@ class MiembrosInfoController extends Controller
     protected function validarMiembroInfo(){
         return request()->validate([
             'nombre' => 'required',
-            'apellidos' => 'required',
-            'usuario' => '',
-            'clave' => '',
+            'club' => 'required',
+            'category' => 'required',
             'fechaNacimiento' => 'required',
             'direccion' => 'required',
             'provincia_colonia' => 'required',
@@ -77,12 +112,36 @@ class MiembrosInfoController extends Controller
             'confirmaAlergias' => 'required',
             'alergia' => '',
             'sexo' => 'required',
+            'user_id' => '',
+
+
             'nombrePadre' => '',
             'apellidosPadre' => '',
             'contactoPadre' => '',
             'nombreMadre' => '',
             'apellidosMadre' => '',
-            'contactoMadre' => ''
+            'contactoMadre' => '',
+
+
+            
+            'iglesia' => '', 
+            'distrito' => '',
+            'clase_por_cursar' => '',
+            'ultima_clase_cursada' => '',
+            'investido_en_la_ultima_clase' => '',
+
+            'bautizado' => '',
+            'investido' => '',
+            'tipo_aspirante_consejero' => '',
+            'fecha_investidura' => '',
+            'tiempo_de_servicio' => '',
+            
+            'nombre_c' => '',
+            'curso_actual' => '',
+            'libros' => '',
+            'especialidad' => '',
+            'estatus' => ''
         ]);
+
     }
 }

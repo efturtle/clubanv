@@ -32,6 +32,9 @@ class CreateClubsTable extends Migration
             $table->date('fechaAprobacion')->nullable();        
             $table->integer('numeroVoto')->nullable();
             $table->string('foto')->nullable();
+            $table->string('catConquistadores')->nullable();
+            $table->string('catAventureros')->nullable();
+            $table->string('catGuias')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

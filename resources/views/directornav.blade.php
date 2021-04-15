@@ -52,31 +52,6 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->  
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-cubes"></i>
-              <p>
-                Estadisticas
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../vistas/asoc_estadisticas.php" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
-                    <p>Asociación</p>
-                  </a>
-                </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../vistas/dtto_estadisticas.php" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
-                    <p>Distrito</p>
-                  </a>
-                </li>
-            </ul>
-          </li>
 
           <li class="nav-item pl-1">
             <a href="/user/create" class="nav-link">
@@ -96,7 +71,13 @@
               <li class="nav-item pl-4">
                 <a href="/club" class="nav-link">
                     <i class="fas fa-cube"></i>
-                  <p>Mostrar Clubs</p>
+                  <p>Clubs</p>
+                </a>
+              </li>
+              <li class="nav-item pl-4">
+                <a href="/user" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Usuarios Directores</p>
                 </a>
               </li>
               <li class="nav-item pl-4">
@@ -158,6 +139,7 @@
                 </li>
             </ul>
           </li>
+          
           <li class="nav-item">
             <a href="../Support.php" class="nav-link">
               <i class="nav-icon fa fa-cogs"></i>
@@ -165,7 +147,32 @@
                 Soporte
               </p>
             </a>
-          </li>   
+          </li>  
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-cubes"></i>
+              <p>
+                Estadisticas
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../vistas/asoc_estadisticas.php" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Asociación</p>
+                  </a>
+                </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../vistas/dtto_estadisticas.php" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Distrito</p>
+                  </a>
+                </li>
+            </ul>
+          </li> 
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

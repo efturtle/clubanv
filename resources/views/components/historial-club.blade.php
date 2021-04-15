@@ -9,7 +9,7 @@
         <table class="table table-striped">
             <thead><tr>
                 <th scope="col">Nombre del Club</th>  
-                <th scope="col">Usuario</th>
+                <th scope="col">Director Guias Mayores</th>
                 <th scope="col">Director</th>
                 <th scope="col">Cantidad de miembros</th>
                 <th scope="col">Editar</th>

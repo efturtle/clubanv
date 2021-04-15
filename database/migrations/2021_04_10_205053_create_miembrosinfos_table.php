@@ -15,18 +15,28 @@ class CreateMiembrosinfosTable extends Migration
     {
         Schema::create('miembrosinfos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_completo');
-            $table->date('fecha_nacimiento');
+            $table->string('nombre');
+            $table->string('club');
+            $table->integer('categoria');
+            $table->date('fechaNacimiento');
             $table->smallInteger('edad');
             $table->string('direccion');
+            $table->string('provincia_colonia');
             $table->string('codigoPostal');
-            $table->string('sexo');
+            $table->string('estado');
+            $table->string('ciudad');
+            $table->string('nacionalidad');
             $table->string('tipoSangre');
             $table->string('confirmaAlergias');
             $table->string('alergia')->nullable();
-            $table->string('nacionalidad');
-            $table->string('estado');
-            $table->string('ciudad');
+            $table->string('sexo');
+
+            $table->string('nombrePadre')->nullable();
+            $table->string('apellidosPadre')->nullable();
+            $table->string('contactoPadre')->nullable();
+            $table->string('nombreMadre')->nullable();
+            $table->string('apellidosMadre')->nullable();
+            $table->string('contactoMadre')->nullable();
 
 
             /* Relationship with the users table */
@@ -35,23 +45,13 @@ class CreateMiembrosinfosTable extends Migration
             ->references('id')
             ->on('users');
 
-
-            /* $table->string('nombrePadre');
-            $table->string('apellidosPadre');
-            $table->string('contactoPadre');
-            $table->string('nombreMadre');
-            $table->string('apellidosMadre');
-            $table->string('contactoMadre'); */
-
-
-
             /* Datos del Conq./Aventurero */
-                /* $table->string('iglesia');
-                $table->string('distrito');
-                $table->string('clase_por_cursar');
-                $table->string('ultima_clase_cursada');
-                $table->string('investido_en_la_ultima_clase');
-                $table->boolean('bautizado'); */
+                $table->string('iglesia')->nullable();
+                $table->string('distrito')->nullable();
+                $table->string('clasePorCursar')->nullable();
+                $table->string('ultimaClaseCursada')->nullable();
+                $table->string('investidoUtimaClase')->nullable();
+                $table->boolean('bautizado')->nullable();
 
                 /* aqui tengo que guardar la variable de lo que curso asi, este queda registrado en la base de datos. */
 
@@ -59,22 +59,19 @@ class CreateMiembrosinfosTable extends Migration
             //$table->smallInteger('privilegio');    
 
             /* Datos del consejero/aspirante */
-            /* $table->boolean('bautizado');
-            $table->string('iglesia');
-            $table->string('distrito');
-            $table->boolean('investido');
-            $table->smallInteger('tipo_aspirante_consejero');
-            $table->date('fecha_investidura');
-            $table->integer('tiempo_de_servicio'); */
+            $table->boolean('investido')->nullable();
+            $table->smallInteger('tipoAspirante_consejero')->nullable();
+            $table->date('fechaInvestidura')->nullable();
+            $table->integer('tiempoServicio')->nullable();
 
 
 
             /* Ficha tecnica */
-                /* $table->string('nombre_c');
-                $table->string('curso_actual');
-                $table->string('libros');
-                $table->string('especialidad');
-                $table->string('estatus'); */
+                $table->string('nombreCurso')->nullable();
+                $table->string('cursoActual')->nullable();
+                $table->string('libros')->nullable();
+                $table->string('especialidad')->nullable();
+                $table->string('estatus')->nullable();
                 
             $table->softDeletes();
             $table->timestamps();

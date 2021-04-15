@@ -6,6 +6,8 @@
     </section>
         <!-- Main content -->
     <section class="content">
+         <!-- Validation Errors -->
+         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <form action="/newuser" method="POST">        
             @csrf
             <div class="row">

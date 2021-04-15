@@ -79,9 +79,10 @@ Route::get('/', function () {
 
 /* Miembros */
     Route::get('/miembros', [MiembrosInfoController::class, 'index'])->middleware('auth');
-    Route::post('/miembro', [MiembrosInfoController::class, 'store'])->middleware('auth');
-    Route::get('/miembros/{miembros}', [MiembrosInfoController::class, 'show'])->middleware('auth')->name('miembro.show');
-    Route::get('/miembros/edit/{miembros}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
+    Route::post('/miembro', [MiembrosInfoController::class, 'store'])->middleware(['auth', 'isCreator']);
+    Route::get('/miembros/{miembrosinfo}', [MiembrosInfoController::class, 'show'])->middleware(['auth', 'isCreator'])->name('miembro.show');
+
+    Route::get('/miembros/edit/{miembrosinfo}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
     Route::put('/miembro/{miembros}', [MiembrosInfoController::class, 'update'])->middleware('auth');
     Route::delete('/miembro/soft/{miembros}', [MiembrosInfoController::class, 'softDelete'])->middleware('auth');
     Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');
@@ -90,7 +91,7 @@ Route::get('/', function () {
     /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
     /* store */ Route::post('/newuser', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
     /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
-    /* index */Route::get('/user', [UsuarioAdminController::class, 'index'])->middleware('auth');
+    /* index */Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
     
 
     /* 

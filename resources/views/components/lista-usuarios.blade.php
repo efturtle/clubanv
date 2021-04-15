@@ -10,6 +10,8 @@
             <thead><tr>
                 <th scope="col">Nombre</th>  
                 <th scope="col">Correo</th>
+                <th scope="col">Club</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Ver</th>
             </tr></thead>
@@ -18,6 +20,24 @@
                     <tr>
                         <td class="fw-bold"> {{ $user->name }}</td>
                         <td class="fw-bold"> {{ $user->email }}</td>
+                        <td class="fw-bold"> {{ $user->directorinfo->club }}</td>
+                        @switch($user->directorinfo->categoria)
+                            @case(1)
+                                <td class="fw-bold"> Aventureros</td>        
+                                @break
+                            @case(2)
+                            <td class="fw-bold"> Conquistadores</td>        
+                                @break
+                            @case(3)
+                            <td class="fw-bold">Guias Mayores</td>        
+                                @break
+                            @case('aventuras')
+                            <td class="fw-bold">admin</td>        
+                                @break
+                            @default
+                                
+                        @endswitch
+                        
                         <td>
                             <a href="/user/{{ $user->id }}/edit">
                                 <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
