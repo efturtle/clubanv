@@ -17,7 +17,7 @@
                         <div class="col-6">
                             <label for="exampleInputEmail1">Nombre de usuario</label>
                             <div class="input-group-prepend">
-                                <span class="input-group-text "><i class="fa fa-file-text"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <h5 class="px-3 mt-1">{{ $user->name }}</h5>
                             </div>
                         </div>

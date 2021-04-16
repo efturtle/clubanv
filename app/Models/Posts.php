@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class clubs extends Model
+class Posts extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['nombreClub', 'significado', 'iglesia', 'director', 'subdirector', 
-    'subdirectora', 'tesorero', 'secretario', 'pastor', 'anciano', 'fechaAprobacion', 'numeroVoto', 'foto', 'user_id'];
+    protected $fillable = ['titulo', 'sobre', 'cuerpo', 'privilegio', 'club', 'category', 'user_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 }

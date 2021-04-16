@@ -14,15 +14,37 @@
                         <div class="col-6">
                             <label>Nombre</label>
                             <div class="input-group-prepend">
-                                <span class="input-group-text "><i class="fa fa-user-o"></i></span>
+                                <span class="input-group-text "><i class="fas fa-smile"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $miembros->nombre }}</h5>
                             </div>
                         </div>
+                    </div>
+                    <div class="row pb-2">
                         <div class="col-6">
-                            <label>Apellidos</label>
+                            <label>Club</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "><i class="fas fa-cube"></i></span>
+                                <h5 class="px-3 mt-1"> {{ $miembros->club }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label>categoria</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $miembros->apellidos }}</h5>
+                                @switch($miembros->categoria)
+                                    @case(1)
+                                        <h5 class="px-3 mt-1"> Aventuras</h5>        
+                                        @break
+                                    @case(2)
+                                        <h5 class="px-3 mt-1"> Conquistadores</h5>
+                                        @break
+                                    @case(3)
+                                        <h5 class="px-3 mt-1"> Guias Mayores</h5>
+                                        @break
+                                    @default
+                                        
+                                @endswitch
+                                
                             </div>
                         </div>
                     </div>
@@ -126,16 +148,10 @@
                                 <h5 class="px-3 mt-1"> {{ $miembros->sexo }}</h5>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label>Usuario</label>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-circle-thin"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $miembros->usuario }}</h5>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row pb-2">
-                        <div class="col-6">
+                        {{-- <div class="col-6">
                             <label>Nombre del Padre</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user-o"></i></span>
@@ -148,10 +164,10 @@
                                 <span class="input-group-text"><i class="fa fa-user"></i></i></span>
                                 <h5 class="px-3 mt-1"> {{ $miembros->nombreMadre }}  {{ $miembros->apellidosMadre }}</h5>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row pb-2">
-                        <div class="col-6">
+                        {{-- <div class="col-6">
                             <label>Contacto Padre</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-address-card"></i></span>
@@ -164,7 +180,7 @@
                                 <span class="input-group-text"><i class="fa fa-address-card"></i></i></span>
                                 <h5 class="px-3 mt-1"> {{ $miembros->contactoMadre }}</h5>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-footer">

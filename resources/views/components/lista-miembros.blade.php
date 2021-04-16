@@ -9,8 +9,8 @@
         <table class="table table-striped">
             <thead><tr>
                 <th scope="col">Nombre</th>  
-                <th scope="col">Usuario</th>
-                <th scope="col">admin</th>
+                <th scope="col">correo</th>
+                <th scope="col">Director</th>
                 <th scope="col">Alergias</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Ver</th>
@@ -20,9 +20,9 @@
                 @foreach ($list as $miembro)
                     <tr>
                         <td class="fw-bold">  
-                            <a href="#">{{ $miembro->nombre }}</a>
+                            <a href="/miembros/{{ $miembro->id }}">{{ $miembro->nombre }}</a>
                         </td>
-                        <td class="fw-bold"> {{ $miembro->usuario }}</td>
+                        <td class="fw-bold"> {{ $miembro->user->email }}</td>
                         <td class="fw-bold"> foobar </td>
                         @if ($miembro->confirmaAlergias == 'si')
                             <td class="fw-bold"> {{ $miembro->alergia }}</td>    

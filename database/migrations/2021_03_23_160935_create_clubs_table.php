@@ -14,14 +14,13 @@ class CreateClubsTable extends Migration
     public function up()
     {
         Schema::create('clubs', function (Blueprint $table) {
-            /* hacer privilegios con una migracion futura
-            $table->integer('privilegio'); */
-            //Realizar privilegios y ponerlo en este formulario.
-
             $table->bigIncrements('id');
-            //$table->unsignedBigInteger('user_id');
             $table->string('nombreClub');
             $table->string('significado');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');
             $table->string('iglesia');
             $table->string('director');
             $table->string('subdirector')->nullable();
@@ -30,8 +29,13 @@ class CreateClubsTable extends Migration
             $table->string('secretario');
             $table->string('pastor');
             $table->string('anciano');
-            $table->date('fechaAprobacion');        
-            $table->integer('numeroVoto');
+            $table->date('fechaAprobacion')->nullable();        
+            $table->integer('numeroVoto')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('catConquistadores')->nullable();
+            $table->string('catAventureros')->nullable();
+            $table->string('catGuias')->nullable();
+            
             $table->softDeletes();
             $table->timestamps();
         });
