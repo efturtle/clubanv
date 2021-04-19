@@ -11,25 +11,21 @@ class PostsController extends Controller
 {   
     public function index()
     {
-        //who is trying to see posts
-        //$tempo = DB::table('users')->where('id', '=', Auth::id());
-
-        //if is a member
-        if(Auth::user()->memberinfo->id != 0){
-            return view('posts.index', [
-                'postlist' => Posts::all()
-                ->where('club', '=', Auth::user()->memberinfo->club)
-                ->where('category', '=', Auth::user()->memberinfo->category )
-            ]);
-        }
-        //if is a Director
-        if(Auth::user()->directorinfo->id != 0){
+        if(Auth::user()->miembrosinfo == null){
             return view('posts.index', [
                 'postlist' => Posts::all()
                 ->where('club', '=', Auth::user()->directorinfo->club)
-                ->where('category', '=', Auth::user()->directorinfo->category )
+                ->where('categoria', '=', Auth::user()->directorinfo->category)
             ]);
         }
+        if(Auth::user()->directorinfo == null){
+            return view('posts.index', [
+                'postlist' => Posts::all()
+                ->where('club', '=', Auth::user()->miembrosinfo->club)
+                ->where('club', '=', Auth::user()->miembrosinfo->category)
+            ]);
+        }
+        
     }
     
     /* public function indexMember()
@@ -40,20 +36,16 @@ class PostsController extends Controller
         ]);
     } */
 
-/* try out Auth::user()->name */
     public function store(Request $request)
     {
         //query the current user
-        $user = DB::table('users')
-        ->where('id', '=', Auth::id())
-        ->first();
+        $user = Auth::user();
 
         //post data
         $temp = $this->validatePost();
         
         //user who made the post
         $temp += [
-            'privilegio'=>3,
             'club'=>$user->directorinfo->club,
             'category'=>$user->directorinfo->category,
             'user_id'=>Auth::id(),
@@ -86,7 +78,6 @@ class PostsController extends Controller
         
         //user who made the post
         $temp += [
-            'privilegio'=>3,
             'club'=>$user->directorinfo->club,
             'category'=>$user->directorinfo->category,
             'user_id'=>Auth::id(),

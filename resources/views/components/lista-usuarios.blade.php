@@ -18,10 +18,10 @@
             <tbody> 
                 @foreach ($list as $user)
                     <tr>
-                        <td class="fw-bold"> {{ $user->name }}</td>
-                        <td class="fw-bold"> {{ $user->email }}</td>
-                        <td class="fw-bold"> {{ $user->directorinfo->club }}</td>
-                        @switch($user->directorinfo->categoria)
+                        <td class="fw-bold"> {{ $user->user->name }}</td>
+                        <td class="fw-bold"> {{ $user->user->email }}</td>
+                            <td class="fw-bold"> {{ $user->club }}</td>    
+                            @switch($user->category)
                             @case(1)
                                 <td class="fw-bold"> Aventureros</td>        
                                 @break
@@ -37,7 +37,6 @@
                             @default
                                 
                         @endswitch
-                        
                         <td>
                             <a href="/user/{{ $user->id }}/edit">
                                 <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>

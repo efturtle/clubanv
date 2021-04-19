@@ -35,7 +35,6 @@ class CreateClubsTable extends Migration
             $table->string('catConquistadores')->nullable();
             $table->string('catAventureros')->nullable();
             $table->string('catGuias')->nullable();
-            
             $table->softDeletes();
             $table->timestamps();
         });

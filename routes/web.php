@@ -6,8 +6,10 @@ use App\Http\Controllers\MiembrosInfoController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsuarioAdminController;
 use App\Http\Controllers\DirectorInfoController;
+use App\Models\clubs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\DirectorInfo;
 
@@ -26,38 +28,6 @@ use App\Models\DirectorInfo;
 Route::get('/', function () {
     return view('welcome');
 })->name('loginscreen');
-
-/* Route::get('/test', function(){
-    
-    User::create([
-        'name'=>'tim',
-        'email'=>'asdf@mail.com',
-        'password'=>'trejo1234',
-        'rol'=>'member',
-    ]);
-    return 'hi';
-}); */
-
-//$user = DB::table('users')->where('email','=','cglover@example.net')->first();
-/* Route::get('tester', function(){
-    miembrosinfo::create([
-        'nombre_completo'=>'beto',
-        'fecha_nacimiento'=>'2020-12-12',
-        'edad'=>'23',
-        'direccion'=>'salome arias 2133',
-        'codigoPostal'=>'47445',
-        'sexo'=>'hombre',P
-        'tipoSangre'=>'b+',
-        'confirmaAlergias'=>'si',
-        'alergia'=>'champis',
-        'nacionalidad'=>'mexicana',
-        'estado'=>'Jalisco',
-        'ciudad'=>'Guadalajara',
-        'user_id'=> $user->id,
-    ]);
-})->middleware('auth'); */
-
-
 
 
 /* Route::get('/dashboard', function () {
@@ -92,8 +62,6 @@ Route::get('/', function () {
     /* store */ Route::post('/newuser', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
     /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
     /* index */Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
-    
-
     /* 
     Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
     
@@ -104,10 +72,12 @@ Route::get('/', function () {
     Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
  */
 
+
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
     /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'director']);
     /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'director']);
+
     Route::get('turtle', function(){
         DirectorInfo::create([
             'rol' => 1, 
@@ -125,6 +95,47 @@ Route::get('/', function () {
         ]);
         return view('tester');
     });
+
+    Route::get('restart', function(){
+        //create the user
+        Auth::login($user = User::create([
+            'name' => 'Beto Cuevas',
+            'email' => 'asd@mail.com',
+            'password' => Hash::make('happycode'),
+        ]));
+        //create club
+        clubs::create([
+            'nombreClub' => 'Centinelas',
+            'significado' => 'guardianes',
+            'iglesia' => 'tajin',
+            'director' => 'beto',
+            'subdirector' => 'manny',
+            'subdirectora' => 'kevin',
+            'tesorero' => 'roger',
+            'secretario' => 'tom gun',
+            'pastor' => 'jimy',
+            'anciano' => 'gordo',
+            'fechaAprobacion' => '2021-12-12',
+            'numeroVoto' => '123',
+            'foto' => 'ola.png',
+            'user_id' => Auth::user()->id
+        ]);
+        //create director
+        DirectorInfo::create([
+            'rol' => 1, 
+            'club' => 'Centinelas', 
+            'category' => 2, 
+            'direccion' => 'tonala norte 9153', 
+            'codigoPostal' => '44700', 
+            'sexo' => 'hombre', 
+            'tipoSangre' => 'o+', 
+            'nacionalidad' => 'mexicana', 
+            'estado' => 'Jalisco', 
+            'ciudad' => 'Zapopan', 
+            'user_id' => Auth::user()->id,
+        ]);
+    });
+
 
     /* Route::get('asd', function(){
         $temp = User::create([
@@ -177,7 +188,5 @@ Route::get('/', function () {
 
 
     Route::get('/test', [PostsController::class, 'info'])->middleware('auth');
-
-
 
 require __DIR__.'/auth.php';

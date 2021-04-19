@@ -14,7 +14,7 @@ class DirectorInfoController extends Controller
 {
     public function index()
     {
-        return view('user.index', ['users' => User::all()]);
+        return view('user.index', ['users' => DirectorInfo::all()]);
     }
 
     public function create()

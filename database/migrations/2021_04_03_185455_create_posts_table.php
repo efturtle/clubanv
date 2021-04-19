@@ -18,8 +18,6 @@ class CreatePostsTable extends Migration
             $table->string('titulo');
             $table->text('sobre');
             $table->text('cuerpo');
-
-            $table->integer('privilegio');
             $table->string('club');
             $table->string('category');
             $table->unsignedBigInteger('user_id');
