@@ -20,8 +20,9 @@ class ClubsController extends Controller
         //get the request info
         $validated = $this->validarClub();
 
-        //set the user id 
-        $validated += ['user_id' => Auth::id()];
+        //set the district id 
+        //user belongs to a district 
+        //$validated += ['user_id' => Auth::id()];
 
         //create club
         clubs::create($validated);

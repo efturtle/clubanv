@@ -22,7 +22,52 @@ class DirectorInfoController extends Controller
         return view('user.create', ['clubs' => DB::table('clubs')->get()]);
     }
 
+    public function new($rol)
+    {
+        return view('directivos.create', ['rol' => $rol]);
+    }
+
     public function store(Request $request)
+    {
+        switch ($request->rol) {
+            case 1:
+                //create director
+                break;
+            case 2:
+                //create secretario/encargado
+                $this->storeSecretaria($request);
+                break;
+            case 3:
+                //create director
+                break;
+            
+            default:
+                return redirect('/home');
+                break;
+        }
+        //validar user info
+        //create the user
+        //create the director
+    }
+    
+    protected function storeSecretaria($request)
+    {
+        //validate user info
+        $this->validarUser();
+        //create the user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);       
+        //create the director
+        DirectorInfo::create([
+            'rol' => $request->rol,
+            'user_id' => $user->id
+        ]);
+    }
+
+    public function storeDirectorCategory(Request $request)
     {
         //request info // ask for the validation of unique email address
         //hash password
@@ -33,7 +78,7 @@ class DirectorInfoController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        //event(new Registered($user));
 
         /* director creation */
         $this->validarDirectorInfo();
@@ -58,6 +103,14 @@ class DirectorInfoController extends Controller
         return redirect(route('user.show', ['user'=>$director]))
         ->with('message', 'Usuario Director Registrado');
     }
+
+    
+
+    public function storeEncargado()
+    {
+        
+    }
+
 
     public function show(User $user) {
         return view('user.show', compact('user'));

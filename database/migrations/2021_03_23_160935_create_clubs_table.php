@@ -14,13 +14,15 @@ class CreateClubsTable extends Migration
     public function up()
     {
         Schema::create('clubs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nombreClub');
             $table->string('significado');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('distrito_id');
+
+            $table->foreign('distrito_id')
             ->references('id')
-            ->on('users');
+            ->on('distritos');
+
             $table->string('iglesia');
             $table->string('director');
             $table->string('subdirector')->nullable();

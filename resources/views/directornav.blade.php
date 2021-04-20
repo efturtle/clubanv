@@ -50,129 +50,66 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->  
-
-          <li class="nav-item pl-1">
-            <a href="/user/create" class="nav-link">
-                <i class="fas fa-user-circle"></i>
-              <p> Alta Director </p>
+          <li class="nav-item">
+            <a href="/distritos/create" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Crear Distrito
+              </p>
             </a>
-          </li>  
-
-          <li class="nav-item has-treeview">
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-users"></i>
-              <p>Clubes
-                <i class="right fa fa-angle-left"></i>
+              <i class="fas fa-user-circle"></i>
+              <p>
+                Directivos
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item pl-4">
-                <a href="/club" class="nav-link">
-                    <i class="fas fa-cube"></i>
-                  <p>Clubs</p>
+              <li class="nav-item">
+                <a href="/directivos/create/1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Secretari@</p>
                 </a>
               </li>
-              <li class="nav-item pl-4">
-                <a href="/user" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Usuarios Directores</p>
-                </a>
-              </li>
-              <li class="nav-item pl-4">
-                <a href="/club/create" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Alta de clubes</p>
-                </a>
-              </li>
-              <li class="nav-item pl-4">
-                <a href="/miembros" class="nav-link">
-                    <i class="fas fa-users"></i>
-                  <p>Miembros</p>
-                </a>
-              </li>
-              <li class="nav-item pl-4">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-exchange-alt"></i>
-                  <p>Traspasos</p>
-                </a>
-              </li>
-              <li class="nav-item pl-3">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Solicitud de Investidura</p>
+              <li class="nav-item">
+                <a href="/directivos/create/2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Encargad@</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-fire"></i>
+              <i class="fas fa-user-circle"></i>
               <p>
-                Camporee
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-folder"></i>
-              <p>
-                Recursos
-                <i class="right fa fa-angle-left"></i>
+                Clubs
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../vistas/asoc_estadisticas.php" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
-                    <p>Manuales</p>
-                  </a>
-                </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../vistas/dtto_estadisticas.php" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
-                    <p>Curso bautismal</p>
-                  </a>
-                </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Club</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Directiv@ de Categoria</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asignar Directivos a Categoria</p>
+                </a>
+              </li>
             </ul>
           </li>
-          
-          <li class="nav-item">
-            <a href="../Support.php" class="nav-link">
-              <i class="nav-icon fa fa-cogs"></i>
-              <p>
-                Soporte
-              </p>
-            </a>
-          </li>  
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-cubes"></i>
-              <p>
-                Estadisticas
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../vistas/asoc_estadisticas.php" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
-                    <p>Asociación</p>
-                  </a>
-                </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../vistas/dtto_estadisticas.php" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
-                    <p>Distrito</p>
-                  </a>
-                </li>
-            </ul>
-          </li> 
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

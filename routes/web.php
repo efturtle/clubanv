@@ -26,11 +26,18 @@ use App\Models\DirectorInfo;
 Route::get('/', function () {
     return view('welcome');
 })->name('loginscreen');
+Route::get('/index', function(){
+    return view('index');
+})->middleware('auth');
 
 /* Clubs */
     Route::get('dashboard', function(){
         return redirect('/club');
     })->middleware(['auth']);
+
+    /* Directiva */
+    //  /directivos/create/0   /directivos/create/1   /directivos/create/2
+    
 
     Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'chief']);
     Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'chief']);
@@ -53,9 +60,10 @@ Route::get('/', function () {
 
 /* Users */
     /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
-    /* store */ Route::post('/newuser', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
+    /* Create V2 */ Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'new'])->middleware(['auth']);
+    /* store */ Route::post('/user', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
     /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
-    /* index */Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
+    /* index */ Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
     /* 
     Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
     
@@ -66,6 +74,9 @@ Route::get('/', function () {
     Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
  */
 
+ /* Distritos */
+    Route::get('/distrito/create', [DistritosController::class, 'create']);
+    Route::post('/distrito', [DistritosController::class, 'store']);
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');

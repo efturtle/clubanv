@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class clubs extends Model
 {
     use HasFactory;
-
     
     use SoftDeletes;
     protected $fillable = ['nombreClub', 'significado', 'iglesia', 'director', 'subdirector', 
-    'subdirectora', 'tesorero', 'secretario', 'pastor', 'anciano', 'fechaAprobacion', 'numeroVoto', 'foto', 'user_id'];
+    'subdirectora', 'tesorero', 'secretario', 'pastor', 'anciano', 'fechaAprobacion', 'numeroVoto', 'foto'];
 
-    public function user()
+
+    public function distrito()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Distritos::class);
     }
 }
