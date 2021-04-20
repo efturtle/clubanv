@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembrosInfoController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\UsuarioAdminController;
 use App\Http\Controllers\DirectorInfoController;
 use App\Models\clubs;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -29,10 +27,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('loginscreen');
 
-
-/* Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard'); */
 /* Clubs */
     Route::get('dashboard', function(){
         return redirect('/club');
@@ -78,23 +72,6 @@ Route::get('/', function () {
     /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'director']);
     /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'director']);
 
-    Route::get('turtle', function(){
-        DirectorInfo::create([
-            'rol' => 1, 
-            'email' => Auth::user()->email,
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => Auth::user()->id,
-        ]);
-        return view('tester');
-    });
 
     Route::get('restart', function(){
         //create the user
@@ -135,57 +112,6 @@ Route::get('/', function () {
             'user_id' => Auth::user()->id,
         ]);
     });
-
-
-    /* Route::get('asd', function(){
-        $temp = User::create([
-            'name'=>'tim',
-            'email'=>'asdf@mail.com',
-            'password'=>'trejo1234',
-            'rol'=>'member',
-        ]);
-        DirectorInfo::create([
-            'rol' => 'director de categoria', 
-            'email' => $temp->email,
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => $temp->id,
-        ]);
-
-        return view('tester', ['user'=>$temp]);
-    }); */
-
-
-
-
-    /* Route::get('/tester', function(){
-        $user = DB::table('users')->where('email','=','cglover@example.net')->first();
-
-        $director = DirectorInfo::create([
-            'rol' => 'director de categoria', 
-            'email' => 'cglover@example.net',
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => $user->id,
-        ]);
-        return view('tester', ['user' => $user]);
-    }); */
-//DB::table('users')->take(1)->latest()->get() +1
-
 
     Route::get('/test', [PostsController::class, 'info'])->middleware('auth');
 

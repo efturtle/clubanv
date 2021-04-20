@@ -8,33 +8,24 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
-{   
+{
     public function index()
     {
-        if(Auth::user()->miembrosinfo == null){
-            return view('posts.index', [
-                'postlist' => Posts::all()
-                ->where('club', '=', Auth::user()->directorinfo->club)
-                ->where('categoria', '=', Auth::user()->directorinfo->category)
-            ]);
-        }
-        if(Auth::user()->directorinfo == null){
+        if(!Auth::user()->miembrosinfo == null){
             return view('posts.index', [
                 'postlist' => Posts::all()
                 ->where('club', '=', Auth::user()->miembrosinfo->club)
                 ->where('club', '=', Auth::user()->miembrosinfo->category)
             ]);
         }
-        
+        if(!Auth::user()->directorinfo == null){
+            return view('posts.index', [
+                'postlist' => Posts::all()
+                ->where('club', '=', Auth::user()->directorinfo->club)
+                ->where('category', '=', Auth::user()->directorinfo->category)
+            ]);
+        }
     }
-    
-    /* public function indexMember()
-    {
-        $user = DB::table('users')->where('');
-        return view('posts.index', [
-            'postlist' => Posts::all()->where('')
-        ]);
-    } */
 
     public function store(Request $request)
     {

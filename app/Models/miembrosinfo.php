@@ -9,7 +9,7 @@ class miembrosinfo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre','club', 'categoria','fechaNacimiento', 'edad','direccion', 'provincia_colonia','codigoPostal','sexo',
+    protected $fillable = ['nombre','club', 'category','fechaNacimiento', 'edad','direccion', 'provincia_colonia','codigoPostal','sexo',
     'tipoSangre', 'confirmaAlergias', 'alergia', 'nacionalidad','estado','ciudad', 'user_id',
     'nombrePadre', 'apellidosPadre', 'contactoPadre',
     'nombreMadre', 'apellidosMadre', 'contactoMadre', 'iglesia', 'distrito', 'clasePorCursar', 'ultimaClaseCursada'

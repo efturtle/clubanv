@@ -9,7 +9,7 @@ class DirectorInfo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rol', 'email', 'club','categoria', 'direccion', 'codigoPostal', 'sexo', 'tipoSangre', 'nacionalidad', 'estado', 'ciudad','user_id'];
+    protected $fillable = ['rol', 'email', 'club','category', 'direccion', 'codigoPostal', 'sexo', 'tipoSangre', 'nacionalidad', 'estado', 'ciudad','user_id'];
 
     public function user()
     {
