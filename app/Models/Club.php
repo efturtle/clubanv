@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Distritos extends Model
+class Club extends Model
 {
     use HasFactory;
+
+    public function distrito()
+    {
+        return $this->belongsTo(Distrito::class);
+    }
 }

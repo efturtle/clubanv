@@ -61,4 +61,9 @@ class User extends Authenticatable
     public function club(){
         return $this->hasMany(clubs::class);
     }
+
+    public function distrito()
+    {
+        return $this->belongsTo(Distrito::class);
+    }
 }

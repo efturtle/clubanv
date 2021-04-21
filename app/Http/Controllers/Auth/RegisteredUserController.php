@@ -55,8 +55,7 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
         ]);
         event(new Registered($user));    
-        if(DB::table('distritos'))
-        return redirect('/distrito/create')
+        return redirect('/index')
         ->with('message', '');
     }
 }
