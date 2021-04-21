@@ -26,13 +26,24 @@
                 <h4>Creacion de nuevo director</h4>
                 @break
             @case(2)
-                <h4>Creacion de nuevo Secretari@ / Encargad@</h4>
+                <h4>Creacion de nuevo Secretari@</h4>
                 @break
             @case(3)
-                <h4>Creacion de nuevo directivo</h4>
+                <h4>Creacion de nuevo Encargad@</h4>
+                @break
+            @case(4)
+                <h4>Creacion de nuevo Pastor</h4>
+                @break
+            @case(5)
+                <h4>Creacion de nuevo Coordinador</h4>
+                @break
+            @case(6)
+                <h4>Director de Club</h4>
+                @break
+            @case(7)
+                <h4>Creacion de nuevo Director de Categoria</h4>
                 @break
             @default
-                
         @endswitch
         <form action="/user" method="POST">
             @csrf
@@ -72,9 +83,6 @@
                         {{-- <p class="text-grey-dark text-xs italic">Make it as long and as crazy as you'd like</p> --}}
                 </div>
             </div>
-            @if ($rol > 2)
-                <p>Es un director de categoria</p>
-            @endif
             <div class="flex justify-end"><button class="bg-blue-800 h-12 w-1/4 sm:w-1/5"> <span class="text-gray-100">Enviar</span> </button></div>
         </form>
     </div>

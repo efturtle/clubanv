@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Distrito extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre', 'ciudad', 'estado', 'coordinador_id'];
+    protected $fillable = ['nombre', 'ciudad', 'estado', 'coordinador_id', 'pastor_id'];
 
     public function club()
     {
@@ -17,5 +17,10 @@ class Distrito extends Model
     public function coordinador()
     {
         return $this->hasOne(User::class, 'coordinador_id');
+    }
+
+    public function pastor()
+    {
+        return $this->hasOne(User::class, 'pastor_id');
     }
 }

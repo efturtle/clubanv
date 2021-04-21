@@ -25,6 +25,9 @@ class CreateDirectorInfosTable extends Migration
             $table->string('nacionalidad')->nullable();
             $table->string('estado')->nullable();
             $table->string('ciudad')->nullable();
+
+            
+            $table->boolean('asignado')->default(false);
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')

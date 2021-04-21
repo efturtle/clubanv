@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'asignado'
     ];
 
     /**
@@ -58,12 +59,8 @@ class User extends Authenticatable
         return $this->hasMany(Posts::class);
     }
     
-    public function club(){
-        return $this->hasMany(clubs::class);
-    }
-
-    public function distrito()
+    public function club()
     {
-        return $this->belongsTo(Distrito::class);
+        return $this->belongsTo(Club::class);
     }
 }

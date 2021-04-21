@@ -10,40 +10,42 @@
             <thead><tr>
                 <th scope="col">Nombre</th>  
                 <th scope="col">Correo</th>
-                <th scope="col">Club</th>
-                <th scope="col">Categoria</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Asignado</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Ver</th>
             </tr></thead>
             <tbody> 
-                @foreach ($list as $user)
+                @foreach ($list as $director)
                     <tr>
-                        <td class="fw-bold"> {{ $user->user->name }}</td>
-                        <td class="fw-bold"> {{ $user->user->email }}</td>
-                            <td class="fw-bold"> {{ $user->club }}</td>    
-                            @switch($user->category)
+                        <td class="fw-bold"> {{ $director->user->name }}</td>
+                        <td class="fw-bold"> {{ $director->user->email }}</td>
+                        @switch($director->rol)
                             @case(1)
-                                <td class="fw-bold"> Aventureros</td>        
-                                @break
+                                <td>Director</td>
+                            @break
                             @case(2)
-                            <td class="fw-bold"> Conquistadores</td>        
+                                <td>Secretari@</td>
                                 @break
                             @case(3)
-                            <td class="fw-bold">Guias Mayores</td>        
+                                <td>Encargad@</td>
                                 @break
-                            @case('aventuras')
-                            <td class="fw-bold">admin</td>        
+                            @case(4)
+                                <td>Pastor / Coordinador</td>
+                                @break
+                            @case(5)
+                                <td>Director de Categoria</td>
                                 @break
                             @default
-                                
                         @endswitch
+                        <td class="fw-bold"> {{ $director->asignado }}</td>
                         <td>
-                            <a href="/user/{{ $user->id }}/edit">
+                            <a href="/user/{{ $director->id }}/edit">
                                 <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
                             </a>
                         </td>
                         <td>
-                            <a href="/user/{{ $user->id }}">
+                            <a href="/user/{{ $director->id }}">
                                 <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
                             </a>
                         </td>

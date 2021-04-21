@@ -20,7 +20,7 @@
                   <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="usuarios" role="tabpanel" aria-labelledby="usuariosTab">
                       <section class="content">
-                        <x-lista-usuarios :list="$users"/>
+                        <x-lista-usuarios :list="$directors"/>
                       </section>
                     </div>
                   </div>

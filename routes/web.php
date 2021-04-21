@@ -5,7 +5,8 @@ use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembrosInfoController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\DirectorInfoController;
-use App\Models\clubs;
+use App\Http\Controllers\DistritoController;
+use App\Models\Club;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -64,6 +65,8 @@ Route::get('/index', function(){
     /* store */ Route::post('/user', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
     /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
     /* index */ Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
+    /* Asignar */ Route::get('/directivos/asignar/{type}', [DirectorInfoController::class, 'asignar'])->middleware(['auth','chief']);
+
     /* 
     Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
     
@@ -75,8 +78,8 @@ Route::get('/index', function(){
  */
 
  /* Distritos */
-    Route::get('/distrito/create', [DistritosController::class, 'create']);
-    Route::post('/distrito', [DistritosController::class, 'store']);
+    Route::get('/distrito/create', [DistritoController::class, 'create']);
+    Route::post('/distrito', [DistritoController::class, 'store']);
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
@@ -92,7 +95,7 @@ Route::get('/index', function(){
             'password' => Hash::make('happycode'),
         ]));
         //create club
-        clubs::create([
+        Club::create([
             'nombreClub' => 'Centinelas',
             'significado' => 'guardianes',
             'iglesia' => 'tajin',

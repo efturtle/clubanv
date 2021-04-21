@@ -4,22 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\clubs;
 use App\Models\DirectorInfo;
-use Illuminate\Auth\Events\Registered;
 
 class DirectorInfoController extends Controller
 {
     public function index()
     {
-        return view('user.index', ['users' => DirectorInfo::all()]);
-    }
-
-    public function create()
-    {
-        return view('user.create', ['clubs' => DB::table('clubs')->get()]);
+        return view('user.index', ['directors' => DirectorInfo::all()]);
     }
 
     public function new($rol)
@@ -27,63 +19,41 @@ class DirectorInfoController extends Controller
         return view('directivos.create', ['rol' => $rol]);
     }
 
+    public function asignar($type)
+    {
+        return view('directivos.asignar', ['type' => $type]);
+    }
+
+    public function asignacion()
+    {
+        
+    }
+
     public function store(Request $request)
     {
-        switch ($request->rol) {
-            case 1:
-                //create director
-                break;
-            case 2:
-                //create secretario/encargado
-                $this->storeSecretaria($request);
-                break;
-            case 3:
-                //create director
-                break;
-            
-            default:
-                return redirect('/home');
-                break;
+        //request info
+        $this->validarUser();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        if($request->rol < 4){
+            $this->storeDirectivoAlto($request->rol, $user);
+            return redirect('/user')
+            ->with('message', 'Nuevo usuario directivo creado!');    
         }
-        //validar user info
-        //create the user
-        //create the director
-    }
-    
-    protected function storeSecretaria($request)
-    {
-        //validate user info
-        $this->validarUser();
-        //create the user
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);       
-        //create the director
-        DirectorInfo::create([
-            'rol' => $request->rol,
-            'user_id' => $user->id
-        ]);
+        $this->storeDirectivo($request->rol, $user);
+        return redirect('/user')
+        ->with('message', 'Nuevo usuario creado!');
     }
 
-    public function storeDirectorCategory(Request $request)
+    protected function storeDirectorCategory($request, $user)
     {
-        //request info // ask for the validation of unique email address
-        //hash password
-        $this->validarUser();
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        //event(new Registered($user));
-
         /* director creation */
-        $this->validarDirectorInfo();
+        //$this->validarDirectorInfo();
 
-        $director = DirectorInfo::create([
+        /* DirectorInfo::create([
             'rol' => 3,
             'email' => $user->email,
             'club' => $request->club,
@@ -96,19 +66,30 @@ class DirectorInfoController extends Controller
             'estado' => $request->estado,
             'ciudad' => $request->ciudad,
             'user_id' => $user->id
+        ]); */
+        DirectorInfo::create([
+            'rol' => $request->rol,
+            'user_id' => $user->id
         ]);
-            //under maintenance!!
-        //$this->updateCategoryDirector($request->category);
-        
-        return redirect(route('user.show', ['user'=>$director]))
-        ->with('message', 'Usuario Director Registrado');
+
     }
-
     
-
-    public function storeEncargado()
+    protected function storeDirectivo($rol, $user)
     {
-        
+        DirectorInfo::create([
+            'rol' => $rol,
+            'user_id' => $user->id
+        ]);
+    }
+    protected function storeDirectivoAlto($rol, $user)
+    {
+        $director = DirectorInfo::create([
+            'rol' => $rol,
+            'user_id' => $user->id
+        ]);
+        $director->update([
+            'asignado' => true
+        ]);
     }
 
 
@@ -135,25 +116,5 @@ class DirectorInfoController extends Controller
             'estado' => 'required',
             'ciudad' => 'required',
         ]);
-    }
-
-    //unfinished, change the club category director as a new director is created.
-    //must do a join here to make it dynamic
-    protected function updateCategoryDirector($category){
-        $club = new clubs;
-        switch ($club) {
-            case 1:
-                $club->category;
-                break;
-            case 2:
-                # code...
-                break;
-            case 3:
-                # code...
-                break;
-            default:
-                # code...
-                break;
-        }
     }
 }

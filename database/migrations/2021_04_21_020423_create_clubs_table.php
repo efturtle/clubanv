@@ -36,6 +36,22 @@ class CreateClubsTable extends Migration
             $table->foreign('distrito_id')
             ->references('id')
             ->on('clubs');
+
+
+            $table->unsignedBigInteger('directorAventurero_id')->nullable();
+            $table->foreign('directorAventurero_id')
+            ->references('id')
+            ->on('users');
+
+            $table->unsignedBigInteger('directorConquistador_id')->nullable();
+            $table->foreign('directorConquistador_id')
+            ->references('id')
+            ->on('users');
+
+            $table->unsignedBigInteger('directorGuiasMayores_id')->nullable();
+            $table->foreign('directorGuiasMayores_id')
+            ->references('id')
+            ->on('users');
             $table->timestamps();
         });
     }

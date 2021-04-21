@@ -22,6 +22,12 @@ class CreateDistritosTable extends Migration
             $table->foreign('coordinador_id')
             ->references('id')
             ->on('users');
+            
+            $table->unsignedBigInteger('pastor_id')->nullable();
+            $table->foreign('pastor_id')
+            ->references('id')
+            ->on('users');
+
             $table->timestamps();
         });
     }

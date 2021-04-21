@@ -51,32 +51,36 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/distritos/create" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Crear Distrito
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fas fa-user-circle"></i>
               <p>
-                Directivos
+                Distrito
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/directivos/create/1" class="nav-link">
+                <a href="/distrito/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Secretari@</p>
+                  <p>Crear Distrito</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/directivos/create/2" class="nav-link">
+                <a href="/directivos/create/4" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Encargad@</p>
+                  <p>Crear Pastor de Distrito</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/directivos/create/5" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Coordinador de Distrito</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="directivos/asignar/1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asignar coordinador o pastor a Distrito</p>
                 </a>
               </li>
             </ul>
@@ -91,24 +95,64 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/club/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear Club</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/directivos/create/6" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Director de Club</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/directivos/create/7" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear Directiv@ de Categoria</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="directivos/asignar/2" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Asignar Directivos a Categoria</p>
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-user-circle"></i>
+              <p>
+                Directiva de Asociacion
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/directivos/create/1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Director General</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/directivos/create/2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Secretaria</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/directivos/create/3" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Encargado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/user" class="nav-link">
+              <p>Lista de Usuarios</p>
+            </a>
           </li>
         </ul>
       </nav>

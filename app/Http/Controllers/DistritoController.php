@@ -30,6 +30,7 @@ class DistritoController extends Controller
             'estado' => $request->estado,
         ]);
         //redirect
+        return redirect('/index');
     }
 
     public function show(Distrito $distrito)
