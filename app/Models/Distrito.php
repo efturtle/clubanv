@@ -16,11 +16,11 @@ class Distrito extends Model
     }
     public function coordinador()
     {
-        return $this->hasOne(User::class, 'coordinador_id');
+        return $this->hasOne(User::class, 'id', 'coordinador_id');
     }
 
     public function pastor()
     {
-        return $this->hasOne(User::class, 'pastor_id');
+        return $this->hasOne(User::class, 'id', 'pastor_id');
     }
 }

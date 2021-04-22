@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class ClubsController extends Controller
 {
@@ -18,9 +21,24 @@ class ClubsController extends Controller
     public function store(Request $request)
     {
         //get the request info
-        $validated = $this->validarClub();
+        $this->validarClub();
         
-        Club::create($validated);
+        Club::create([
+            'nombreClub' => $request->nombreClub,
+            'significado' => $request->significado,
+            'iglesia' => $request->iglesia,
+            'tesorero' => $request->tesorero,
+            'anciano' => $request->anciano,
+            'secretario' => $request->secretario,
+            'director_id' => $request->director,
+            'pastor_id' => $request->pastor,
+            'subdirector' => $request->subdirector,
+            'subdirectora' => $request->subdirectora,            
+            'fechaAprobacion' => $request->fechaAprobacion,
+            'numeroVoto' => $request->numeroVoto,
+            'foto' => $request->foto,
+            'distrito_id' => $request->distrito,
+        ]);
 
         //redirect with success message
         return redirect('/club')
@@ -29,7 +47,15 @@ class ClubsController extends Controller
 
     public function create()
     {
-        return view('club.create');
+        $users = User::whereHas('directorinfo', function(Builder $query){
+            $query
+            ->where('rol', '>', 3)
+            ->where('asignado', '=', 0);
+        })->get();
+        return view('club.create', [
+            'users' => $users,
+            'distritos' => DB::table('distritos')->get()
+        ]);
     }
 
     
@@ -76,16 +102,17 @@ class ClubsController extends Controller
             'nombreClub' => 'required',
             'significado' => 'required',
             'iglesia' => 'required',
-            'director' => 'required',
-            'subdirector' => '',
-            'subdirectora' => '',
             'tesorero' => '',
-            'secretario' => '',
-            'pastor' => '',
             'anciano' => '',
+            'secretario' => '',
+            'director' => '',
+            'pastor' => '',
+            'subdirector' => '',
+            'subdirectora' => '',            
             'fechaAprobacion' => '',
             'numeroVoto' => '',
-            'foto' => ''
+            'foto' => '',
+            'distrito' => 'required',
         ]);
     }
 }

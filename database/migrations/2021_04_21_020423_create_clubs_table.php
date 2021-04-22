@@ -18,12 +18,10 @@ class CreateClubsTable extends Migration
             $table->string('nombreClub');
             $table->string('significado');
             $table->string('iglesia');
-            $table->string('director');
             $table->string('subdirector')->nullable();
             $table->string('subdirectora')->nullable();
             $table->string('tesorero')->nullable();
             $table->string('secretario');
-            $table->string('pastor');
             $table->string('anciano');
             $table->date('fechaAprobacion')->nullable();        
             $table->integer('numeroVoto')->nullable();
@@ -37,6 +35,16 @@ class CreateClubsTable extends Migration
             ->references('id')
             ->on('clubs');
 
+
+            $table->unsignedBigInteger('director_id')->nullable();
+            $table->foreign('director_id')
+            ->references('id')
+            ->on('users');
+
+            $table->unsignedBigInteger('pastor_id')->nullable();
+            $table->foreign('pastor_id')
+            ->references('id')
+            ->on('users');
 
             $table->unsignedBigInteger('directorAventurero_id')->nullable();
             $table->foreign('directorAventurero_id')

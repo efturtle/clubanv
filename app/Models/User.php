@@ -22,7 +22,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'asignado'
     ];
 
     /**
@@ -62,5 +61,10 @@ class User extends Authenticatable
     public function club()
     {
         return $this->belongsTo(Club::class);
+    }
+
+    public function director()
+    {
+        return $this->belongsTo(Club::class, 'director_id', 'id');
     }
 }

@@ -9,7 +9,6 @@
         @if (session('message'))
             <p class="text-yellow-800">{{ session('message') }}</p>
         @endif
-        Bienvenido
     </section>
     
 </div>

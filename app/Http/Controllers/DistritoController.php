@@ -11,12 +11,12 @@ class DistritoController extends Controller
     
     public function index()
     {
-        return view('distritos.index', ['distritos' => DB::table('distritos')->get()]);
+        return view('distrito.index', ['list' => DB::table('distritos')->get()]);
     }
 
     public function create()
     {
-        return view('distritos.create');
+        return view('distrito.create');
     }
 
     public function store(Request $request)
@@ -33,10 +33,14 @@ class DistritoController extends Controller
         return redirect('/index');
     }
 
-    public function show(Distrito $distrito)
+    public function show($id)
     {
-        return view('distrito.show', compact('distrito'));
+        $distrito = Distrito::findOrFail($id);
+        return view('distrito.show', [
+            'distrito'=> $distrito
+        ]);
     }
+    
 
     public function edit(Distrito $distrito)
     {

@@ -188,13 +188,24 @@
               <a href="/user" class="nav-link">
                 <p>Lista de Usuarios</p>
               </a>
-            </li>    
+            </li>  
+            <li class="nav-item">
+              <a href="/club" class="nav-link">
+                <p>Lista de Clubs</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/distrito" class="nav-link">
+                <p>Lista de Distritos</p>
+              </a>
+            </li>  
           @else
             <li class="nav-item">
               <a href="/user/directors" class="nav-link">
                 <p>Lista de Usuarios</p>
               </a>
             </li>
+            
           @endif
           
         </ul>

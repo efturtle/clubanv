@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\DirectorInfo;
 
@@ -20,8 +21,6 @@ class DirectorInfoController extends Controller
     }
 
 
-
-
     public function newDirective($rol)
     {
         return view('directivos.createDirective', ['rol' => $rol]);
@@ -29,21 +28,9 @@ class DirectorInfoController extends Controller
 
     public function newDirector($rol)
     {
-        return view('directivos.createDirector', ['rol' => $rol]);
+        return view('directivos.createDirector', ['rol' => $rol, 'clubs' => DB::table('clubs')->get()]);
     }
 
-
-
-    public function asignarDirectivo($type)
-    {
-        return view('directivos.asignar', ['type' => $type]);
-    }
-
-
-    public function asignarDirector($type)
-    {
-        return view('directivos.asignarDirectores', ['type' => $type]);
-    }
 
     public function storeDirector(Request $request)
     {
@@ -73,7 +60,17 @@ class DirectorInfoController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        
+
+        //if it is a pastor or coordinator, start off not being assigned
+        if($request->rol == 5 || $request->rol == 4){
+            DirectorInfo::create([
+                'rol' => $request->rol,
+                'user_id' => $user->id
+            ]);
+            return redirect('/user')
+            ->with('message', 'Nuevo usuario directivo creado!');        
+        }
+        //directive with assigned set to true, they don't belong to a specific club or district
         DirectorInfo::create([
             'rol' => $request->rol,
             'asignado' => 1,
@@ -82,6 +79,18 @@ class DirectorInfoController extends Controller
         return redirect('/user')
         ->with('message', 'Nuevo usuario directivo creado!');    
         
+    }
+
+
+    public function asignarDirectivo($type)
+    {
+        return view('directivos.asignar', ['type' => $type]);
+    }
+
+
+    public function asignarDirector($type)
+    {
+        return view('directivos.asignarDirectores', ['type' => $type]);
     }
 
     public function show(User $user) {

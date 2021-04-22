@@ -28,7 +28,7 @@
                 <h4>Director de Club</h4>
                 @break
             @case(2)
-                <h4>Creacion de nuevo Director de Categoria</h4>
+                <h4 class="text-blue-800">Creacion de nuevo Director de Categoria</h4>
                 @break
             @default
         @endswitch

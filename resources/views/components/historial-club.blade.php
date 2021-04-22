@@ -20,12 +20,20 @@
                 @foreach ($list as $clubs)
                     <tr>
                         <td class="fw-bold">  
-                            {{-- {{ route('club.show', $club) }} --}}
                             <a href="{{ route('club.show', $clubs) }}">{{ $clubs->nombreClub }}</a>
                         </td>
-                        <td class="fw-bold"> foobar</td>
-                        <td class="fw-bold"> {{ $clubs->director }}</td>
-                        <td class="fw-bold"> barfoo</td>
+                        @if ($clubs->directorGuiasMayores_id == null)
+                            <td class="fw-bold">
+                                <div class="flex justify-center">
+                                    <button class="bg-green-400 center rounded w-1/2">Asignar</button>
+                                </div>
+                            </td>    
+                        @else
+                            <td class="fw-bold">hi</td>
+                        @endif
+
+                        <td class="fw-bold"> {{ $clubs->director->name }}</td>
+                        <td class="fw-bold"> Bajo Mantenimiento</td>
                         <td>
                             <a href="/club/edit/{{ $clubs->id }}">
                                 <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>

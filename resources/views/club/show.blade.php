@@ -12,46 +12,47 @@
                 <div class="card-body">
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Nombre del club</label>
+                            <h6 class="text-bold">Nombre del Distrito</h6>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "><i class="fas fa-file-alt"></i></span>
+                                <h5 class="px-3 mt-1">{{ $clubs->distrito->nombre }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="text-bold">Nombre del club</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text "><i class="fas fa-file-alt"></i></span>
                                 <h5 class="px-3 mt-1">{{ $clubs->nombreClub }}</h5>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label for="exampleInputEmail1">Significado</label>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-question-circle"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $clubs->significado }}</h5>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Iglesia</label>
+                            <h6 class="text-bold">Iglesia</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-church"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->iglesia }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Director</label>
+                            <h6 class="text-bold">Director</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $clubs->director }}</h5>
+                                <h5 class="px-3 mt-1"> {{ $clubs->director->name }}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Subdirector</label>
+                            <h6 class="text-bold">Subdirector</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->subdirector }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Subdirectora</label>
+                            <h6 class="text-bold">Subdirectora</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->subdirectora }}</h5>
@@ -60,14 +61,14 @@
                     </div>
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Tesorero(a)</label>
+                            <h6 class="text-bold">Tesorero(a)</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->tesorero }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Secretario(a)</label>
+                            <h6 class="text-bold">Secretario(a)</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="far fa-user-circle"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->secretario }}</h5>
@@ -76,14 +77,14 @@
                     </div>
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Pastor</label>
+                            <h6 class="text-bold">Pastor</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-male"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $clubs->pastor }}</h5>
+                                <h5 class="px-3 mt-1"> {{ $clubs->pastor->name }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Anciano</label>
+                            <h6 class="text-bold">Anciano</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->anciano }}</h5>
@@ -92,24 +93,31 @@
                     </div>
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Fecha de aprobación</label>
+                            <h6 class="text-bold">Fecha de aprobación</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->fechaAprobacion }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">No. Voto</label>
+                            <h6 class="text-bold">No. Voto</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->numeroVoto }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Foto</label>
+                            <h6 class="text-bold">Foto</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-portrait"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $clubs->foto }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="text-bold">Significado</h6>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-question-circle"></i></span>
+                                <h5 class="px-3 mt-1"> {{ $clubs->significado }}</h5>
                             </div>
                         </div>
                     </div>

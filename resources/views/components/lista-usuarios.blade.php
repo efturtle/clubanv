@@ -12,7 +12,7 @@
                 <th scope="col">Correo</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Asignado</th>
-                <th scope="col">Editar</th>
+                {{-- <th scope="col">Editar</th> --}}
                 <th scope="col">Ver</th>
             </tr></thead>
             <tbody> 
@@ -45,12 +45,17 @@
                             @default
                                 <td>admin</td>
                         @endswitch
-                        <td class="fw-bold"> {{ $director->asignado }}</td>
-                        <td>
-                            <a href="/user/{{ $director->id }}/edit">
+                        @if ($director->asignado == 1)
+                            <td>Si</td>
+                        @else
+                            <td>No</td>
+                        @endif
+                        
+                        {{-- <td>
+                            <a href="/maintenance">
                                 <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
                             </a>
-                        </td>
+                        </td> --}}
                         <td>
                             <a href="/user/{{ $director->id }}">
                                 <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
