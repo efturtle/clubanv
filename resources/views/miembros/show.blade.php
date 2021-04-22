@@ -31,7 +31,7 @@
                             <label>categoria</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                                @switch($miembros->categoria)
+                                @switch($miembros->category)
                                     @case(1)
                                         <h5 class="px-3 mt-1"> Aventuras</h5>        
                                         @break

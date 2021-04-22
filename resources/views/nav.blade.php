@@ -7,20 +7,20 @@
     @include('libraries')
 </head>
     <body class="hold-transition sidebar-mini">
+      @include('directornav')
       {{-- check if is director --}}
-      @if (Auth::user()->directorinfo != null)
+      {{-- @if (Auth::user()->directorinfo != null) --}}
 
         {{-- this is director of category --}}
-        @if (Auth::user()->directorinfo->rol > 2)
+        {{-- @if (Auth::user()->directorinfo->rol > 2)
           @include('usernav')          
-        @endif  
+        @endif   --}}
 
         {{-- This is a director --}}
-        @if (Auth::user()->directorinfo->rol < 3)
+        {{-- @if (Auth::user()->directorinfo->rol < 3)
           @include('directornav')    
-        @endif
+        @endif --}}
 
-      @else
-        {{-- this is lowest tier a member --}}
+      {{-- @else
         @include('miembronav')
-      @endif
+      @endif --}}

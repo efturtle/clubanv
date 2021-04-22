@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class altaClub extends Component
+class AsignarDirectorCategoria extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class altaClub extends Component
      */
     public function render()
     {
-        return view('components.alta-club');
+        return view('components.asignar-director-categoria');
     }
 }

@@ -6,26 +6,54 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\clubs;
 use App\Models\DirectorInfo;
-use Illuminate\Auth\Events\Registered;
 
 class DirectorInfoController extends Controller
 {
     public function index()
     {
-        return view('user.index', ['users' => User::all()]);
+        return view('user.index', ['directors' => DirectorInfo::all()]);
     }
 
-    public function create()
+    public function indexDirector()
     {
-        return view('user.create', ['clubs' => DB::table('clubs')->get()]);
+        return view('user.index', ['directors' => DirectorInfo::where('rol', '>', 3)->where('rol', '!=', 0)->get()]);
     }
 
-    public function store(Request $request)
+
+    public function newDirective($rol)
     {
-        //request info // ask for the validation of unique email address
-        //hash password
+        return view('directivos.createDirective', ['rol' => $rol]);
+    }
+
+    public function newDirector($rol)
+    {
+        return view('directivos.createDirector', ['rol' => $rol, 'clubs' => DB::table('clubs')->get()]);
+    }
+
+
+    public function storeDirector(Request $request)
+    {
+        //request info
+        $this->validarUser();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        
+        DirectorInfo::create([
+            'rol' => $request->rol,
+            'user_id' => $user->id
+        ]);
+        return redirect('/index')
+        ->with('message', 'Nuevo usuario Director Creado!');
+    }
+
+
+    public function storeDirective(Request $request)
+    {
+        //request info
         $this->validarUser();
         $user = User::create([
             'name' => $request->name,
@@ -33,30 +61,36 @@ class DirectorInfoController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
-
-        /* director creation */
-        $this->validarDirectorInfo();
-
-        $director = DirectorInfo::create([
-            'rol' => 3,
-            'email' => $user->email,
-            'club' => $request->club,
-            'categoria' => $request->category,
-            'direccion' => $request->direccion,
-            'codigoPostal' => $request->codigoPostal,
-            'sexo' => $request->sexo,
-            'tipoSangre' => $request->tipoSangre,
-            'nacionalidad' => $request->nacionalidad,
-            'estado' => $request->estado,
-            'ciudad' => $request->ciudad,
+        //if it is a pastor or coordinator, start off not being assigned
+        if($request->rol == 5 || $request->rol == 4){
+            DirectorInfo::create([
+                'rol' => $request->rol,
+                'user_id' => $user->id
+            ]);
+            return redirect('/user')
+            ->with('message', 'Nuevo usuario directivo creado!');        
+        }
+        //directive with assigned set to true, they don't belong to a specific club or district
+        DirectorInfo::create([
+            'rol' => $request->rol,
+            'asignado' => 1,
             'user_id' => $user->id
         ]);
-            //under maintenance!!
-        //$this->updateCategoryDirector($request->category);
+        return redirect('/user')
+        ->with('message', 'Nuevo usuario directivo creado!');    
         
-        return redirect(route('user.show', ['user'=>$director]))
-        ->with('message', 'Usuario Director Registrado');
+    }
+
+
+    public function asignarDirectivo($type)
+    {
+        return view('directivos.asignar', ['type' => $type]);
+    }
+
+
+    public function asignarDirector($type)
+    {
+        return view('directivos.asignarDirectores', ['type' => $type]);
     }
 
     public function show(User $user) {
@@ -82,25 +116,5 @@ class DirectorInfoController extends Controller
             'estado' => 'required',
             'ciudad' => 'required',
         ]);
-    }
-
-    //unfinished, change the club category director as a new director is created.
-    //must do a join here to make it dynamic
-    protected function updateCategoryDirector($category){
-        $club = new clubs;
-        switch ($club) {
-            case 1:
-                $club->category;
-                break;
-            case 2:
-                # code...
-                break;
-            case 3:
-                # code...
-                break;
-            default:
-                # code...
-                break;
-        }
     }
 }

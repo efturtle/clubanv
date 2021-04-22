@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -50,23 +51,13 @@ class RegisteredUserController extends Controller
         ]); */
 
         DirectorInfo::create([
-            'rol' => 1, 
-            'email' => $user->email,
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
+            'rol' => 0, 
+            'asignado' => 1,
             'user_id' => $user->id,
         ]);
-        event(new Registered($user));
-
-        return redirect('/user')
-        ->with('message', '¡usuario administrador registrado!');
+        event(new Registered($user));    
+        return redirect('/index')
+        ->with('message', '');
     }
 }
 

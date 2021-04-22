@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembrosInfoController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\UsuarioAdminController;
 use App\Http\Controllers\DirectorInfoController;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\DistritoController;
+use App\Http\Controllers\AsignacionRoles;
+use App\Models\Club;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\DirectorInfo;
 
@@ -26,54 +28,32 @@ use App\Models\DirectorInfo;
 Route::get('/', function () {
     return view('welcome');
 })->name('loginscreen');
+Route::get('/index', function(){
+    return view('index');
+})->middleware('auth');
 
-/* Route::get('/test', function(){
-    
-    User::create([
-        'name'=>'tim',
-        'email'=>'asdf@mail.com',
-        'password'=>'trejo1234',
-        'rol'=>'member',
-    ]);
-    return 'hi';
-}); */
-
-//$user = DB::table('users')->where('email','=','cglover@example.net')->first();
-/* Route::get('tester', function(){
-    miembrosinfo::create([
-        'nombre_completo'=>'beto',
-        'fecha_nacimiento'=>'2020-12-12',
-        'edad'=>'23',
-        'direccion'=>'salome arias 2133',
-        'codigoPostal'=>'47445',
-        'sexo'=>'hombre',P
-        'tipoSangre'=>'b+',
-        'confirmaAlergias'=>'si',
-        'alergia'=>'champis',
-        'nacionalidad'=>'mexicana',
-        'estado'=>'Jalisco',
-        'ciudad'=>'Guadalajara',
-        'user_id'=> $user->id,
-    ]);
-})->middleware('auth'); */
-
-
-
-
-/* Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard'); */
 /* Clubs */
     Route::get('dashboard', function(){
         return redirect('/club');
     })->middleware(['auth']);
 
-    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'chief']);
-    Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'chief']);
-    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'chief'])->name('club.show');
-    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'chief']);
-    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'chief']);
-    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'chief']);
+/* Maintanence */
+    Route::get('maintenance', function(){
+        return view('maintenance');
+    });
+
+    /* Directiva */
+    //  /directivos/create/0   /directivos/create/1   /directivos/create/2
+    
+
+    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor']);
+    Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'pastor']);
+    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'pastor'])->name('club.show');
+
+    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'pastor']);
+
+    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'pastor']);
+    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'pastor']);
     //Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth']);
     //Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth']);
 
@@ -88,96 +68,45 @@ Route::get('/', function () {
     Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');
 
 /* Users */
-    /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
-    /* store */ Route::post('/newuser', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
-    /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
-    /* index */Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
-    
+    /* index */ Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
+    /* index Director */ Route::get('/user/directors', [DirectorInfoController::class, 'indexDirector'])->middleware('auth');
 
-    /* 
-    Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
+    /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
+    /* Create Directive*/ Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'newDirective'])->middleware(['auth','chief']);
+    /* Create Director */ Route::get('/director/create/{type}', [DirectorInfoController::class, 'newDirector'])->middleware(['auth','pastor']);
+
+    /* store Directive*/ Route::post('/user/directive', [DirectorInfoController::class, 'storeDirective'])->middleware(['auth', 'chief']);
+    /* store Director*/ Route::post('/user/director', [DirectorInfoController::class, 'storeDirector'])->middleware(['auth', 'pastor']);
+
+
+    /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
+
+    /* Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
     
     Route::put('user/{user}', [UsuarioAdminController::class, 'update'])->middleware('auth');
     
     Route::delete('/user/soft/{user}', [UsuarioAdminController::class, 'softDelete'])->middleware('auth');
     
-    Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth');
- */
+    Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth'); */
+
+
+ /* Distritos */
+    Route::get('/distrito', [DistritoController::class, 'index'])->middleware(['auth', 'pastor']);
+    Route::get('/distrito/create', [DistritoController::class, 'create'])->middleware(['auth', 'chief']);
+    Route::post('/distrito', [DistritoController::class, 'store'])->middleware(['auth', 'chief']);
+    Route::get('/distrito/{distrito}', [DistritoController::class, 'show'])->middleware(['auth', 'pastor']);
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
     /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'director']);
     /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'director']);
-    Route::get('turtle', function(){
-        DirectorInfo::create([
-            'rol' => 1, 
-            'email' => Auth::user()->email,
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => Auth::user()->id,
-        ]);
-        return view('tester');
-    });
-
-    /* Route::get('asd', function(){
-        $temp = User::create([
-            'name'=>'tim',
-            'email'=>'asdf@mail.com',
-            'password'=>'trejo1234',
-            'rol'=>'member',
-        ]);
-        DirectorInfo::create([
-            'rol' => 'director de categoria', 
-            'email' => $temp->email,
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => $temp->id,
-        ]);
-
-        return view('tester', ['user'=>$temp]);
-    }); */
-
-
-
-
-    /* Route::get('/tester', function(){
-        $user = DB::table('users')->where('email','=','cglover@example.net')->first();
-
-        $director = DirectorInfo::create([
-            'rol' => 'director de categoria', 
-            'email' => 'cglover@example.net',
-            'club' => 'tigres', 
-            'categoria' => 'aventuras', 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => $user->id,
-        ]);
-        return view('tester', ['user' => $user]);
-    }); */
-//DB::table('users')->take(1)->latest()->get() +1
-
 
     Route::get('/test', [PostsController::class, 'info'])->middleware('auth');
 
+
+/* Asignacion */
+    /* Directivos */ Route::get('/asignar/pastor/{district}', [AsignacionRoles::class, 'asignarPastor'])->middleware(['auth','chief']);
+    /* Directores */ Route::get('/asignar/coordinador/{district}', [AsignacionRoles::class, 'asignarCoordinador'])->middleware(['auth','chief']);
 
 
 require __DIR__.'/auth.php';

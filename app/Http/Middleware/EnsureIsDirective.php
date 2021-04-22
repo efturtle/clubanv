@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureUserIsDirector
+class EnsureIsDirective
 {
     /**
      * Handle an incoming request.
@@ -18,8 +18,12 @@ class EnsureUserIsDirector
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()->directorinfo == null){
-            return redirect('/posts')
-            ->with('message', 'accion no permitida, pedir ayuda');
+            return redirect('/index')
+            ->with('message', 'Accion no permitida, pedir ayuda');
+        }
+        if(Auth::user()->directorinfo->rol>3){
+            return redirect('/index')
+            ->with('message', 'Accion no permitida, pedir ayuda');
         }
         return $next($request);
     }

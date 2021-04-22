@@ -6,7 +6,9 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        Bienvenido
+        @if (session('message'))
+            <p class="text-yellow-800">{{ session('message') }}</p>
+        @endif
     </section>
     
 </div>

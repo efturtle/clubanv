@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
     protected $fillable = [
         'name',
         'email',
@@ -41,6 +42,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+  
 
     public function miembrosinfo()
     {
@@ -56,7 +58,13 @@ class User extends Authenticatable
         return $this->hasMany(Posts::class);
     }
     
-    public function club(){
-        return $this->hasMany(clubs::class);
+    public function club()
+    {
+        return $this->belongsTo(Club::class);
+    }
+
+    public function director()
+    {
+        return $this->belongsTo(Club::class, 'director_id', 'id');
     }
 }

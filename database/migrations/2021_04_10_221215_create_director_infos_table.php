@@ -16,21 +16,23 @@ class CreateDirectorInfosTable extends Migration
         Schema::create('director_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->smallInteger('rol');
-            $table->string('email');
-            $table->string('club');
-            $table->string('categoria');
-            $table->string('direccion');
-            $table->string('codigoPostal');
-            $table->string('sexo');
-            $table->string('tipoSangre');
-            $table->string('nacionalidad');
-            $table->string('estado');
-            $table->string('ciudad');
+            $table->string('club')->nullable();
+            $table->smallInteger('category')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('codigoPostal')->nullable();
+            $table->string('sexo')->nullable();
+            $table->string('tipoSangre')->nullable();
+            $table->string('nacionalidad')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('ciudad')->nullable();
+
             
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->boolean('asignado')->default(0);
+            
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
-            ->on('users');           
+            ->on('users');
             
             $table->timestamps();
         });

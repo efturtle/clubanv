@@ -17,7 +17,7 @@ class CreateMiembrosinfosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('club');
-            $table->integer('categoria');
+            $table->integer('category');
             $table->date('fechaNacimiento');
             $table->smallInteger('edad');
             $table->string('direccion');
