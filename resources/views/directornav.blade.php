@@ -40,9 +40,35 @@
         <div class="image">
           <img src="{{ asset('assets/img/avatar04.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
-          @if (Auth::user()->name)
-              <p class="text-gray-300"> {{ Auth::user()->name }} </p>
+        <div class="pl-1 flex">
+          @if (Auth::check())
+          @switch(Auth::user()->directorinfo->rol)
+              @case(1)
+                  <p class="text-gray-300"> Director </p>
+              @break
+              @case(2)
+              <p class="text-gray-300"> Secretario </p>
+                  @break
+              @case(3)
+                <p class="text-gray-300"> Encargado</p>
+                  @break
+              @case(4)
+              <p class="text-gray-300"> Pastor </p>
+                  @break
+              @case(5)
+                <p class="text-gray-300"> Coordinador </p>
+                  @break
+              @case(6)
+                <p class="text-gray-300"> Director de Club </p>
+                  @break
+              @case(7)
+                <p class="text-gray-300"> Director de Categoria</p>
+                  @break
+              @default
+                <p class="text-red-300"> Admin</p>
+            @endswitch
+            <p class="text-gray-300 pl-1"> {{ Auth::user()->name }} </p>
+            
           @endif
         </div>
       </div>
@@ -50,6 +76,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          @if (Auth::user()->directorinfo->rol < 4)    
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fas fa-user-circle"></i>
@@ -89,41 +116,6 @@
             <a href="#" class="nav-link">
               <i class="fas fa-user-circle"></i>
               <p>
-                Clubs
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/club/create" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Club</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/directivos/create/6" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Director de Club</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/directivos/create/7" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Directiv@ de Categoria</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="directivos/asignar/2" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Asignar Directivos a Categoria</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-user-circle"></i>
-              <p>
                 Directiva de Asociacion
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -149,11 +141,62 @@
               </li>
             </ul>
           </li>
+          @endif
           <li class="nav-item">
-            <a href="/user" class="nav-link">
-              <p>Lista de Usuarios</p>
+            <a href="#" class="nav-link">
+              <i class="fas fa-user-circle"></i>
+              <p>
+                Clubs
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/club/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Club</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/director/create/1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Director de Club</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/director/create/2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Directiv@ de Categoria</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="directores/asignar/1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asignar Director</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="directores/asignar/2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asignar Directivos a Categoria</p>
+                </a>
+              </li>
+            </ul>
           </li>
+          @if (Auth::user()->directorinfo->rol < 4)
+            <li class="nav-item">
+              <a href="/user" class="nav-link">
+                <p>Lista de Usuarios</p>
+              </a>
+            </li>    
+          @else
+            <li class="nav-item">
+              <a href="/user/directors" class="nav-link">
+                <p>Lista de Usuarios</p>
+              </a>
+            </li>
+          @endif
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

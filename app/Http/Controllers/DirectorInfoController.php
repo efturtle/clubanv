@@ -14,22 +14,38 @@ class DirectorInfoController extends Controller
         return view('user.index', ['directors' => DirectorInfo::all()]);
     }
 
-    public function new($rol)
+    public function indexDirector()
     {
-        return view('directivos.create', ['rol' => $rol]);
+        return view('user.index', ['directors' => DirectorInfo::where('rol', '>', 3)->where('rol', '!=', 0)->get()]);
     }
 
-    public function asignar($type)
+
+
+
+    public function newDirective($rol)
+    {
+        return view('directivos.createDirective', ['rol' => $rol]);
+    }
+
+    public function newDirector($rol)
+    {
+        return view('directivos.createDirector', ['rol' => $rol]);
+    }
+
+
+
+    public function asignarDirectivo($type)
     {
         return view('directivos.asignar', ['type' => $type]);
     }
 
-    public function asignacion()
+
+    public function asignarDirector($type)
     {
-        
+        return view('directivos.asignarDirectores', ['type' => $type]);
     }
 
-    public function store(Request $request)
+    public function storeDirector(Request $request)
     {
         //request info
         $this->validarUser();
@@ -38,60 +54,35 @@ class DirectorInfoController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        if($request->rol < 4){
-            $this->storeDirectivoAlto($request->rol, $user);
-            return redirect('/user')
-            ->with('message', 'Nuevo usuario directivo creado!');    
-        }
-        $this->storeDirectivo($request->rol, $user);
-        return redirect('/user')
-        ->with('message', 'Nuevo usuario creado!');
-    }
-
-    protected function storeDirectorCategory($request, $user)
-    {
-        /* director creation */
-        //$this->validarDirectorInfo();
-
-        /* DirectorInfo::create([
-            'rol' => 3,
-            'email' => $user->email,
-            'club' => $request->club,
-            'categoria' => $request->category,
-            'direccion' => $request->direccion,
-            'codigoPostal' => $request->codigoPostal,
-            'sexo' => $request->sexo,
-            'tipoSangre' => $request->tipoSangre,
-            'nacionalidad' => $request->nacionalidad,
-            'estado' => $request->estado,
-            'ciudad' => $request->ciudad,
-            'user_id' => $user->id
-        ]); */
+        
         DirectorInfo::create([
             'rol' => $request->rol,
             'user_id' => $user->id
         ]);
-
+        return redirect('/index')
+        ->with('message', 'Nuevo usuario Director Creado!');
     }
-    
-    protected function storeDirectivo($rol, $user)
+
+
+    public function storeDirective(Request $request)
     {
+        //request info
+        $this->validarUser();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        
         DirectorInfo::create([
-            'rol' => $rol,
+            'rol' => $request->rol,
+            'asignado' => 1,
             'user_id' => $user->id
         ]);
+        return redirect('/user')
+        ->with('message', 'Nuevo usuario directivo creado!');    
+        
     }
-    protected function storeDirectivoAlto($rol, $user)
-    {
-        $director = DirectorInfo::create([
-            'rol' => $rol,
-            'user_id' => $user->id
-        ]);
-        $director->update([
-            'asignado' => true
-        ]);
-    }
-
 
     public function show(User $user) {
         return view('user.show', compact('user'));

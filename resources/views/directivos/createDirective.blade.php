@@ -21,6 +21,8 @@
     </header>
     
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
         @switch($rol)
             @case(1)
                 <h4>Creacion de nuevo director</h4>
@@ -37,15 +39,9 @@
             @case(5)
                 <h4>Creacion de nuevo Coordinador</h4>
                 @break
-            @case(6)
-                <h4>Director de Club</h4>
-                @break
-            @case(7)
-                <h4>Creacion de nuevo Director de Categoria</h4>
-                @break
             @default
         @endswitch
-        <form action="/user" method="POST">
+        <form action="/user/directive" method="POST">
             @csrf
             <input type="hidden" value="{{ $rol }}" name="rol" id="rol">
             <div class="-mx-3 md:flex mb-6">

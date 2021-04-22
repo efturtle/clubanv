@@ -8,13 +8,12 @@
     <section class="content">
         @switch($type)
             @case(1)
-                <x-asignar-coordinador-pastor/>
+                <h5>hi</h5>
                 @break
             @case(2)
-                <x-asignar-director-categoria/>
+                <h5>hello</h5>
                 @break
             @default
-                
         @endswitch
         <h5></h5>
     </section>

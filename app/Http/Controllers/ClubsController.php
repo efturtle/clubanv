@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\clubs;
+use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +11,7 @@ class ClubsController extends Controller
     public function index()
     {
     return view('club.index', [
-            'clublist' => clubs::all()
+            'clublist' => Club::all()
         ]);
     }
 
@@ -19,13 +19,8 @@ class ClubsController extends Controller
     {
         //get the request info
         $validated = $this->validarClub();
-
-        //set the district id 
-        //user belongs to a district 
-        //$validated += ['user_id' => Auth::id()];
-
-        //create club
-        clubs::create($validated);
+        
+        Club::create($validated);
 
         //redirect with success message
         return redirect('/club')
@@ -38,18 +33,18 @@ class ClubsController extends Controller
     }
 
     
-    public function show(clubs $clubs)
+    public function show(Club $clubs)
     {
         return view('club.show', compact('clubs'));
     }
 
-    public function edit(clubs $clubs)
+    public function edit(Club $clubs)
     {
         return view('club.edit', compact('clubs'));
     }
 
     
-    public function update(clubs $clubs)
+    public function update(Club $clubs)
     {
         //get the request
         $temp = $this->validarClub();
@@ -63,14 +58,14 @@ class ClubsController extends Controller
     }
 
     
-    public function destroy(clubs $clubs)
+    public function destroy(Club $clubs)
     {
         $clubs->forceDelete();
         return redirect('/club')
         ->with('message', 'Se ha eliminado un club');
     }
 
-    public function softDelete(clubs $clubs){
+    public function softDelete(Club $clubs){
         $clubs->delete();
         return redirect('/club')
         ->with('message', 'Se ha dado de baja un club');

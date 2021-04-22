@@ -51,7 +51,8 @@ class RegisteredUserController extends Controller
         ]); */
 
         DirectorInfo::create([
-            'rol' => 1, 
+            'rol' => 0, 
+            'asignado' => 1,
             'user_id' => $user->id,
         ]);
         event(new Registered($user));    

@@ -31,12 +31,19 @@
                                 <td>Encargad@</td>
                                 @break
                             @case(4)
-                                <td>Pastor / Coordinador</td>
+                                <td>Pastor</td>
                                 @break
                             @case(5)
+                                <td>Coordinador</td>
+                                @break
+                            @case(6)
+                                <td>Director de Club</td>
+                                @break
+                            @case(7)
                                 <td>Director de Categoria</td>
                                 @break
                             @default
+                                <td>admin</td>
                         @endswitch
                         <td class="fw-bold"> {{ $director->asignado }}</td>
                         <td>

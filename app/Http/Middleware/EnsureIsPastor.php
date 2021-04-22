@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureClubMaker
+class EnsureIsPastor
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,13 @@ class EnsureClubMaker
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->directorinfo != null){
-            if(Auth::user()->directorinfo->rol>2){
-                return redirect('/club')
-                ->with('message', 'Accion no permitida, pedir ayuda');
-            }
+        if(Auth::user()->directorinfo == null){
+            return redirect('/index')
+            ->with('message', 'Accion no permitida, pedir ayuda');
+        }
+        if(Auth::user()->directorinfo->rol > 6){
+            return redirect('/index')
+            ->with('message', 'Accion no permitida, pedir ayuda');
         }
         return $next($request);
     }

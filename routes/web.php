@@ -40,12 +40,12 @@ Route::get('/index', function(){
     //  /directivos/create/0   /directivos/create/1   /directivos/create/2
     
 
-    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'chief']);
-    Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'chief']);
-    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'chief'])->name('club.show');
-    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'chief']);
-    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'chief']);
-    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'chief']);
+    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor']);
+    Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'pastor']);
+    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'pastor'])->name('club.show');
+    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'pastor']);
+    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'pastor']);
+    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'pastor']);
     //Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth']);
     //Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth']);
 
@@ -60,12 +60,23 @@ Route::get('/index', function(){
     Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');
 
 /* Users */
-    /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
-    /* Create V2 */ Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'new'])->middleware(['auth']);
-    /* store */ Route::post('/user', [DirectorInfoController::class, 'store'])->middleware(['auth', 'chief']);
-    /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
     /* index */ Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'chief']);
-    /* Asignar */ Route::get('/directivos/asignar/{type}', [DirectorInfoController::class, 'asignar'])->middleware(['auth','chief']);
+    /* index Director */ Route::get('/user/directors', [DirectorInfoController::class, 'indexDirector'])->middleware('auth');
+
+    /* Create */ Route::get('/user/create', [DirectorInfoController::class, 'create'])->middleware(['auth', 'chief']);
+    /* Create Directive*/ Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'newDirective'])->middleware(['auth','chief']);
+    /* Create Director */ Route::get('/director/create/{type}', [DirectorInfoController::class, 'newDirector'])->middleware(['auth','pastor']);
+
+    /* store Directive*/ Route::post('/user/directive', [DirectorInfoController::class, 'storeDirective'])->middleware(['auth', 'chief']);
+    /* store Director*/ Route::post('/user/director', [DirectorInfoController::class, 'storeDirector'])->middleware(['auth', 'pastor']);
+
+
+    /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
+    
+
+/* Asignacion */
+    /* Directivos */ Route::get('/directivos/asignar/{type}', [DirectorInfoController::class, 'asignarDirectivo'])->middleware(['auth','chief']);
+    /* Directores */ Route::get('/directores/asignar/{type}', [DirectorInfoController::class, 'asignarDirector'])->middleware(['auth','pastor']);
 
     /* 
     Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
@@ -85,47 +96,6 @@ Route::get('/index', function(){
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
     /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'director']);
     /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'director']);
-
-
-    Route::get('restart', function(){
-        //create the user
-        Auth::login($user = User::create([
-            'name' => 'Beto Cuevas',
-            'email' => 'asd@mail.com',
-            'password' => Hash::make('happycode'),
-        ]));
-        //create club
-        Club::create([
-            'nombreClub' => 'Centinelas',
-            'significado' => 'guardianes',
-            'iglesia' => 'tajin',
-            'director' => 'beto',
-            'subdirector' => 'manny',
-            'subdirectora' => 'kevin',
-            'tesorero' => 'roger',
-            'secretario' => 'tom gun',
-            'pastor' => 'jimy',
-            'anciano' => 'gordo',
-            'fechaAprobacion' => '2021-12-12',
-            'numeroVoto' => '123',
-            'foto' => 'ola.png',
-            'user_id' => Auth::user()->id
-        ]);
-        //create director
-        DirectorInfo::create([
-            'rol' => 1, 
-            'club' => 'Centinelas', 
-            'category' => 2, 
-            'direccion' => 'tonala norte 9153', 
-            'codigoPostal' => '44700', 
-            'sexo' => 'hombre', 
-            'tipoSangre' => 'o+', 
-            'nacionalidad' => 'mexicana', 
-            'estado' => 'Jalisco', 
-            'ciudad' => 'Zapopan', 
-            'user_id' => Auth::user()->id,
-        ]);
-    });
 
     Route::get('/test', [PostsController::class, 'info'])->middleware('auth');
 
