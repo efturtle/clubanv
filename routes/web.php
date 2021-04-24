@@ -32,6 +32,24 @@ Route::get('/index', function(){
     return view('index');
 })->middleware('auth');
 
+Route::get('/dash', function(){
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
+
+/* Clubs */
+Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor'])->name('club');
+Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'pastor'])->name('club.show');
+Route::get('clubcrear', [ClubsController::class, 'create'])->middleware(['auth', 'pastor'])->name('clubes.crear');
+Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'pastor'])->name('club.store');
+Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'pastor'])->name('club.edit');
+Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'pastor'])->name('club.update');
+Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth', 'pastor'])->name('club.delete');
+Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth', 'chief'])->name('club.destroy');
+
+
+
+
+
 /* Clubs */
     Route::get('dashboard', function(){
         return redirect('/club');
@@ -46,16 +64,16 @@ Route::get('/index', function(){
     //  /directivos/create/0   /directivos/create/1   /directivos/create/2
     
 
-    Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor']);
-    Route::get('/club/create', [ClubsController::class, 'create'])->middleware(['auth', 'pastor']);
-    Route::get('club/{clubs}', [ClubsController::class, 'show'])->middleware(['auth', 'pastor'])->name('club.show');
+    
+    
+    
 
-    Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'pastor']);
+    
 
-    Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'pastor']);
-    Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'pastor']);
-    //Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth']);
-    //Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth']);
+    
+    
+    
+    
 
 /* Miembros */
     Route::get('/miembros', [MiembrosInfoController::class, 'index'])->middleware('auth');

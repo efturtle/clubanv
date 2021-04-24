@@ -13,7 +13,7 @@ class ClubsController extends Controller
 {
     public function index()
     {
-    return view('club.index', [
+    return view('clubes.index', [
             'clublist' => Club::all()
         ]);
     }
@@ -47,28 +47,28 @@ class ClubsController extends Controller
 
     public function create()
     {
+        //looks for directors that have not yet been assigned for assign process in creation
         $users = User::whereHas('directorinfo', function(Builder $query){
             $query
             ->where('rol', '>', 3)
             ->where('asignado', '=', 0);
         })->get();
-        return view('club.create', [
+        //returns the view with the query and the districts for assignment aswell
+        return view('clubes.create', [
             'users' => $users,
             'distritos' => DB::table('distritos')->get()
         ]);
     }
 
-    
     public function show(Club $clubs)
     {
-        return view('club.show', compact('clubs'));
+        return view('clubes.show', compact('clubs'));
     }
 
     public function edit(Club $clubs)
     {
-        return view('club.edit', compact('clubs'));
+        return view('clubes.edit', compact('clubs'));
     }
-
     
     public function update(Club $clubs)
     {
@@ -83,7 +83,6 @@ class ClubsController extends Controller
         ->with('message', '¡Club ha sido actualizado!');
     }
 
-    
     public function destroy(Club $clubs)
     {
         $clubs->forceDelete();

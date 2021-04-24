@@ -15,8 +15,8 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <h5>Esta accion da de baja temporal al club <mark class="text-uppercase">{{ $clubName }} </mark></h5>
-                <form action="/club/soft/{{ $clubId }}" method="post">
+                <h5>Esta accion da de baja temporal al club <mark class="text-uppercase">{{ $clubs->nombreClub }} </mark></h5>
+                <form action="{{ route('club.delete', $clubs) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <!-- Modal footer -->

@@ -12,10 +12,9 @@
                 <th scope="col">Director Guias Mayores</th>
                 <th scope="col">Director</th>
                 <th scope="col">Cantidad de miembros</th>
-                <th scope="col">Editar</th>
+                {{-- <th scope="col">Editar</th> --}}
                 <th scope="col">Ver</th>
             </tr></thead>
-
             <tbody> 
                 @foreach ($list as $clubs)
                     <tr>
@@ -31,14 +30,20 @@
                         @else
                             <td class="fw-bold">hi</td>
                         @endif
-
-                        <td class="fw-bold"> {{ $clubs->director->name }}</td>
+                        @if (is_null($clubs->director))
+                            <div class="flex justify-center">
+                                <td><button class="bg-green-400 center rounded w-1/2">Asignar</button></td>
+                            </div>
+                        @else
+                            <td class="fw-bold"> {{ $clubs->director->name }}</td>
+                        @endif
+                        
                         <td class="fw-bold"> Bajo Mantenimiento</td>
-                        <td>
+                        {{-- <td>
                             <a href="/club/edit/{{ $clubs->id }}">
                                 <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
                             </a>
-                        </td>
+                        </td> --}}
                         <td>
                             <a href="/club/{{ $clubs->id }}">
                                 <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>

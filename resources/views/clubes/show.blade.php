@@ -1,15 +1,12 @@
-@include('nav')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <section class="content">
-            <div class="card">
-                <div class="card-header">
+<x-app-layout>
+    <x-club-slot/>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
                     @if (session('message'))
-                        <p class="text-success">{{ session('message') }}</p>
+                        <h3 class="text-success">{{ session('message') }}</h3>
                     @endif
-                </div>
-                <div class="card-body">
                     <div class="row pb-2">
                         <div class="col-6">
                             <h6 class="text-bold">Nombre del Distrito</h6>
@@ -39,7 +36,13 @@
                             <h6 class="text-bold">Director</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $clubs->director->name }}</h5>
+                                @if ($clubs->director == null)
+                                    <h5 class="px-3 mt-1">
+                                        No asignado
+                                    </h5>
+                                @else
+                                    <h5 class="px-3 mt-1"> {{ $clubs->director->name }}</h5>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -80,7 +83,14 @@
                             <h6 class="text-bold">Pastor</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-male"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $clubs->pastor->name }}</h5>
+                                
+                                @if ($clubs->pastor == null)
+                                    <h5 class="px-3 mt-1">
+                                        No asignado
+                                    </h5>
+                                @else
+                                    <h5 class="px-3 mt-1"> {{ $clubs->pastor->name }}</h5>
+                                @endif
                             </div>
                         </div>
                         <div class="col-6">
@@ -121,18 +131,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer flex items-center justify-between">
-                    <x-baja-club :clubId="$clubs->id" :clubName="$clubs->nombreClub"></x-baja-club>
-                    <x-eliminar-club :clubId="$clubs->id" :clubName="$clubs->nombreClub"> </x-eliminar-club>
-                    <div>
-                        <span class="mr-2">Editar Club</span>
-                        <a href="/club/edit/{{ $clubs->id }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
+                    {{-- Footer --}}
+                    <div class="flex">
+                        <x-baja-club :clubs="$clubs"/>
+                        <x-eliminar-club :clubs="$clubs"/>
+                        <div>
+                            <span class="mr-2">Editar Club</span>
+                            <a href="{{ route('club.edit', $clubs) }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
+                        </div>
                     </div>
+                        
                 </div>
             </div>
-    </section>
-    </section>
-</div>
-@include('footer')
-    
+        </div>
+    </div>
+</x-app-layout>
