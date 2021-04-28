@@ -12,23 +12,22 @@ class DirectorInfoController extends Controller
 {
     public function index()
     {
-        return view('user.index', ['directors' => DirectorInfo::all()]);
+        return view('users.index', ['directors' => DirectorInfo::all()]);
     }
 
     public function indexDirector()
     {
-        return view('user.index', ['directors' => DirectorInfo::where('rol', '>', 3)->where('rol', '!=', 0)->get()]);
+        return view('users.index', ['directors' => DirectorInfo::where('rol', '>', 3)->where('rol', '!=', 0)->get()]);
     }
-
 
     public function newDirective($rol)
     {
-        return view('directivos.createDirective', ['rol' => $rol]);
+        return view('users.createDirective', ['rol' => $rol]);
     }
 
     public function newDirector($rol)
     {
-        return view('directivos.createDirector', ['rol' => $rol, 'clubs' => DB::table('clubs')->get()]);
+        return view('users.createDirector', ['rol' => $rol, 'clubs' => DB::table('clubs')->get()]);
     }
 
 
