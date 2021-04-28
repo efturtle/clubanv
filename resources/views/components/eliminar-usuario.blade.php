@@ -13,8 +13,8 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <h5>Esta accion no se puede deshacer, ¿Eliminar <mark class="text-uppercase">{{ $name }} </mark> ?</h5>
-                <form action="/user/{{ $id }}" method="post">
+                <h5>Esta accion no se puede deshacer, ¿Eliminar <mark class="text-uppercase">{{ $user->name }} </mark> ?</h5>
+                <form action="{{ route('user.destroy', $user) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <!-- Modal footer -->

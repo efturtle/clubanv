@@ -29,16 +29,16 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link onclick="event.preventDefault();">
-                                <a href="{{ route('directors.create', 1) }}" class="px-4 py-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
+                            <a href="{{ route('director.create', 1) }}">
+                                <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Director de Club
-                                </a>
-                            </x-dropdown-link>
-                            <x-dropdown-link onclick="event.preventDefault();">
-                                <a href="{{ route('directors.create', 2) }}" class="px-4 py-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
+                                </span> 
+                            </a>
+                            <a href="{{ route('director.create', 2) }}">
+                                <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Director de Categoria
-                                </a>
-                            </x-dropdown-link>
+                                </span>
+                            </a>
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -59,31 +59,31 @@
                             </x-slot>
         
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                    Director
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                    Secretaria
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                    Encargado
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                    Pastor
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                    Coordinador
-                                </x-dropdown-link>
+                                <a href="{{ route('directive.create', 1) }}">
+                                    <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        Director
+                                    </span>
+                                </a>
+                                <a href="{{ route('directive.create', 2) }}">
+                                    <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        Secretaria
+                                    </span>
+                                </a>
+                                <a href="{{ route('directive.create', 3) }}">
+                                    <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        Encargado
+                                    </span>
+                                </a>
+                                <a href="{{ route('directive.create', 4) }}">
+                                    <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        Pastor
+                                    </span>
+                                </a>
+                                <a href="{{ route('directive.create', 5) }}">
+                                    <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        Coordinador
+                                    </span>
+                                </a>
                             </x-slot>
                         </x-dropdown>
                     </div>

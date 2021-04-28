@@ -50,13 +50,21 @@ Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(
 /* Users */
 Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'pastor'])->name('user.index');
 Route::get('/user/directors', [DirectorInfoController::class, 'indexDirector'])->middleware(['auth', 'director'])->name('directors.index');
-    /* Create Directors / Directives */
-Route::get('/director/create/{type}', [DirectorInfoController::class, 'newDirector'])->middleware(['auth','pastor'])->name('directors.create');
+Route::get('/director/create/{type}', [DirectorInfoController::class, 'newDirector'])->middleware(['auth','pastor'])->name('director.create');
 Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'newDirective'])->middleware(['auth','chief'])->name('directive.create');
+Route::post('/user/directive', [DirectorInfoController::class, 'storeDirective'])->middleware(['auth', 'chief']);
+Route::post('/user/director', [DirectorInfoController::class, 'storeDirector'])->middleware(['auth', 'pastor']);
+Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
+Route::delete('/user/soft/{user}', [DirectorInfoController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
+Route::delete('/user/{user}', [DirectorInfoController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
+Route::get('/user/{user}/edit', [DirectorInfoController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
+Route::put('user/{user}', [DirectorInfoController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
+    
+    
 
 
-/* store Directive*/ Route::post('/user/directive', [DirectorInfoController::class, 'storeDirective'])->middleware(['auth', 'chief']);
-/* store Director*/ Route::post('/user/director', [DirectorInfoController::class, 'storeDirector'])->middleware(['auth', 'pastor']);
+/* store Directive*/ 
+/* store Director*/ 
 
 
 
@@ -100,15 +108,9 @@ Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'newDire
 
 
 
-    /* show */ Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
-
-    /* Route::get('/user/{user}/edit', [UsuarioAdminController::class, 'edit'])->middleware('auth');
     
-    Route::put('user/{user}', [UsuarioAdminController::class, 'update'])->middleware('auth');
     
-    Route::delete('/user/soft/{user}', [UsuarioAdminController::class, 'softDelete'])->middleware('auth');
     
-    Route::delete('/user/{user}', [UsuarioAdminController::class, 'destroy'])->middleware('auth'); */
 
 
  /* Distritos */

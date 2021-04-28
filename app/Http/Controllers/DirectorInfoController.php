@@ -93,7 +93,31 @@ class DirectorInfoController extends Controller
     }
 
     public function show(User $user) {
-        return view('user.show', compact('user'));
+        return view('users.show', compact('user'));
+    }
+
+    public function delete(User $user)
+    {
+        $user->delete();
+        return redirect(route('user.index'))
+        ->with('message', 'Se ha dado de baja un usuario');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->forceDelete();
+        return redirect(route('user.index'))
+        ->with('message', 'Se ha eliminado un usuario');
+    }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update()
+    {
+        return 'hi update';
     }
 
     protected function validarUser(){

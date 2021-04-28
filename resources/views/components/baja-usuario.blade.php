@@ -8,13 +8,13 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title">¿Dar de baja a este usuario administrado?</h5>
+                <h5 class="modal-title">¿Dar de baja a este usuario administrador?</h5>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <h5>Esta accion da de baja temporal al Usuario <mark class="text-uppercase">{{ $name }} </mark></h5>
-                <form action="/user/soft/{{ $id }}" method="post">
+                <h5>Esta accion da de baja temporal al Usuario <mark class="text-uppercase">{{ $user->name }} </mark></h5>
+                <form action="{{ route('user.delete', $user) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <!-- Modal footer -->

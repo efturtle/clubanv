@@ -13,10 +13,11 @@
                                 <h4>Director de Club</h4>
                                 @break
                             @case(2)
-                                <h4 class="text-blue-800">Creacion de nuevo Director de Categoria</h4>
+                                <h4>Director de Categoria</h4>
                                 @break
                             @default
                         @endswitch
+                        <h6>Creacion de Directores</h6>
                         <form action="/user/director" method="POST">
                             @csrf
                             <input type="hidden" value="{{ $rol+5 }}" name="rol" id="rol">
