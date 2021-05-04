@@ -11,12 +11,12 @@ class DistritoController extends Controller
     
     public function index()
     {
-        return view('distrito.index', ['list' => DB::table('distritos')->get()]);
+        return view('distritos.index', ['distritos' => DB::table('distritos')->get()]);
     }
 
     public function create()
     {
-        return view('distrito.create');
+        return view('distritos.create');
     }
 
     public function store(Request $request)
@@ -30,21 +30,18 @@ class DistritoController extends Controller
             'estado' => $request->estado,
         ]);
         //redirect
-        return redirect('/index');
+        return redirect(route('distritos.index'));
     }
 
-    public function show($id)
+    public function show(Distrito $distrito)
     {
-        $distrito = Distrito::findOrFail($id);
-        return view('distrito.show', [
-            'distrito'=> $distrito
-        ]);
+        return view('distritos.show', compact('distrito'));
     }
     
 
     public function edit(Distrito $distrito)
     {
-        return view('distrito.edit', compact('distrito'));
+        return view('distritos.edit', compact('distrito'));
     }
 
     public function update(Request $request, Distrito $distrito)
@@ -58,10 +55,13 @@ class DistritoController extends Controller
             'estado' => $request->estado,
         ]);
         //redirect
+        return redirect(route('distrito.show', $distrito))
+        ->with('message', 'Informacion de distrito actualizada!');
     }
 
-    /* public function softDelete(Distrito $distrito)
+    public function delete(Distrito $distrito)
     {
+        return 'delete method district';
         $distrito->delete();
         return redirect('/distrito')
         ->with('message', 'Se dio de baja un distrito');
@@ -69,10 +69,11 @@ class DistritoController extends Controller
 
     public function destroy(Distrito $distrito)
     {
+        return 'destroy method district';
         $distrito->forceDelete();
         return redirect('/distrito')
         ->with('message', 'Se elimino un distrito');
-    } */
+    }
 
     protected function validarDistrito($request){
         $request->validate([

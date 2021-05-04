@@ -115,9 +115,39 @@ class DirectorInfoController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update()
+    public function update(Request $request, User $user)
     {
-        return 'hi update';
+        $namemod = 0;
+        $emailmod = 0;
+
+        if($user->name != $request->name){
+            $namemod = 1;
+        }
+
+        if($user->email != $request->email){
+            $emailmod = 1;
+        }
+
+        if($user->name != $request->name && $user->email != $request->email){
+            $user->update($request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+            ]));
+        }
+
+        if($namemod==1 && $emailmod==0){
+            $user->update($request->validate([
+                'name' => 'required|string|max:255',
+            ]));
+        }
+        if($namemod==0 && $emailmod==1){
+            $user->update($request->validate([
+                'email' => 'required|string|email|max:255|unique:users',
+            ]));
+        }
+        
+        return redirect(route('user.show', $user))
+        ->with('message', 'usuario actualizado!');
     }
 
     protected function validarUser(){

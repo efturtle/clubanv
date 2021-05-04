@@ -4,14 +4,14 @@
             <div class="pr-2">
                 <a href="{{ route('club') }}">
                     <h6 class="py-2 px-6 bg-blue-500 rounded-full text-white">
-                        Lista de Clubs
+                        Clubs
                     </h6>
                 </a>
             </div>
             <div>
                 <a href="{{ route('clubes.crear') }}">
                     <h6 class="py-2 px-6 bg-blue-500 rounded-full text-white">
-                        Crear nuevo Club
+                        Crear Club
                     </h6>
                 </a>
             </div>

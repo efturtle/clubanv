@@ -57,20 +57,28 @@ Route::post('/user/director', [DirectorInfoController::class, 'storeDirector'])-
 Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
 Route::delete('/user/soft/{user}', [DirectorInfoController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
 Route::delete('/user/{user}', [DirectorInfoController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
-Route::get('/user/{user}/edit', [DirectorInfoController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
+Route::get('/user/edit/{user}', [DirectorInfoController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
 Route::put('user/{user}', [DirectorInfoController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
-    
-    
+
+
+/* Distritos */
+Route::get('/distrito', [DistritoController::class, 'index'])->middleware(['auth', 'pastor'])->name('distritos.index');
+Route::get('/distrito/create', [DistritoController::class, 'create'])->middleware(['auth', 'chief'])->name('distritos.create');
+Route::get('/distrito/{distrito}', [DistritoController::class, 'show'])->middleware(['auth', 'pastor'])->name('distrito.show');
+Route::post('/distrito', [DistritoController::class, 'store'])->middleware(['auth', 'chief'])->name('distrito.store');
+Route::get('distrito/edit/{distrito}', [DistritoController::class, 'edit'])->middleware(['auth', 'chief'])->name('distrito.edit');
+Route::delete('distrito/delete/{distrito}', [DistritoController::class, 'delete'])->middleware(['auth', 'chief'])->name('distrito.delete');
+Route::delete('distrito/destroy/{distrito}', [DistritoController::class, 'destroy'])->middleware(['auth', 'chief'])->name('distrito.destroy');
+Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middleware(['auth', 'chief'])->name('distrito.update');
+
+
+/* Miembros */
+
+/* Posts */
 
 
 /* store Directive*/ 
 /* store Director*/ 
-
-
-
-
-
-
 /* Clubs */
     Route::get('dashboard', function(){
         return redirect('/club');
@@ -84,16 +92,6 @@ Route::put('user/{user}', [DirectorInfoController::class, 'update'])->middleware
     /* Directiva */
     //  /directivos/create/0   /directivos/create/1   /directivos/create/2
     
-
-    
-    
-    
-
-    
-
-    
-    
-    
     
 
 /* Miembros */
@@ -104,20 +102,7 @@ Route::put('user/{user}', [DirectorInfoController::class, 'update'])->middleware
     Route::get('/miembros/edit/{miembrosinfo}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
     Route::put('/miembro/{miembros}', [MiembrosInfoController::class, 'update'])->middleware('auth');
     Route::delete('/miembro/soft/{miembros}', [MiembrosInfoController::class, 'softDelete'])->middleware('auth');
-    Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');
-
-
-
-    
-    
-    
-
-
- /* Distritos */
-    Route::get('/distrito', [DistritoController::class, 'index'])->middleware(['auth', 'pastor']);
-    Route::get('/distrito/create', [DistritoController::class, 'create'])->middleware(['auth', 'chief']);
-    Route::post('/distrito', [DistritoController::class, 'store'])->middleware(['auth', 'chief']);
-    Route::get('/distrito/{distrito}', [DistritoController::class, 'show'])->middleware(['auth', 'pastor']);
+    Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');  
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');

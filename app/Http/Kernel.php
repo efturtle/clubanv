@@ -64,7 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'director' => \App\Http\Middleware\EnsureUserIsDirector::class,
         'chief' => \App\Http\Middleware\EnsureIsDirective::class,
-        'isCreator' => \App\Http\Middleware\createMember::class,
         'pastor' => \App\Http\Middleware\EnsureIsPastor::class,
     ];
 }
