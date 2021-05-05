@@ -3,16 +3,16 @@
         <div class="flex">
             <div class="pr-2">
                 <a href="{{ route('distritos.index') }}">
-                    <h6 class="py-2 px-6 bg-pink-700 rounded-full text-white">
+                    <p class="py-1 px-3 lg:text-lg bg-pink-700 rounded-full text-white">
                         Distritos
-                    </h6>
+                    </p>
                 </a>
             </div>
             <div>
                 <a href="{{ route('distritos.create') }}">
-                    <h6 class="py-2 px-6 bg-pink-700 rounded-full text-white">
-                        Crear Distrito
-                    </h6>
+                    <p class="py-1 px-3 lg:text-base bg-pink-700 rounded-full text-white">
+                        Nuevo
+                    </p>
                 </a>
             </div>
         </div>

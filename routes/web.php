@@ -7,11 +7,6 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\DirectorInfoController;
 use App\Http\Controllers\DistritoController;
 use App\Http\Controllers\AsignacionRoles;
-use App\Models\Club;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\DirectorInfo;
 
 
 /*
@@ -70,6 +65,13 @@ Route::get('distrito/edit/{distrito}', [DistritoController::class, 'edit'])->mid
 Route::delete('distrito/delete/{distrito}', [DistritoController::class, 'delete'])->middleware(['auth', 'chief'])->name('distrito.delete');
 Route::delete('distrito/destroy/{distrito}', [DistritoController::class, 'destroy'])->middleware(['auth', 'chief'])->name('distrito.destroy');
 Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middleware(['auth', 'chief'])->name('distrito.update');
+
+
+
+/* Asignacion */
+Route::get('asignar-usuario', [AsignacionRoles::class, 'usuario'])->middleware(['auth', 'chief'])->name('asignar.usuario');
+Route::get('asignar-pastor/{clubs}', [AsignacionRoles::class, 'pastor'])->middleware(['auth', 'chief'])->name('asignar.pastor');
+Route::get('asignar-director/{clubs}', [AsignacionRoles::class, 'director'])->middleware(['auth', 'chief'])->name('asignar.director');
 
 
 /* Miembros */

@@ -24,10 +24,13 @@
                         </div>
                     </div>
 
-                    <x-baja-usuario :user="$user"/>
-                    <x-eliminar-usuario :user="$user"/>
-                    <span class="mr-2">Editar Usuario</span>
-                    <a href="{{ route('user.edit', $user) }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
+                    <div class="grid grid-cols-2 md:grid-cols-1">
+                        <div class="pt-2"><x-baja-usuario :user="$user"/></div>
+                        <div class="pt-2"><x-eliminar-usuario :user="$user"/></div>
+                        <div class="pt-2"><span class="mr-2">Editar Usuario</span>
+                            <a href="{{ route('user.edit', $user) }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a></div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

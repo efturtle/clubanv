@@ -7,20 +7,19 @@
                     @if (session('message'))
                         <h6 class="text-success">{{ session('message') }}</h6>
                     @endif
-                    <table class="table table-striped">
+                    <table class="table table-sm table-hover">
                         <thead><tr>
                             <th scope="col">Nombre</th>  
                             <th scope="col">Correo</th>
                             <th scope="col">Rol</th>
                             <th scope="col">Asignado</th>
-                            {{-- <th scope="col">Editar</th> --}}
                             <th scope="col">Ver</th>
                         </tr></thead>
                         <tbody> 
                             @foreach ($directors as $director)
                                 <tr>
-                                    <td class="fw-bold"> {{ $director->user->name }}</td>
-                                    <td class="fw-bold"> {{ $director->user->email }}</td>
+                                    <td> {{ $director->user->name }}</td>
+                                    <td> {{ $director->user->email }}</td>
                                     @switch($director->rol)
                                         @case(1)
                                             <td>Director</td>
@@ -49,14 +48,12 @@
                                     @if ($director->asignado == 1)
                                         <td>Si</td>
                                     @else
-                                        <td>No</td>
+                                        <td>
+                                            <a href="{{ route('asignar.usuario') }}">
+                                                <button class="bg-green-400 center rounded w-1/2"><span class="text-gray-900">Asignar</span></button>
+                                            </a>
+                                        </td>
                                     @endif
-                                    
-                                    {{-- <td>
-                                        <a href="/maintenance">
-                                            <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
-                                        </a>
-                                    </td> --}}
                                     <td>
                                         <a href="{{ route('user.show', $director->user->id) }}">
                                             <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>

@@ -7,37 +7,46 @@
                     @if (session('message'))
                         <p class="text-success">{{ session('message') }}</p>
                     @endif
-                    <table class="table table-striped">
+                    <table class="table table-striped table-sm">
                         <thead><tr>
-                            <th scope="col">Nombre del Club</th>  
+                            <th scope="col">Nombre del Club</th>
                             <th scope="col">Director</th>
-                            <th scope="col">Cantidad de miembros</th>
-                            {{-- <th scope="col">Editar</th> --}}
+                            <th scope="col">Distrito</th>
+                            <th scope="col">Pastor</th>
                         </tr></thead>
                         <tbody> 
                             @foreach ($clublist as $clubs)
                                 <tr>
-                                    <td class="fw-bold">  
+                                    {{-- Nombre del Club --}}
+                                    <td>  
                                         <a href="{{ route('club.show', $clubs) }}">{{ $clubs->nombreClub }}</a>
                                     </td>
-                                    @if ($clubs->directorGuiasMayores_id == null)
-                                        <td class="fw-bold">
-                                            <div class="flex justify-center">
-                                                <button class="bg-green-400 center rounded w-1/2">Asignar</button>
-                                            </div>
-                                        </td>    
-                                    @else
-                                        <td class="fw-bold">hi</td>
-                                    @endif
+
+                                    {{-- Director --}}
                                     @if (is_null($clubs->director))
-                                        <div class="flex justify-center">
-                                            <td><button class="bg-green-400 center rounded w-1/2">Asignar</button></td>
-                                        </div>
+                                        <td>
+                                            <a href="{{ route('asignar.director', $clubs) }}">
+                                                <button class="bg-green-400 center rounded w-1/2"><span class="text-gray-900">Asignar</span></button>
+                                            </a>
+                                        </td>
                                     @else
-                                        <td class="fw-bold"> {{ $clubs->director->name }}</td>
+                                        <td> {{ $clubs->director->name }} </td>
                                     @endif
                                     
-                                    <td class="fw-bold"> Bajo Mantenimiento</td>
+                                    {{-- Distrito --}}
+                                    <td> {{ $clubs->distrito->nombre }} </td>
+
+
+                                    {{-- Pastor --}}
+                                    @if (is_null($clubs->pastor))
+                                        <td>
+                                            <a href="{{ route('asignar.pastor', $clubs) }}">
+                                                <button class="bg-green-400 center rounded w-1/2"><span class="text-gray-900">Asignar</span></button>
+                                            </a>
+                                        </td>
+                                    @else
+                                        <td> {{ $clubs->pastor->name }} </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

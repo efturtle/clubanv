@@ -67,4 +67,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Club::class, 'director_id', 'id');
     }
+
 }
