@@ -26,7 +26,7 @@
                                     @if (is_null($clubs->director))
                                         <td>
                                             <a href="{{ route('asignar.director', $clubs) }}">
-                                                <button class="bg-green-400 center rounded w-1/2"><span class="text-gray-900">Asignar</span></button>
+                                                <button class="bg-green-400 center rounded w-full"><span class="text-gray-900">Asignar</span></button>
                                             </a>
                                         </td>
                                     @else
@@ -41,7 +41,7 @@
                                     @if (is_null($clubs->pastor))
                                         <td>
                                             <a href="{{ route('asignar.pastor', $clubs) }}">
-                                                <button class="bg-green-400 center rounded w-1/2"><span class="text-gray-900">Asignar</span></button>
+                                                <button class="bg-green-400 center rounded w-full"><span class="text-gray-900">Asignar</span></button>
                                             </a>
                                         </td>
                                     @else

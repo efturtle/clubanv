@@ -31,10 +31,12 @@ class Club extends Model
     {
         return $this->hasOne(User::class,'id', 'directorAventurero_id');
     }
+
     public function directorConquistador()
     {
         return $this->hasOne(User::class, 'id', 'directorConquistador_id');
     }
+    
     public function directorGuiasMayores()
     {
         return $this->hasOne(User::class, 'id', 'directorGuiasMayores_id');

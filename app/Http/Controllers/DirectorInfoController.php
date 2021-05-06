@@ -45,7 +45,7 @@ class DirectorInfoController extends Controller
             'rol' => $request->rol,
             'user_id' => $user->id
         ]);
-        return redirect('/index')
+        return redirect(route('user.index'))
         ->with('message', 'Nuevo usuario Director Creado!');
     }
 

@@ -131,7 +131,8 @@
                             </div>
                         </div>
                     </div>
-                    {{-- Footer --}}
+
+                    {{-- Editar, Eliminar y baja --}}
                     <div class="flex">
                         <x-baja-club :clubs="$clubs"/>
                         <x-eliminar-club :clubs="$clubs"/>
@@ -140,6 +141,54 @@
                             <a href="{{ route('club.edit', $clubs) }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
                         </div>
                     </div>
+                    <br>
+                    <br>
+
+
+                    {{-- Asignacion de roles --}}
+                    <h5 class="text-yellow-600">Asignacion de Directores de categoria</h5>
+                    <h6 class="text-yellow-500">Categorias:</h6>
+                    <div class="grid grid-cols-2 gap-6">
+
+                        <div>Aventureros</div>
+                        @if ($clubs->directorAventurero_id == 0)
+                            <div>
+                                <a href="{{ route('store.categoria', 1, $clubs) }}">
+                                    <button class="bg-green-400 center rounded w-1/2"> <span class="text-gray-700">Asignar</span></button>
+                                </a>
+                            </div>
+                        @else
+                            <div>
+                                <p>{{ $clubs->directorAventurero->user->name }}</p>
+                            </div>
+                        @endif
+
+                        <div>Conquistadores</div>
+                        @if ($clubs->directorConquistador_id == 0)
+                            <div>
+                                <a href="{{ route('store.categoria', 2, $clubs) }}">
+                                    <button class="bg-green-400 center rounded w-1/2"> <span class="text-gray-700">Asignar</span></button>
+                                </a>
+                            </div>
+                        @else
+                            <div>
+                                <p>{{ $clubs->directorAventurero->user->name }}</p>
+                            </div>
+                        @endif
+
+                        <div>Guias Mayores</div>
+                        @if ($clubs->directorGuiasMayores_id == 0)
+                            <div>
+                                <a href="{{ route('store.categoria', 3, $clubs) }}">
+                                    <button class="bg-green-400 center rounded w-1/2"> <span class="text-gray-700">Asignar</span></button>
+                                </a>
+                            </div>
+                        @else
+                            <div>
+                                <p>{{ $clubs->directorAventurero->user->name }}</p>
+                            </div>
+                        @endif
+                    </div>                    
                         
                 </div>
             </div>

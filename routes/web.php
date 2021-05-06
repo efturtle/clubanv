@@ -72,6 +72,13 @@ Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middle
 Route::get('asignar-usuario', [AsignacionRoles::class, 'usuario'])->middleware(['auth', 'chief'])->name('asignar.usuario');
 Route::get('asignar-pastor/{clubs}', [AsignacionRoles::class, 'pastor'])->middleware(['auth', 'chief'])->name('asignar.pastor');
 Route::get('asignar-director/{clubs}', [AsignacionRoles::class, 'director'])->middleware(['auth', 'chief'])->name('asignar.director');
+Route::put('spastor', [AsignacionRoles::class, 'storePastor'])->middleware(['auth', 'chief'])->name('store.pastor');
+Route::put('sdirector', [AsignacionRoles::class, 'storeDirector'])->middleware(['auth', 'chief'])->name('store.director');
+
+Route::get('asignar-categoria/{type}/club/{clubs}', [AsignacionRoles::class, 'categoria'])->middleware(['auth', 'chief'])->name('store.categoria');
+Route::put('saventuras', [AsignacionRoles::class, 'storeAventuras'])->middleware(['auth', 'chief'])->name('store.aventuras');
+Route::put('sconquistadores', [AsignacionRoles::class, 'storeConquistadores'])->middleware(['auth', 'chief'])->name('store.conquistadores');
+Route::put('sguias', [AsignacionRoles::class, 'storeGuias'])->middleware(['auth', 'chief'])->name('store.guias');
 
 
 /* Miembros */
