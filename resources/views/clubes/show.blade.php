@@ -5,7 +5,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (session('message'))
-                        <h3 class="text-success">{{ session('message') }}</h3>
+                        <h5 class="text-success">{{ session('message') }}</h5>
                     @endif
                     <div class="row pb-2">
                         <div class="col-6">
@@ -153,39 +153,39 @@
                         <div>Aventureros</div>
                         @if ($clubs->directorAventurero_id == 0)
                             <div>
-                                <a href="{{ route('store.categoria', 1, $clubs) }}">
+                                <a href="{{ route('store.categoria', ['type' => 1, 'clubs' => $clubs]) }}">
                                     <button class="bg-green-400 center rounded w-1/2"> <span class="text-gray-700">Asignar</span></button>
                                 </a>
                             </div>
                         @else
                             <div>
-                                <p>{{ $clubs->directorAventurero->user->name }}</p>
+                                <p>{{ $clubs->directorAventurero->name }}</p>
                             </div>
                         @endif
 
                         <div>Conquistadores</div>
                         @if ($clubs->directorConquistador_id == 0)
                             <div>
-                                <a href="{{ route('store.categoria', 2, $clubs) }}">
+                                <a href="{{ route('store.categoria',['type' => 2, 'clubs' => $clubs]) }}">
                                     <button class="bg-green-400 center rounded w-1/2"> <span class="text-gray-700">Asignar</span></button>
                                 </a>
                             </div>
                         @else
                             <div>
-                                <p>{{ $clubs->directorAventurero->user->name }}</p>
+                                <p>{{ $clubs->directorConquistador->name }}</p>
                             </div>
                         @endif
 
                         <div>Guias Mayores</div>
                         @if ($clubs->directorGuiasMayores_id == 0)
                             <div>
-                                <a href="{{ route('store.categoria', 3, $clubs) }}">
+                                <a href="{{ route('store.categoria',['type' => 3, 'clubs' => $clubs]) }}">
                                     <button class="bg-green-400 center rounded w-1/2"> <span class="text-gray-700">Asignar</span></button>
                                 </a>
                             </div>
                         @else
                             <div>
-                                <p>{{ $clubs->directorAventurero->user->name }}</p>
+                                <p>{{ $clubs->directorGuiasMayores->name }}</p>
                             </div>
                         @endif
                     </div>                    

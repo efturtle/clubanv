@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+@auth
+    <script>window.location = "/club";</script>
+@endauth
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width-devie-width, initial-scale=1.0">

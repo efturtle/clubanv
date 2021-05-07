@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,15 @@ class DirectorInfoController extends Controller
 {
     public function index()
     {
-        return view('users.index', ['directors' => DirectorInfo::all()]);
+        return view('users.index', [
+            'directors' => DirectorInfo::all(),
+            'clubs' => Club::where('director_id', '=', null)
+            ->orWhere('pastor_id', '=', null)
+            ->orWhere('directorAventurero_id', '=', null)
+            ->orWhere('directorConquistador_id', '=', null)
+            ->orWhere('directorGuiasMayores_id', '=', null)
+            ->get()
+        ]); 
     }
 
     public function indexDirector()

@@ -8,9 +8,9 @@ use App\Models\DirectorInfo;
 
 class AsignacionRoles extends Controller
 {
-    public function usuario()
+    public function usuario(DirectorInfo $director)
     {
-        return 'usuario';
+        return $director;
     }
 
     public function pastor(Club $clubs)
@@ -69,22 +69,53 @@ class AsignacionRoles extends Controller
 
     public function storeAventuras(Request $request)
     {
-        return $request;
+        $club = Club::find($request->club);
+        $club->update([
+            'directorAventurero_id' => $request->aventuras
+        ]);
+
+        $directorinfo = DirectorInfo::find($request->aventuras);
+        $directorinfo->update([
+            'asignado' => 1
+        ]);
+
+        return redirect(route('club.show', $club))
+        ->with('message', 'director de categoria aventuras actualizado!');
     }
 
     public function storeConquistadores(Request $request)
     {
-        return 'store conquistadores';
+        $club = Club::find($request->club);
+        $club->update([
+            'directorConquistador_id' => $request->conquistadores
+        ]);
+
+        $directorinfo = DirectorInfo::find($request->conquistadores);
+        $directorinfo->update([
+            'asignado' => 1
+        ]);
+
+        return redirect(route('club.show', $club))
+        ->with('message', 'director de categoria conquistadores actualizado!');
     }
+
     public function storeGuias(Request $request)
     {
-        return 'store guias';
+        $club = Club::find($request->club);
+        $club->update([
+            'directorGuiasMayores_id' => $request->guias
+        ]);
+
+        $directorinfo = DirectorInfo::find($request->guias);
+        $directorinfo->update([
+            'asignado' => 1
+        ]);
+
+        return redirect(route('club.show', $club))
+        ->with('message', 'director de categoria guias actualizado!');
     }
 
-
-
-
-    public function categoria(Club $clubs, $type)
+    public function categoria($type, Club $clubs)
     {
         switch ($type) {
             case 1:
@@ -118,6 +149,5 @@ class AsignacionRoles extends Controller
                 break;
         }
     }
-
     
 }

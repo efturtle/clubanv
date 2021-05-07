@@ -18,7 +18,8 @@
                         </a>
                     @else
                         @if ($type==1)
-                            <h5 class="text-red-700">Elija el director de aventuras para el club <span class="capitalize">{{ $clubs->nombreClub }}</span></h5>    
+                            <h5 class="text-red-700">Club <span class="capitalize">{{ $clubs->nombreClub }}</span></h5>    
+                            <h5 class="text-red-700">Elija director de aventuras</h5>    
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -49,7 +50,8 @@
                         @endif                        
 
                         @if ($type==2)
-                            <h5 class="text-red-700">Elija el Director de Conquistadores para el club <span class="capitalize">{{ $clubs->nombreClub }}</span></h5>    
+                        <h5 class="text-red-700">Club <span class="capitalize">{{ $clubs->nombreClub }}</span></h5>    
+                        <h5 class="text-red-700">Elija director de Conquistadores</h5>    
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -80,7 +82,8 @@
                         @endif
 
                         @if ($type==3)
-                            <h5 class="text-red-700">Elija el Director de Guias Mayores para el club <span class="capitalize">{{ $clubs->nombreClub }}</span></h5>    
+                        <h5 class="text-red-700">Club <span class="capitalize">{{ $clubs->nombreClub }}</span></h5>    
+                        <h5 class="text-red-700">Elija director de Guias Mayores</h5>    
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
