@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\DirectorInfo;
+use App\Models\Distrito;
 
 class AsignacionRoles extends Controller
 {
@@ -148,6 +149,43 @@ class AsignacionRoles extends Controller
                 ->with('message', 'Hubo algun error, intentar de nuevo');
                 break;
         }
+    }
+
+    public function asignarDistrito($type, Distrito $distrito)
+    {
+        switch ($type) {
+            case 1:
+                    return view('asignar.distrito', [
+                        'distrito' => $distrito,
+                        'users' => DirectorInfo::where('rol', '=', 4)
+                        ->where('asignado', '=', 0)->get(),
+                        'type' => 1
+                    ]);
+                break;
+            case 2:
+                    return view('asignar.distrito', [
+                        'distrito' => $distrito,
+                        'users' => DirectorInfo::where('rol', '=', 5)
+                        ->where('asignado', '=', 0)->get(),
+                        'type' => 2
+                    ]);
+                break;
+            default:
+                return redirect(route('club'))
+                ->with('message', 'esta accion no es reconocida');
+                break;
+        }
+    }
+
+
+    public function storePastorDistrito()
+    {
+        return 'hello store pastor method';
+    }
+
+    public function storeCoordinadorDistrito()
+    {
+        return 'hello store coordinador method';
     }
     
 }
