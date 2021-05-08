@@ -9,12 +9,21 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if ($users->isEmpty())
-                        <h5 class="text-gray-600">No hay coordinadores en existencia, Crear uno?</h5>
-                        <a href="{{ route('directive.create', 5) }}">
-                            <div class="bg-green-400 rounded w-16">
-                                <span class="ml-2">Crear</span>
-                            </div>
-                        </a>
+                        @if ($type==1)
+                            <h5 class="text-gray-600">No hay pastores en existencia, Crear uno?</h5>
+                            <a href="{{ route('directive.create', 4) }}">
+                                <div class="bg-green-400 rounded w-16">
+                                    <span class="ml-2">Crear</span>
+                                </div>
+                            </a>
+                        @else
+                            <h5 class="text-gray-600">No hay coordinadores en existencia, Crear uno?</h5>
+                            <a href="{{ route('directive.create', 5) }}">
+                                <div class="bg-green-400 rounded w-16">
+                                    <span class="ml-2">Crear</span>
+                                </div>
+                            </a>
+                        @endif
                     @else
                         @if ($type==1)
                             <h5 class="text-red-700">Distrito <span class="capitalize">{{ $distrito->nombre }}</span></h5>
