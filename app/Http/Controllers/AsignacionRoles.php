@@ -178,14 +178,33 @@ class AsignacionRoles extends Controller
     }
 
 
-    public function storePastorDistrito()
+    public function storePastorDistrito(Request $request, Distrito $distrito)
     {
-        return 'hello store pastor method';
+        //update district with the new coordinator_id
+        $distrito->update([
+            'pastor_id' => $request->pastor,
+        ]);
+        $user = DirectorInfo::find($request->pastor);
+        $user->update([
+            'asignado' => 1,
+        ]);
+        //redirect
+        return redirect(route('distrito.show', $distrito))
+        ->with('message', 'coordinador de distrito actualizado');
     }
 
-    public function storeCoordinadorDistrito()
+    public function storeCoordinadorDistrito(Request $request, Distrito $distrito)
     {
-        return 'hello store coordinador method';
+        //update district with the new coordinator_id
+        $distrito->update([
+            'coordinador_id' => $request->coordinador,
+        ]);
+        $user = DirectorInfo::find($request->coordinador);
+        $user->update([
+            'asignado' => 1,
+        ]);
+        //redirect
+        return redirect(route('distrito.show', $distrito))
+        ->with('message', 'coordinador de distrito actualizado');
     }
-    
 }

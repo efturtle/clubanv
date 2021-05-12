@@ -23,21 +23,29 @@
                                     <td> {{ $distrito->estado }} </td>
                                     @if ($distrito->pastor_id == null)
                                         <td>
-                                            <a href="{{ route('asignar.distrito', ['type' => 1, 'distrito' => 2]) }}">
+                                            <a href="{{ route('asignar.distrito', ['type' => 1, 'distrito' => $distrito]) }}">
                                                 <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
                                             </a>
                                         </td>
                                     @else
-                                        <td>hi</td>
+                                        <td>
+                                            <a href="{{ route('user.show', $distrito->pastor) }}">
+                                                {{ $distrito->pastor->name }}
+                                            </a>
+                                        </td>
                                     @endif
                                     @if ($distrito->coordinador_id == null)
                                         <td>
-                                            <a href="{{ route('asignar.distrito', ['type' => 2, 'distrito' => 2]) }}">
+                                            <a href="{{ route('asignar.distrito', ['type' => 2, 'distrito' => $distrito]) }}">
                                                 <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
                                             </a>
                                         </td>    
                                     @else
-                                        <td>hi</td>
+                                        <td>
+                                            <a href="{{ route('user.show', $distrito->coordinador) }}">
+                                                {{ $distrito->coordinador->name }}
+                                            </a>
+                                        </td>
                                     @endif
                                     <td>
                                         <a href="{{ route('distrito.edit', $distrito->id) }}">

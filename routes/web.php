@@ -80,9 +80,10 @@ Route::put('saventuras', [AsignacionRoles::class, 'storeAventuras'])->middleware
 Route::put('sconquistadores', [AsignacionRoles::class, 'storeConquistadores'])->middleware(['auth', 'chief'])->name('store.conquistadores');
 Route::put('sguias', [AsignacionRoles::class, 'storeGuias'])->middleware(['auth', 'chief'])->name('store.guias');
     /* Asignacion Distritos */
+    
 Route::get('asignar-distrito/{type}/distrito/{distrito}', [AsignacionRoles::class, 'asignarDistrito'])->middleware(['auth', 'chief'])->name('asignar.distrito');
-Route::put('spastor-distrito', [AsignacionRoles::class, 'storePastorDistrito'])->middleware(['auth', 'chief'])->name('store.pastor.distrito');
-Route::put('scoordinador-distrito', [AsignacionRoles::class, 'storeCoordinadorDistrito'])->middleware(['auth', 'chief'])->name('store.coordinador.distrito');
+Route::put('spastor-distrito/{distrito}', [AsignacionRoles::class, 'storePastorDistrito'])->middleware(['auth', 'chief'])->name('store.pastor.distrito');
+Route::put('scoordinador-distrito/{distrito}', [AsignacionRoles::class, 'storeCoordinadorDistrito'])->middleware(['auth', 'chief'])->name('store.coordinador.distrito');
 
 
 /* Filtros */

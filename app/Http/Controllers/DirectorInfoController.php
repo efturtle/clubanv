@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\DirectorInfo;
+use App\Models\Distrito;
 
 class DirectorInfoController extends Controller
 {
@@ -15,12 +16,6 @@ class DirectorInfoController extends Controller
     {
         return view('users.index', [
             'directors' => DirectorInfo::all(),
-            'clubs' => Club::where('director_id', '=', null)
-            ->orWhere('pastor_id', '=', null)
-            ->orWhere('directorAventurero_id', '=', null)
-            ->orWhere('directorConquistador_id', '=', null)
-            ->orWhere('directorGuiasMayores_id', '=', null)
-            ->get()
         ]); 
     }
 
@@ -102,7 +97,17 @@ class DirectorInfoController extends Controller
     }
 
     public function show(User $user) {
-        return view('users.show', compact('user'));
+        return view('users.show', [
+        'user' => $user,
+        'clubs' => Club::where('director_id', '=', null)
+        ->orWhere('pastor_id', '=', null)
+        ->orWhere('directorAventurero_id', '=', null)
+        ->orWhere('directorConquistador_id', '=', null)
+        ->orWhere('directorGuiasMayores_id', '=', null)
+        ->get(),
+        'distritos' => Distrito::where('coordinador_id', '=', null)
+        ->orWhere('pastor_id', '=', null)->get()
+        ]);
     }
 
     public function delete(User $user)

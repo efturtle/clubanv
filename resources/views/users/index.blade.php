@@ -44,13 +44,17 @@
                                 <th scope="col">Correo</th>
                                 <th scope="col">Rol</th>
                                 <th scope="col">Asignado</th>
-                                <th scope="col">Ver</th>
+                                {{-- <th scope="col">Ver</th> --}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($directors as $director)
                                 <tr>
-                                    <td> {{ $director->user->name }}</td>
+                                    <td>
+                                        <a href="{{ route('user.show', $director->user->id) }}">
+                                            {{ $director->user->name }}
+                                        </a>
+                                    </td>
                                     <td> {{ $director->user->email }}</td>
                                     @switch($director->rol)
                                         @case(1)
@@ -81,67 +85,22 @@
                                         <td>Si</td>
                                     @else
                                         <td>
-                                            <button class="bg-green-400 center rounded w-1/2 mt-2" data-toggle="modal" data-target="#asignarclub"><span class="text-gray-900">Asignar</span></button>
-                                            <!-- The Modal -->
-                                            <div class="modal fade" id="asignarclub">
-                                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                    <div class="modal-content">
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            {{-- @foreach ($clubs as $club)
-                                                                <p>{{ $club->nombreClub }}</p>
-                                                            @endforeach --}}                                                           
-                                                            <h5>Elegir a un Club para {{ $director->user->name }}</h5>
-                                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                                        </div>
-                                                        <!-- Modal body -->
-                                                        <div class="modal-body">
-                                                            {{ $director->rol }}
-                                                            @switch($director->rol)
-                                                                @case(4)
-                                                                    @foreach ($clubs as $club)
-                                                                        @if ($club->pastor_id != null)
-                                                                            <form action="">
-                                                                                <input type="hidden" name="club" id="club" value="{{ $club }}">
-                                                                                <input type="hidden" name="director" id="director" value="{{ $director->user->id }}">
-                                                                                <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $club->nombreClub }}</span> </button>
-                                                                            </form>
-                                                                        @endif
-                                                                    @endforeach
-                                                                    @break
-                                                                @case(6)
-                                                                    @foreach ($clubs as $club)
-                                                                        @if ($club->director_id != null)
-                                                                            <form action="">
-                                                                                <input type="hidden" name="club" id="club" value="{{ $club }}">
-                                                                                <input type="hidden" name="director" id="director" value="{{ $director->user->id }}">
-                                                                                <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $club->nombreClub }}</span> </button>
-                                                                            </form>
-                                                                        @endif
-                                                                    @endforeach
-                                                                    @break
-                                                                @case(7)
-                                                                    <a href="{{ route('club') }}">Asignar director de categoria</a>
-                                                                    @break
-                                                                @default
-                                                                    <script>window.location = "/user";</script>
-                                                            @endswitch
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href=""></a>
+                                            <button class="bg-green-400 center rounded w-1/2 mt-2"><span class="text-gray-900">Asignar</span></button>
+                                            
                                         </td>
                                     @endif
-                                    <td>
+                                    {{-- <td>
                                         <a href="{{ route('user.show', $director->user->id) }}">
                                             <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
                                         </a>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>

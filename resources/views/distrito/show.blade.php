@@ -43,7 +43,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
                             @if ($distrito->coordinador_id == null)
-                                    <td class="fw-bold">
+                                    <td >
                                         <div class="pl-2">
                                             <a href="/asignar/coordinador/{{ $distrito->id }}">
                                                 <span class="bg-green-600  rounded text-white">Asignar</span>
@@ -51,7 +51,7 @@
                                         </div>
                                     </td>    
                                 @else
-                                    <td class="fw-bold">hi</td>
+                                    <td> {{ $distrito->coordinador->name }} </td>
                             @endif
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-church"></i></span>
                             @if ($distrito->pastor_id == null)
-                                    <td class="fw-bold">
+                                    <td>
                                         <div class="pl-2">
                                             <a href="/asignar/pastor/{{ $distrito->id }}">
                                                 <span class="bg-green-600  rounded text-white">Asignar</span>
@@ -70,7 +70,7 @@
                                         </div>
                                     </td>    
                                 @else
-                                    <td class="fw-bold">hi</td>
+                                    <td>hi</td>
                             @endif
                         </div>
                     </div>

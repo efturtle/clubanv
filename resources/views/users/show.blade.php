@@ -9,26 +9,158 @@
                     @endif
                     <div class="row pb-2">
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Nombre de usuario</label>
+                            <label>Nombre de usuario</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <h5 class="px-3 mt-1">{{ $user->name }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="exampleInputEmail1">Email</label>
+                            <label>Email</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-question-circle"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $user->email }}</h5>
                             </div>
                         </div>
                     </div>
+                    <div class="row pb-2">                        
+                        <div class="col-6 mt-3 flex">
+                            <div class="mr-3"><span class="input-group-text"><i class="fab fa-atlassian"></i></span></div>
+                            @if ($user->directorinfo->asignado == 0)
+                                <div class="w-1/5 bg-green-400 px-3">
+                                    @if ($user->directorinfo->rol < 6)
+                                        <button class="rounded" data-toggle="modal" data-target="#asignarDistrito"><span class="text-gray-900">Asignar</span></button>
+                                    @else
+                                        <button class="rounded" data-toggle="modal" data-target="#asignarclub"><span class="text-gray-900">Asignar</span></button>
+                                    @endif
+                                </div>
+                            @else
+                                <div><h6>Usuario ya asignado a </h6>
+                                    @switch($user->directorinfo->rol)
+                                        @case(1)
+                                             <h6 class="text-yellow-700">Director</h6>
+                                            @break
+                                        @case(2)
+                                             <h6 class="text-yellow-700">Secretario</h6>
+                                            @break
+                                        @case(3)
+                                             <h6 class="text-yellow-700">Encargado</h6>
+                                            @break
+                                        @case(4)
+                                             <h6 class="text-yellow-700">Pastor</h6>
+                                            @break
+                                        @case(5)
+                                             <h6 class="text-yellow-700">Coordinador</h6>
+                                            @break
+                                        @case(6)
+                                            <h6 class="text-yellow-700">Director de Club</h6>
+                                            @break
+                                        @case(7)
+                                            <h6 class="text-yellow-700">Director de Categoria</h6>
+                                            @break
+                                        @default
+                                            
+                                    @endswitch
+                                </div>
+                            @endif
+                        </div>
+                    </div>
 
-                    <div class="grid grid-cols-2 md:grid-cols-1">
+                    <div class="grid grid-cols-2 md:flex">
                         <div class="pt-2"><x-baja-usuario :user="$user"/></div>
                         <div class="pt-2"><x-eliminar-usuario :user="$user"/></div>
                         <div class="pt-2"><span class="mr-2">Editar Usuario</span>
                             <a href="{{ route('user.edit', $user) }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a></div>
+                    </div>
+
+
+
+
+                    <div class="modal fade" id="asignarclub">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">                                               
+                                    <h5>Elegir a un Club para {{ $user->name }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    @switch($user->directorinfo->rol)
+                                        @case(4)
+                                            @foreach ($clubs as $club)
+                                                @if ($club->pastor_id != null)
+                                                    <form action="">
+                                                        <input type="hidden" name="club" id="club" value="{{ $club }}">
+                                                        <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
+                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $club->nombreClub }}</span> </button>
+                                                    </form>
+                                                @endif
+                                            @endforeach
+                                            @break
+                                        @case(6)
+                                            @foreach ($clubs as $club)
+                                                @if ($club->director_id != null)
+                                                    <form action="">
+                                                        <input type="hidden" name="club" id="club" value="{{ $club }}">
+                                                        <input type="hidden" name="director" id="director" value="{{ $user->directorinfo->id }}">
+                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $club->nombreClub }}</span> </button>
+                                                    </form>
+                                                @endif
+                                            @endforeach
+                                            @break
+                                        @case(7)
+                                            <a href="{{ route('club') }}">Asignar director de categoria</a>
+                                            @break
+                                        @default 
+                                                    
+                                    @endswitch
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="asignarDistrito">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">                                               
+                                    <h5>Elegir un Distrito para {{ $user->name }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    @switch($user->directorinfo->rol)
+                                        @case(4)
+                                            @foreach ($distritos as $distrito)
+                                                @if ($distrito->pastor_id == null)    
+                                                    <form action="{{ route('store.pastor.distrito', $distrito) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="distrito" id="distrito" value="{{ $distrito }}">
+                                                        <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
+                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $distrito->nombre }}</span> </button>
+                                                    </form>
+                                                @endif
+                                            @endforeach
+                                            @break
+                                        @case(5)
+                                            @foreach ($distritos as $distrito)
+                                                @if ($distrito->coordinador_id == null) 
+                                                    <form action="{{ route('store.coordinador.distrito', $distrito) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="coordinador" id="coordinador" value="{{ $user->directorinfo->id }}">
+                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $distrito->nombre }}</span> </button>
+                                                    </form>
+                                                @endif
+                                            @endforeach
+                                            @break
+                                        @default 
+                                    @endswitch
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
