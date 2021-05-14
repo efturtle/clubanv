@@ -57,15 +57,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Posts::class);
     }
-    
-    public function club()
-    {
-        return $this->belongsTo(Club::class);
-    }
-
-    public function director()
-    {
-        return $this->belongsTo(Club::class, 'director_id', 'id');
-    }
-
 }

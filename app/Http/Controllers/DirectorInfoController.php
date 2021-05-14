@@ -15,13 +15,13 @@ class DirectorInfoController extends Controller
     public function index()
     {
         return view('users.index', [
-            'directors' => DirectorInfo::all(),
+            'directors' => DirectorInfo::where('rol', '<', 6)->get(),
         ]); 
     }
 
     public function indexDirector()
     {
-        return view('users.index', ['directors' => DirectorInfo::where('rol', '>', 3)->where('rol', '!=', 0)->get()]);
+        return view('users.index', ['directors' => DirectorInfo::where('rol', '>', 6)->where('rol', '!=', 0)->get()]);
     }
 
     public function newDirective($rol)

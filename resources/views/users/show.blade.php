@@ -59,8 +59,18 @@
                                             <h6 class="text-yellow-700">Director de Categoria</h6>
                                             @break
                                         @default
-                                            
+                                            <h6 class="text-yellow-700">Admin</h6>
                                     @endswitch
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-6 mt-3">
+                            @if ($user == Auth::user())
+                                <a href="{{ route('cambiar.contra') }}"><p class="bg-indigo-800 text-white rounded w-1/2 pl-2">Cambiar Contraseña</p></a>
+                            @else
+                                <div class="flex">
+                                    <div> <span class="text-bold">Clave</span> </div>
+                                    <div class="ml-3"><button class="bg-purple-800 rounded w-14" data-toggle="modal" data-target="#resetClave"> <span class="text-white"> Reset</span></button></div>
                                 </div>
                             @endif
                         </div>
@@ -75,6 +85,28 @@
 
 
 
+
+                    <div class="modal fade" id="resetClave">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h5>Resetear Contraseña para {{ $user->name }}?</h5>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form action="{{ route('store.reset', $user) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" value="{{ $user }}">
+                                    <button class="bg-yellow-500 w-1/5 rounded">Si</button>
+                                    </form>
+                                    <button type="button" class="close" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="modal fade" id="asignarclub">
                         <div class="modal-dialog modal-dialog-centered modal-lg">

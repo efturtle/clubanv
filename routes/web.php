@@ -7,6 +7,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\DirectorInfoController;
 use App\Http\Controllers\DistritoController;
 use App\Http\Controllers\AsignacionRoles;
+use App\Http\Controllers\ContraNueva;
 use App\Http\Controllers\FiltrosUsuarios;
 
 
@@ -80,11 +81,16 @@ Route::put('saventuras', [AsignacionRoles::class, 'storeAventuras'])->middleware
 Route::put('sconquistadores', [AsignacionRoles::class, 'storeConquistadores'])->middleware(['auth', 'chief'])->name('store.conquistadores');
 Route::put('sguias', [AsignacionRoles::class, 'storeGuias'])->middleware(['auth', 'chief'])->name('store.guias');
     /* Asignacion Distritos */
-    
 Route::get('asignar-distrito/{type}/distrito/{distrito}', [AsignacionRoles::class, 'asignarDistrito'])->middleware(['auth', 'chief'])->name('asignar.distrito');
 Route::put('spastor-distrito/{distrito}', [AsignacionRoles::class, 'storePastorDistrito'])->middleware(['auth', 'chief'])->name('store.pastor.distrito');
 Route::put('scoordinador-distrito/{distrito}', [AsignacionRoles::class, 'storeCoordinadorDistrito'])->middleware(['auth', 'chief'])->name('store.coordinador.distrito');
 
+
+/* Reset Password */
+Route::get('cambiar-contrasena', [ContraNueva::class, 'barra'])->middleware(['auth'])->name('cambiar.contra');
+Route::post('cambiar-c', [ContraNueva::class, 'storeCambio'])->middleware(['auth'])->name('store.cambio');
+
+Route::put('resetClave/{user}', [ContraNueva::class, 'resetPassword'])->middleware(['auth', 'pastor'])->name('store.reset');
 
 /* Filtros */
 Route::get('filtros/{type}', [FiltrosUsuarios::class, 'usuarios'])->middleware(['auth', 'chief'])->name('filtro.usuario');

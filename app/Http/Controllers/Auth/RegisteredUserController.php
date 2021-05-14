@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
         ]);
         event(new Registered($user));    
-        return redirect('/index')
+        return redirect('/club')
         ->with('message', '');
     }
 }

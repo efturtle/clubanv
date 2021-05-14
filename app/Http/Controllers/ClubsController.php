@@ -8,18 +8,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 class ClubsController extends Controller
 {
     public function index()
     {
-    return view('clubes.index', [
+        return view('clubes.index', [
             'clublist' => Club::all()
         ]);
     }
 
     public function store(Request $request)
     {
+        dd($request->hasFile('foto'));
+        Storage::disk('local')->put($request->foto, 'contents');
+        
         //get the request info
         $this->validarClub();
         

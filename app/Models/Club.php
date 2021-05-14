@@ -41,4 +41,5 @@ class Club extends Model
     {
         return $this->hasOne(User::class, 'id', 'directorGuiasMayores_id');
     }
+
 }

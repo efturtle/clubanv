@@ -42,7 +42,7 @@
                                             <td>{{ $pastor->user->name }}</td>
                                             <td>{{ $pastor->user->email }}</td>
                                             <td>
-                                                <form action="{{ route('store.pastor.distrito') }}" method="POST">
+                                                <form action="{{ route('store.pastor.distrito', $distrito) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" value="{{ $pastor->id }}" name="pastor" id="pastor">
@@ -72,7 +72,7 @@
                                             <td>{{ $coordinador->user->name }}</td>
                                             <td>{{ $coordinador->user->email }}</td>
                                             <td>
-                                                <form action="{{ route('store.coordinador.distrito') }}" method="POST">
+                                                <form action="{{ route('store.coordinador.distrito', $distrito) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" value="{{ $coordinador->id }}" name="coordinador" id="coordinador">

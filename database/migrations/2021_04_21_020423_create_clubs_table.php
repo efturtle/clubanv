@@ -14,7 +14,7 @@ class CreateClubsTable extends Migration
     public function up()
     {
         Schema::create('clubs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nombreClub');
             $table->string('significado');
             $table->string('iglesia');
@@ -26,9 +26,6 @@ class CreateClubsTable extends Migration
             $table->date('fechaAprobacion')->nullable();        
             $table->integer('numeroVoto')->nullable();
             $table->string('foto')->nullable();
-            /* $table->string('catConquistadores')->nullable();
-            $table->string('catAventureros')->nullable();
-            $table->string('catGuias')->nullable(); */
 
             $table->unsignedBigInteger('distrito_id');
             $table->foreign('distrito_id')
@@ -60,6 +57,7 @@ class CreateClubsTable extends Migration
             $table->foreign('directorGuiasMayores_id')
             ->references('id')
             ->on('users');
+
             $table->timestamps();
         });
     }

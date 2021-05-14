@@ -41,8 +41,8 @@
                                 @if ($distrito->coordinador_id == null)
                                         <td>
                                             <div class="pl-2">
-                                                <a href="/asignar/coordinador/{{ $distrito->id }}">
-                                                    <span class="bg-green-600  rounded text-white">Asignar</span>
+                                                <a href="{{ route('asignar.distrito', ['type' => 2, 'distrito' => $distrito]) }}">
+                                                    <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
                                                 </a>
                                             </div>
                                         </td>    
@@ -65,8 +65,8 @@
                                 @if ($distrito->pastor_id == null)
                                         <td>
                                             <div class="pl-2">
-                                                <a href="/asignar/pastor/{{ $distrito->id }}">
-                                                    <span class="bg-green-600  rounded text-white">Asignar</span>
+                                                <a href="{{ route('asignar.distrito', ['type' => 1, 'distrito' => $distrito]) }}">
+                                                    <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
                                                 </a>
                                             </div>
                                         </td>    

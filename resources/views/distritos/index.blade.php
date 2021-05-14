@@ -11,7 +11,6 @@
                             <th scope="col">Estado</th>
                             <th scope="col">Pastor</th>
                             <th scope="col">Coordinador</th>
-                            <th scope="col">Editar</th>
                         </tr></thead>
                         <tbody>
                             @foreach ($distritos as $distrito)
@@ -47,11 +46,6 @@
                                             </a>
                                         </td>
                                     @endif
-                                    <td>
-                                        <a href="{{ route('distrito.edit', $distrito->id) }}">
-                                            <button class="btn btn-outline-warning" ><i class="fas fa-pen-square"></i></button>
-                                        </a>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

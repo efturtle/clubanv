@@ -155,23 +155,29 @@ class AsignacionRoles extends Controller
     {
         switch ($type) {
             case 1:
-                    return view('asignar.distrito', [
-                        'distrito' => $distrito,
-                        'users' => DirectorInfo::where('rol', '=', 4)
-                        ->where('asignado', '=', 0)->get(),
-                        'type' => 1
-                    ]);
+                return view('asignar.distrito', [
+                    'users' => DirectorInfo::where('rol', '=', 4)
+                    ->where('asignado', '=', 0)->get(),
+                    'type' => 1,
+                    'distrito' => $distrito
+                ]);
+                return view('asignar.distrito', [
+                    'distrito' => $distrito,
+                    'users' => DirectorInfo::where('rol', '=', 4)
+                    ->where('asignado', '=', 0)->get(),
+                    'type' => 1
+                ]);
                 break;
             case 2:
-                    return view('asignar.distrito', [
-                        'distrito' => $distrito,
-                        'users' => DirectorInfo::where('rol', '=', 5)
-                        ->where('asignado', '=', 0)->get(),
-                        'type' => 2
-                    ]);
+                return view('asignar.distrito', [
+                    'distrito' => $distrito,
+                    'users' => DirectorInfo::where('rol', '=', 5)
+                    ->where('asignado', '=', 0)->get(),
+                    'type' => 2
+                ]);
                 break;
             default:
-                return redirect(route('club'))
+                return redirect(route('distrito'))
                 ->with('message', 'esta accion no es reconocida');
                 break;
         }
@@ -190,7 +196,7 @@ class AsignacionRoles extends Controller
         ]);
         //redirect
         return redirect(route('distrito.show', $distrito))
-        ->with('message', 'coordinador de distrito actualizado');
+        ->with('message', 'Pastor de distrito actualizado');
     }
 
     public function storeCoordinadorDistrito(Request $request, Distrito $distrito)
@@ -205,6 +211,6 @@ class AsignacionRoles extends Controller
         ]);
         //redirect
         return redirect(route('distrito.show', $distrito))
-        ->with('message', 'coordinador de distrito actualizado');
+        ->with('message', 'Coordinador de distrito actualizado');
     }
 }

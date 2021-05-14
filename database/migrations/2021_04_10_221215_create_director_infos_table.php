@@ -16,7 +16,6 @@ class CreateDirectorInfosTable extends Migration
         Schema::create('director_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->smallInteger('rol');
-            $table->string('club')->nullable();
             $table->smallInteger('category')->nullable();
             $table->string('direccion')->nullable();
             $table->string('codigoPostal')->nullable();
@@ -26,14 +25,9 @@ class CreateDirectorInfosTable extends Migration
             $table->string('estado')->nullable();
             $table->string('ciudad')->nullable();
 
-            
             $table->boolean('asignado')->default(0);
-            
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users');
-            
+
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

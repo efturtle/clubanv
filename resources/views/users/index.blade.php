@@ -44,7 +44,6 @@
                                 <th scope="col">Correo</th>
                                 <th scope="col">Rol</th>
                                 <th scope="col">Asignado</th>
-                                {{-- <th scope="col">Ver</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -85,16 +84,11 @@
                                         <td>Si</td>
                                     @else
                                         <td>
-                                            <a href=""></a>
-                                            <button class="bg-green-400 center rounded w-1/2 mt-2"><span class="text-gray-900">Asignar</span></button>
-                                            
+                                            <a href="">
+                                                <button class="bg-green-400 center rounded w-1/2 mt-2"><span class="text-gray-900">Asignar</span></button>
+                                            </a>
                                         </td>
                                     @endif
-                                    {{-- <td>
-                                        <a href="{{ route('user.show', $director->user->id) }}">
-                                            <button class="btn btn-outline-info"><i class="fas fa-plus-circle"></i></button>
-                                        </a>
-                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
