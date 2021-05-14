@@ -15,7 +15,7 @@ class DirectorInfoController extends Controller
     public function index()
     {
         return view('users.index', [
-            'directors' => DirectorInfo::where('rol', '<', 6)->get(),
+            'directors' => DirectorInfo::where('rol', '<', 7)->get(),
         ]); 
     }
 

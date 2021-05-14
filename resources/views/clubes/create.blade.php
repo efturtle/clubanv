@@ -83,8 +83,6 @@
                                             @foreach ($users as $user)
                                                 @if ($user->directorinfo->rol == 6)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                @else
-                                                    <option value="">Sin Directores</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -103,14 +101,12 @@
                                             @foreach ($users as $user)
                                                 @if ($user->directorinfo->rol == 4)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                @else
-                                                    <option value="">Sin Pastores</option>
                                                 @endif
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="exampleInputEmail1">Subdirector</label>

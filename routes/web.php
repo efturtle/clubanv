@@ -40,7 +40,7 @@ Route::get('clubcrear', [ClubsController::class, 'create'])->middleware(['auth',
 Route::post('/club', [ClubsController::class, 'store'])->middleware(['auth', 'pastor'])->name('club.store');
 Route::get('/club/edit/{clubs}', [ClubsController::class, 'edit'])->middleware(['auth', 'pastor'])->name('club.edit');
 Route::put('/club/{clubs}', [ClubsController::class, 'update'])->middleware(['auth', 'pastor'])->name('club.update');
-Route::delete('/club/soft/{clubs}', [ClubsController::class, 'softDelete'])->middleware(['auth', 'pastor'])->name('club.delete');
+Route::delete('/club/soft/{clubs}', [ClubsController::class, 'delete'])->middleware(['auth', 'pastor'])->name('club.delete');
 Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(['auth', 'chief'])->name('club.destroy');
 
 

@@ -22,7 +22,8 @@ class DirectorInfoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'rol' => $this->faker->randomElement([6,7]),
+            'asignado' => 0,
         ];
     }
 }

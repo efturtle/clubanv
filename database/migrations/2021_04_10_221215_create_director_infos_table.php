@@ -24,6 +24,7 @@ class CreateDirectorInfosTable extends Migration
             $table->string('nacionalidad')->nullable();
             $table->string('estado')->nullable();
             $table->string('ciudad')->nullable();
+            $table->softDeletes();
 
             $table->boolean('asignado')->default(0);
 

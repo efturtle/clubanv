@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Club extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    
     protected $fillable = ['nombreClub','significado','iglesia','tesorero','anciano','secretario',
     'director_id','pastor_id','subdirector','subdirectora','fechaAprobacion','numeroVoto','foto','directorAventurero_id',
      'directorConquistador_id', 'directorGuiasMayores_id', 'distrito_id'];

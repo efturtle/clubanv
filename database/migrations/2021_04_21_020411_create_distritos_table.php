@@ -27,7 +27,7 @@ class CreateDistritosTable extends Migration
             $table->foreign('pastor_id')
             ->references('id')
             ->on('users');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

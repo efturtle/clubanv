@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Distrito;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DistritosFactory extends Factory
+class DistritoFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -22,7 +22,9 @@ class DistritosFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->name(),
+            'ciudad' => $this->faker->city(),
+            'estado' => $this->faker->state(),
         ];
     }
 }

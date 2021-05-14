@@ -36,28 +36,28 @@ class CreateClubsTable extends Migration
             $table->unsignedBigInteger('director_id')->nullable();
             $table->foreign('director_id')
             ->references('id')
-            ->on('users');
+            ->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('pastor_id')->nullable();
             $table->foreign('pastor_id')
             ->references('id')
-            ->on('users');
+            ->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('directorAventurero_id')->nullable();
             $table->foreign('directorAventurero_id')
             ->references('id')
-            ->on('users');
+            ->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('directorConquistador_id')->nullable();
             $table->foreign('directorConquistador_id')
             ->references('id')
-            ->on('users');
+            ->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('directorGuiasMayores_id')->nullable();
             $table->foreign('directorGuiasMayores_id')
             ->references('id')
-            ->on('users');
-
+            ->on('users')->onDelete('set null');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
