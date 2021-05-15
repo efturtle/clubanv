@@ -69,6 +69,22 @@ Route::delete('distrito/destroy/{distrito}', [DistritoController::class, 'destro
 Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middleware(['auth', 'chief'])->name('distrito.update');
 
 
+/* Miembros */
+Route::get('miembros', [MiembrosInfoController::class, 'index'])->middleware(['auth', 'pastor'])->name('miembros.index');
+
+
+
+Route::post('/miembro', [MiembrosInfoController::class, 'store'])->middleware(['auth', 'isCreator']);
+Route::get('/miembros/{miembrosinfo}', [MiembrosInfoController::class, 'show'])->middleware(['auth', 'isCreator'])->name('miembro.show');
+
+Route::get('/miembros/edit/{miembrosinfo}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
+Route::put('/miembro/{miembros}', [MiembrosInfoController::class, 'update'])->middleware('auth');
+Route::delete('/miembro/soft/{miembros}', [MiembrosInfoController::class, 'softDelete'])->middleware('auth');
+Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');  
+
+
+
+
 
 /* Asignacion */
 Route::get('asignar-usuario/{director}', [AsignacionRoles::class, 'usuario'])->middleware(['auth', 'chief'])->name('asignar.usuario');
@@ -122,14 +138,7 @@ Route::get('filtros/{type}', [FiltrosUsuarios::class, 'usuarios'])->middleware([
     
 
 /* Miembros */
-    Route::get('/miembros', [MiembrosInfoController::class, 'index'])->middleware('auth');
-    Route::post('/miembro', [MiembrosInfoController::class, 'store'])->middleware(['auth', 'isCreator']);
-    Route::get('/miembros/{miembrosinfo}', [MiembrosInfoController::class, 'show'])->middleware(['auth', 'isCreator'])->name('miembro.show');
-
-    Route::get('/miembros/edit/{miembrosinfo}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
-    Route::put('/miembro/{miembros}', [MiembrosInfoController::class, 'update'])->middleware('auth');
-    Route::delete('/miembro/soft/{miembros}', [MiembrosInfoController::class, 'softDelete'])->middleware('auth');
-    Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');  
+    
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');

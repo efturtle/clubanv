@@ -1,59 +1,30 @@
-@include('nav')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      
-    </section>
-        <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-12 col-sm-12">
-              <div class="card card-info card-tabs">
-                <div class="card-header p-0 pt-1">
-                  <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="miembrosTab" data-toggle="pill" href="#miembros" role="tab" aria-controls="miembros" aria-selected="false">Miembros</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="altaMiembrosTab" data-toggle="pill" href="#altaMiembros" role="tab" aria-controls="altaMiembros" aria-selected="true">Alta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="requisitosMiembrosTab" data-toggle="pill" href="#requisitosMiembros" role="tab" aria-controls="requisitosMiembros" aria-selected="true">Requisitos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="tarjetasMiembrosTab" data-toggle="pill" href="#tarjetasMiembros" role="tab" aria-controls="tarjetasMiembros" aria-selected="true">Tarjetas</a>
-                      </li>
-                  </ul>
-                </div>
-                <div class="card-body">
-                  <div class="tab-content" id="custom-tabs-one-tabContent">
-                    <div class="tab-pane fade show active" id="miembros" role="tabpanel" aria-labelledby="miembrosTab">
-                      <section class="content">
-                        <x-lista-miembros :list="$miembroslist"/>
-                      </section>
-                    </div>
-                    <div class="tab-pane fade " id="altaMiembros" role="tabpanel" aria-labelledby="altaMiembrosTab">
-                      <!-- Main content -->
-                      <section class="content">
-                          <x-alta-miembros/>
-                      </section>
-                    </div>
-                    <div class="tab-pane fade" id="requisitosMiembros" role="tabpanel" aria-labelledby="requisitosMiembrosTab">
-                      hola requisitos
-                    </div>
-                    
-                    <div class="tab-pane fade" id="tarjetasMiembros" role="tabpanel" aria-labelledby="tarjetasMiembrosTab">
-                        hola tarjetas
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card -->
-              </div>
+<x-app-layout>
+  <x-miembros-slot/>
+  <div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+              {{-- Check for feedback accion message --}}
+              @if (session('message'))
+                <h6>{{ session('message') }}</h6>                  
+              @endif
+              <x-filtro-miembros/>
+              <br>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Club</th>
+                    <th scope="col">Categoria</th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {{-- Show the members here --}}
+                  
+                </tbody>
+              </table>
             </div>
         </div>
-    </section>
-</div>
-</div>
-@include('footer')
-
-
+    </div>
+  </div>
+</x-app-layout>

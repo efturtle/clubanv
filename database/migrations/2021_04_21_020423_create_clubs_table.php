@@ -27,10 +27,10 @@ class CreateClubsTable extends Migration
             $table->integer('numeroVoto')->nullable();
             $table->string('foto')->nullable();
 
-            $table->unsignedBigInteger('distrito_id');
+            $table->unsignedBigInteger('distrito_id')->nullable();
             $table->foreign('distrito_id')
             ->references('id')
-            ->on('clubs');
+            ->on('distritos');
 
 
             $table->unsignedBigInteger('director_id')->nullable();

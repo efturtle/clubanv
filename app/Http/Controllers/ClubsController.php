@@ -21,9 +21,6 @@ class ClubsController extends Controller
 
     public function store(Request $request)
     {
-        /* dd($request->hasFile('foto'));
-        Storage::disk('local')->put($request->foto, 'contents'); */
-        
         //get the request info
         $this->validarClub();
         
@@ -89,25 +86,29 @@ class ClubsController extends Controller
 
     public function destroy(Club $clubs)
     {
+        $this->eliminarUsuarios($clubs);
         $clubs->forceDelete();
         return redirect('/club')
         ->with('message', 'Se ha eliminado un club');
     }
 
     public function delete(Club $clubs){
-        return $this->removerUsuarios($clubs);
+        $this->removerUsuarios($clubs);
         $clubs->delete();
         return redirect('/club')
         ->with('message', 'Se ha dado de baja un club');
     }
 
-    protected function removerUsuarios($clubs)
+    private function removerUsuarios(Club $clubs)
     {
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=1; $i < 6; $i++) {
             switch ($i) {
                 case 1:
+                    if ($clubs->director_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->director_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
                     ]);
                     $clubs->update([
@@ -115,8 +116,11 @@ class ClubsController extends Controller
                     ]);
                     break;
                 case 2:
+                    if ($clubs->pastor_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->pastor_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
                     ]);
                     $clubs->update([
@@ -124,8 +128,11 @@ class ClubsController extends Controller
                     ]);
                     break;
                 case 3:
+                    if ($clubs->directorAventurero_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->directorAventurero_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
                     ]);
                     $clubs->update([
@@ -133,8 +140,11 @@ class ClubsController extends Controller
                     ]);
                     break;
                 case 4:
+                    if ($clubs->directorConquistador_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->directorConquistador_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
                     ]);
                     $clubs->update([
@@ -142,8 +152,11 @@ class ClubsController extends Controller
                     ]);
                     break;
                 case 5:
+                    if ($clubs->directorGuiasMayores_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->directorGuiasMayores_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
                     ]);
                     $clubs->update([
@@ -156,52 +169,51 @@ class ClubsController extends Controller
 
     protected function eliminarUsuarios(Club $clubs)
     {
-        return $clubs;
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=1; $i < 6; $i++) { 
             switch ($i) {
                 case 1:
+                    if ($clubs->director_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->director_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
-                    ]);
-                    $clubs->update([
-                        'director_id' => null,
                     ]);
                     break;
                 case 2:
+                    if ($clubs->pastor_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->pastor_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
-                    ]);
-                    $clubs->update([
-                        'pastor_id' => null,
                     ]);
                     break;
                 case 3:
+                    if ($clubs->directorAventurero_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->directorAventurero_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
-                    ]);
-                    $clubs->update([
-                        'directorAventurero_id' => null,
                     ]);
                     break;
                 case 4:
+                    if ($clubs->directorConquistador_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->directorConquistador_id);
-                    $user->update([
+                    $user->directorinfo->update([
                         'asignado' => 0,
-                    ]);
-                    $clubs->update([
-                        'directorConquistador_id' => null,
                     ]);
                     break;
                 case 5:
+                    if ($clubs->directorGuiasMayores_id == 0) {
+                        break;
+                    }
                     $user = User::find($clubs->directorGuiasMayores_id);
-                    $user->update([
-                        'asignado' => 0,
-                    ]);
-                    $clubs->update([
-                        'directorGuiasMayores_id' => null,
+                    $user->directorinfo->update([
+                        'asignado' => 0
                     ]);
                     break;
             }

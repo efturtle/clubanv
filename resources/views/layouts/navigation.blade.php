@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('distritos.index')" :active="request()->routeIs('distritos.index')">
                         Distritos
                     </x-nav-link>
+                    <x-nav-link :href="route('miembros.index')" :active="request()->routeIs('miembros.index')">
+                        Miembros
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -79,6 +82,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('distritos.index')" :active="request()->routeIs('distritos.index')">
                 Distritos
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('miembros.index')" :active="request()->routeIs('miembros.index')">
+                Miembros
             </x-responsive-nav-link>
         </div>
 

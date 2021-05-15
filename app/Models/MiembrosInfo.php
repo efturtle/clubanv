@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class miembrosinfo extends Model
+class MiembrosInfo extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = ['nombre','club', 'category','fechaNacimiento', 'edad','direccion', 'provincia_colonia','codigoPostal','sexo',
     'tipoSangre', 'confirmaAlergias', 'alergia', 'nacionalidad','estado','ciudad', 'user_id',
@@ -20,5 +21,4 @@ class miembrosinfo extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }
