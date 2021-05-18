@@ -93,10 +93,9 @@
                 </div>
 
                 <div class="hidden md:flex">
-                    <div>
-                        <input type="search" class="bg-purple-white shadow rounded border-0 p-2" placeholder="Busqueda">
-                    </div>
-                    <div class="pl-3">
+                    <form action="{{ route('buscar.usuario') }}" method="POST">
+                        @csrf
+                        <input type="search" class="bg-purple-white shadow rounded border-0 p-1" name="busqueda" id="busqueda" placeholder="Buscar">
                         <button class="hover:bg-purple-500 px-3 py-2">
                             <svg version="1.1" class="h-4 text-dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
@@ -106,7 +105,7 @@
                                 S32.459,40,21.983,40z"/>
                             </svg>
                         </button>
-                    </div>
+                    </form>
                 </div>
                     
                 <!-- Hamburger -->
@@ -193,9 +192,10 @@
                     </x-dropdown>
                 </x-responsive-nav-link>
                 <x-responsive-nav-link>
-                    <form action="#">
+                    <form action="{{ route('buscar.usuario') }}" method="POST">
+                        @csrf
                         <div class="flex items-center mr-6 my-2">
-                            <div><input type="search" class="bg-purple-white shadow rounded border-0 p-2" placeholder="Busqueda"></div>
+                            <div><input type="search" class="bg-purple-white shadow rounded border-0 p-2" placeholder="Buscar" name="busqueda" id="busqueda"></div>
                             <div class="pl-3"><button class="hover:bg-purple-500 px-3 py-2">
                                 <svg version="1.1" class="h-4 text-dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">

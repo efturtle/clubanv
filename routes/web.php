@@ -9,6 +9,7 @@ use App\Http\Controllers\DistritoController;
 use App\Http\Controllers\AsignacionRoles;
 use App\Http\Controllers\ContraNueva;
 use App\Http\Controllers\FiltrosUsuarios;
+use App\Http\Controllers\EstadisticasController;
 
 
 /*
@@ -107,9 +108,14 @@ Route::get('filtros/{type}', [FiltrosUsuarios::class, 'usuarios'])->middleware([
     
 
 /* Estadisticas */
-Route::get('estadisticas', );
+Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware(['auth', 'director'])->name('estadistica.index');
 
 
+
+/* Search */
+Route::post('busqueda/usuario', function(){
+    return "Esto aun esta bajo mantenimiento Su busqueda: ".request()->busqueda;
+})->name('buscar.usuario');
 
 /* Miembros */
     

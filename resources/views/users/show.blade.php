@@ -120,13 +120,17 @@
                                 <div class="modal-body">
                                     @switch($user->directorinfo->rol)
                                         @case(4)
+                                            @if ($clubs->isEmpty())
+                                                <p>No hay Clubs en existencia, </p> <a href="{{ route('clubes.crear') }}">Crear</a>
+                                            @endif
                                             @foreach ($clubs as $club)
-                                                <form action="">
-                                                    <input type="hidden" name="club" id="club" value="{{ $club }}">
-                                                    <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
+                                                <form action="{{ route('store.pastor') }}">
+                                                    <input type="hidden" name="club" id="club" value="{{ $club->id }}">
+                                                    <input type="hidden" name="pastor" id="pastor" value="{{ $user->id }}">
                                                     <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $club->nombreClub }}</span> </button>
                                                 </form>
                                             @endforeach
+
                                             @break
                                         @case(6)
                                             @foreach ($clubs as $club)
@@ -141,6 +145,9 @@
                                             @break
 
                                         @case(7)
+                                            @if ($clubs->isEmpty())
+                                                <p>No hay Clubs en existencia, </p> <a href="{{ route('clubes.crear') }}">Crear</a>
+                                            @endif
                                                 @foreach ($clubs as $club)
                                                 <div class="mb-2 bg-gray-300 w-1/3 h-8 text-center">
                                                     <a href="{{ route('club.show', $club) }}"> <span class="text-gray-700">{{ $club->nombreClub }}</span> </a>

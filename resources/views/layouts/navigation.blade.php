@@ -24,7 +24,7 @@
                     <x-nav-link :href="route('miembros.index')" :active="request()->routeIs('miembros.index')">
                         Miembros
                     </x-nav-link>
-                    <x-nav-link :href="route('miembros.index')" :active="request()->routeIs('miembros.index')">
+                    <x-nav-link :href="route('estadistica.index')" :active="request()->routeIs('estadistica.index')">
                         Estadisticas
                     </x-nav-link>
                 </div>

@@ -10,6 +10,7 @@
               @endif
               <x-filtro-miembros/>
               <br>
+              <h4 class="text-bold">Esto aun esta en mantenimiento, venga pronto!</h4>
               <table class="table table-hover">
                 <thead>
                   <tr>
