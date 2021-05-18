@@ -34,6 +34,8 @@ class AsignacionRoles extends Controller
         ]);
     }
 
+
+
     public function storePastor(Request $request) 
     {
         //store this id inside the club pastor_id
@@ -65,7 +67,7 @@ class AsignacionRoles extends Controller
         ]);
         //redirect
         return redirect(route('club'))
-        ->with('message', 'pastor actualizado!');
+        ->with('message', 'director '.$directorinfo->user->name.' actualizado!');
     }
 
     public function storeAventuras(Request $request)

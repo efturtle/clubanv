@@ -146,7 +146,7 @@
 
 
                     {{-- Asignacion de roles --}}
-                    <h5 class="text-yellow-600">Asignacion de Directores de categoria</h5>
+                    <h5 class="text-yellow-600" id="asignacionCategorias">Asignacion de Directores de categoria</h5>
                     <h6 class="text-yellow-500">Categorias:</h6>
                     <div class="grid grid-cols-2 gap-6">
 

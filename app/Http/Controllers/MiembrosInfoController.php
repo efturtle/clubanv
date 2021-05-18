@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\miembrosinfo;
+use App\Models\MiembrosInfo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +12,7 @@ class MiembrosInfoController extends Controller
     public function index()
     {
         return view('miembros.index', [
-            'miembroslist' => miembrosinfo::all(),
+            //'miembroslist' => MiembrosInfo::all(),
         ]);
     }
 

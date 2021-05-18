@@ -42,7 +42,9 @@
                             <tr>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
-                                <th scope="col">Rol</th>
+                                @if (Request::path() == 'user')
+                                    <th scope="col">Rol</th>
+                                @endif
                                 <th scope="col">Asignado</th>
                             </tr>
                         </thead>
@@ -50,11 +52,12 @@
                             @foreach ($directors as $director)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('user.show', $director->user->id) }}">
+                                        <a href="{{ route('user.show', $director->user) }}">
                                             {{ $director->user->name }}
                                         </a>
                                     </td>
                                     <td> {{ $director->user->email }}</td>
+                                    @if (Request::path() == 'user')
                                     @switch($director->rol)
                                         @case(1)
                                             <td>Director</td>
@@ -80,13 +83,12 @@
                                         @default
                                             <td>Admin</td>
                                     @endswitch
+                                    @endif
                                     @if ($director->asignado == 1)
-                                        <td>Si</td>
+                                        <td class="bg-green-500 text-center">Si</td>
                                     @else
-                                        <td>
-                                            <a href="">
-                                                <button class="bg-green-400 center rounded w-1/2 mt-2"><span class="text-gray-900">Asignar</span></button>
-                                            </a>
+                                        <td class="bg-yellow-600 text-center">
+                                            <span>No</span>
                                         </td>
                                     @endif
                                 </tr>

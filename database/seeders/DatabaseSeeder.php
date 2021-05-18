@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
         }
 
         for ($i=11; $i < 31; $i++) { 
-            \App\Models\MiembrosInfo::factory()->create(['user_id' => $i]);    
+            //\App\Models\MiembrosInfo::factory()->create(['user_id' => $i]);    
         }
     }
 }

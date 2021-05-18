@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\DirectorInfo;
 use App\Models\Distrito;
@@ -31,7 +30,7 @@ class DirectorInfoController extends Controller
 
     public function newDirector($rol)
     {
-        return view('users.createDirector', ['rol' => $rol, 'clubs' => DB::table('clubs')->get()]);
+        return view('users.createDirector', ['rol' => $rol]);
     }
 
 
@@ -39,10 +38,12 @@ class DirectorInfoController extends Controller
     {
         //request info
         $this->validarUser();
+        //generate password
+        $password = $this->generatePassword($request->name);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($password)
         ]);
         
         DirectorInfo::create([
@@ -50,7 +51,16 @@ class DirectorInfoController extends Controller
             'user_id' => $user->id
         ]);
         return redirect(route('user.index'))
-        ->with('message', 'Nuevo usuario Director Creado!');
+        ->with('message', 'Nuevo usuario Director Creado! Contraseña = '.$password);
+    }
+
+    protected function generatePassword($name)
+    {
+        $name = strtok($name, ' ');
+        if (strlen($name) > 6) {
+            return $name.random_int(100,999);
+        }
+        return $name.random_int(10000, 99999);
     }
 
 
@@ -58,10 +68,11 @@ class DirectorInfoController extends Controller
     {
         //request info
         $this->validarUser();
+        $password = $this->generatePassword($request->name);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($password),
         ]);
 
         //if it is a pastor or coordinator, start off not being assigned
@@ -71,7 +82,7 @@ class DirectorInfoController extends Controller
                 'user_id' => $user->id
             ]);
             return redirect('/user')
-            ->with('message', 'Nuevo usuario directivo creado!');        
+            ->with('message', 'Nuevo usuario directivo creado! contraseña = '.$password);
         }
         //directive with assigned set to true, they don't belong to a specific club or district
         DirectorInfo::create([
@@ -80,8 +91,7 @@ class DirectorInfoController extends Controller
             'user_id' => $user->id
         ]);
         return redirect('/user')
-        ->with('message', 'Nuevo usuario directivo creado!');    
-        
+        ->with('message', 'Nuevo usuario directivo creado! contraseña = '.$password);
     }
 
 
@@ -96,18 +106,53 @@ class DirectorInfoController extends Controller
         return view('directivos.asignarDirectores', ['type' => $type]);
     }
 
-    public function show(User $user) {
-        return view('users.show', [
+    public function show(User $user) {        
+        switch ($user->directorinfo->rol) {
+            case 4:
+                return view('users.show', [
+                    'user' => $user,
+                    'clubs' => Club::where('pastor_id', '=', null)->get(),
+                    'distritos' => Distrito::where('coordinador_id', '=', null)
+                    ->orWhere('pastor_id', '=', null)->get()
+                ]);
+                break;
+            case 5:
+                return view('users.show', [
+                    'user' => $user,
+                    'distritos' => Distrito::where('coordinador_id', '=', null)
+                    ->orWhere('pastor_id', '=', null)->get()
+                ]);
+                break;
+            case 6:
+                return view('users.show', [
+                    'user' => $user,
+                    'clubs' => Club::where('director_id', '=', null)->get(),
+                ]);
+                break;
+            case 7:
+                return view('users.show', [
+                    'user' => $user,
+                    'clubs' => Club::where('directorAventurero_id', '=', null)
+                    ->orWhere('directorConquistador_id', '=', null)
+                    ->orWhere('directorGuiasMayores_id', '=', null)
+                    ->get(),                    
+                ]);
+                break;
+            
+            default:
+                return redirect(route('user.index'))
+                ->with('message', 'woah eso es nuevo, intente de nuevo');
+                break;
+        }
+        /* return view('users.show', [
         'user' => $user,
         'clubs' => Club::where('director_id', '=', null)
         ->orWhere('pastor_id', '=', null)
         ->orWhere('directorAventurero_id', '=', null)
         ->orWhere('directorConquistador_id', '=', null)
         ->orWhere('directorGuiasMayores_id', '=', null)
-        ->get(),
-        'distritos' => Distrito::where('coordinador_id', '=', null)
-        ->orWhere('pastor_id', '=', null)->get()
-        ]);
+        ->get(), */
+        
     }
 
     public function delete(User $user)
@@ -167,8 +212,7 @@ class DirectorInfoController extends Controller
     protected function validarUser(){
         return request()->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',    
+            'email' => 'required|string|email|max:255|unique:users', 
         ]);
     }
     protected function validarDirectorInfo(){

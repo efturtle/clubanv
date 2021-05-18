@@ -34,7 +34,7 @@ class ContraNueva extends Controller
 
     public function resetPassword(User $user)
     {
-        $password = $user->name;
+        $password = strtok($user->name, ' ');
         //generate random password
         if(strlen($user->name) < 4){
             $number = random_int(10000, 20000);
@@ -43,7 +43,7 @@ class ContraNueva extends Controller
         }
         //update
         $user->update([
-            'password' => $password.=$number,
+            'password' => Hash::make($password.=$number),
         ]);
         //redirect screen with new password
         return redirect(route('user.show', $user))

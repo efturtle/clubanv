@@ -17,7 +17,7 @@
                             @default
                         @endswitch
                         <h6>Creacion de Directores</h6>
-                        <form action="/user/director" method="POST">
+                        <form action="{{ route('new.director') }}" method="POST">
                             @csrf
                             <input type="hidden" value="{{ $rol+5 }}" name="rol" id="rol">
                             <div class="-mx-3 md:flex mb-6">
@@ -35,7 +35,7 @@
                                 <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="email" type="email" name="email" :value="old('email')" required>
                               </div>
                             </div>
-                            <div class="-mx-3 md:flex mb-6">
+                            {{-- <div class="-mx-3 md:flex mb-6">
                                 <div class="md:w-full px-3">
                                   <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-password">
                                       Contraseña
@@ -43,7 +43,6 @@
                                     <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" type="password"
                                     name="password" id="password"
                                     required autocomplete="new-password" placeholder="******************">
-                                    {{-- <p class="text-grey-dark text-xs italic">Make it as long and as crazy as you'd like</p> --}}
                                 </div>
                                 <div class="md:w-full px-3">
                                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-password">
@@ -52,9 +51,8 @@
                                         <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="password_confirmation"
                                         type="password"
                                         name="password_confirmation" required>
-                                        {{-- <p class="text-grey-dark text-xs italic">Make it as long and as crazy as you'd like</p> --}}
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="flex justify-end"><button class="bg-blue-800 h-12 w-1/4 sm:w-1/5"> <span class="text-gray-100">Enviar</span> </button></div>
                         </form>
                     </div>

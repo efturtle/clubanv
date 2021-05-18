@@ -121,29 +121,31 @@
                                     @switch($user->directorinfo->rol)
                                         @case(4)
                                             @foreach ($clubs as $club)
-                                                @if ($club->pastor_id != null)
-                                                    <form action="">
-                                                        <input type="hidden" name="club" id="club" value="{{ $club }}">
-                                                        <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
-                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $club->nombreClub }}</span> </button>
-                                                    </form>
-                                                @endif
+                                                <form action="">
+                                                    <input type="hidden" name="club" id="club" value="{{ $club }}">
+                                                    <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
+                                                    <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $club->nombreClub }}</span> </button>
+                                                </form>
                                             @endforeach
                                             @break
                                         @case(6)
                                             @foreach ($clubs as $club)
-                                                @if ($club->director_id != null)
-                                                    <form action="">
-                                                        <input type="hidden" name="club" id="club" value="{{ $club }}">
-                                                        <input type="hidden" name="director" id="director" value="{{ $user->directorinfo->id }}">
-                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $club->nombreClub }}</span> </button>
-                                                    </form>
-                                                @endif
+                                                <form action="{{ route('store.director') }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="club" id="club" value="{{ $club->id }}">
+                                                    <input type="hidden" name="director" id="director" value="{{ $user->id }}">
+                                                    <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $club->nombreClub }}</span> </button>
+                                                </form>
                                             @endforeach
                                             @break
+
                                         @case(7)
-                                            <a href="{{ route('club') }}">Asignar director de categoria</a>
-                                            @break
+                                                @foreach ($clubs as $club)
+                                                <div class="mb-2 bg-gray-300 w-1/3 h-8 text-center">
+                                                    <a href="{{ route('club.show', $club) }}"> <span class="text-gray-700">{{ $club->nombreClub }}</span> </a>
+                                                </div>    
+                                                @endforeach
                                         @default 
                                                     
                                     @endswitch
@@ -171,7 +173,7 @@
                                                         @method('PUT')
                                                         <input type="hidden" name="distrito" id="distrito" value="{{ $distrito }}">
                                                         <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
-                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $distrito->nombre }}</span> </button>
+                                                        <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $distrito->nombre }}</span> </button>
                                                     </form>
                                                 @endif
                                             @endforeach
@@ -183,7 +185,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="coordinador" id="coordinador" value="{{ $user->directorinfo->id }}">
-                                                        <button class="bg-purple-800 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-300">{{ $distrito->nombre }}</span> </button>
+                                                        <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $distrito->nombre }}</span> </button>
                                                     </form>
                                                 @endif
                                             @endforeach

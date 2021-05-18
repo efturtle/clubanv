@@ -18,7 +18,8 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <!-- Styles -->
+        <!-- Styles 
+        tailwind-->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
@@ -26,7 +27,12 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+            @if (Auth::user()->directorinfo->rol < 6)
+                @include('layouts.navigation')    
+            @else
+                @include('layouts.directornav')
+            @endif
+            
 
             <!-- Page Heading -->
             <header class="bg-white shadow">
