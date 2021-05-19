@@ -56,7 +56,7 @@ class CreateMiembrosinfosTable extends Migration
                 /* aqui tengo que guardar la variable de lo que curso asi, este queda registrado en la base de datos. */
 
             /* Privilegio: si es 3 este es un aspirante o consejero */
-            //$table->smallInteger('privilegio');    
+            //$table->smallInteger('privilegio');
 
             /* Datos del consejero/aspirante */
             $table->boolean('investido')->nullable();

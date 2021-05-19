@@ -41,7 +41,9 @@
                                                 </a>
                                             </td>
                                         @else
-                                            <td> {{ $clubs->director->name }} </td>
+                                            <td class="bg-blue-200 rounded"> 
+                                                <a href="{{ route('user.show', $clubs->director_id) }}">{{ $clubs->director->name }}</a>
+                                            </td>
                                         @endif
                                         
                                         {{-- Distrito --}}
@@ -56,7 +58,11 @@
                                                 </a>
                                             </td>
                                         @else
-                                            <td> {{ $clubs->pastor->name }} </td>
+                                            <td class="bg-blue-200 rounded"> 
+                                                <a href="{{ route('user.show', $clubs->pastor_id) }}">
+                                                    <span>{{ $clubs->pastor->name }}</span>
+                                                </a>
+                                            </td>
                                         @endif
                                     </tr>
                                 @endforeach

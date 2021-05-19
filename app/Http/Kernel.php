@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'director' => \App\Http\Middleware\EnsureUserIsDirector::class,
         'chief' => \App\Http\Middleware\EnsureIsDirective::class,
         'pastor' => \App\Http\Middleware\EnsureIsPastor::class,
+        'admin' => \App\Http\Middleware\EnsureIsAdmin::class,
     ];
 }

@@ -65,8 +65,8 @@ Route::get('/distrito/create', [DistritoController::class, 'create'])->middlewar
 Route::get('/distrito/{distrito}', [DistritoController::class, 'show'])->middleware(['auth', 'pastor'])->name('distrito.show');
 Route::post('/distrito', [DistritoController::class, 'store'])->middleware(['auth', 'chief'])->name('distrito.store');
 Route::get('distrito/edit/{distrito}', [DistritoController::class, 'edit'])->middleware(['auth', 'chief'])->name('distrito.edit');
-Route::delete('distrito/delete/{distrito}', [DistritoController::class, 'delete'])->middleware(['auth', 'chief'])->name('distrito.delete');
-Route::delete('distrito/destroy/{distrito}', [DistritoController::class, 'destroy'])->middleware(['auth', 'chief'])->name('distrito.destroy');
+Route::delete('distrito/delete/{distrito}', [DistritoController::class, 'delete'])->middleware(['auth', 'admin'])->name('distrito.delete');
+Route::delete('distrito/destroy/{distrito}', [DistritoController::class, 'destroy'])->middleware(['auth', 'admin'])->name('distrito.destroy');
 Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middleware(['auth', 'chief'])->name('distrito.update');
 
 
@@ -105,10 +105,9 @@ Route::put('resetClave/{user}', [ContraNueva::class, 'resetPassword'])->middlewa
 
 /* Filtros */
 Route::get('filtros/{type}', [FiltrosUsuarios::class, 'usuarios'])->middleware(['auth', 'chief'])->name('filtro.usuario');
-    
 
 /* Estadisticas */
-Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware(['auth', 'director'])->name('estadistica.index');
+Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware(['auth', 'director'])->name('estadisticas.index');
 
 
 
@@ -116,9 +115,6 @@ Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware
 Route::post('busqueda/usuario', function(){
     return "Esto aun esta bajo mantenimiento Su busqueda: ".request()->busqueda;
 })->name('buscar.usuario');
-
-/* Miembros */
-    
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');

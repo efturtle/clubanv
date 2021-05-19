@@ -12,7 +12,9 @@
                             <h6 class="text-bold">Nombre del Distrito</h6>
                             <div class="input-group-prepend">
                                 <span class="input-group-text "><i class="fas fa-file-alt"></i></span>
-                                <h5 class="px-3 mt-1">{{ $clubs->distrito->nombre }}</h5>
+                                <a href="{{ route('distrito.show', $clubs->distrito_id) }}">
+                                    <h5 class="px-3 mt-1">{{ $clubs->distrito->nombre }}</h5>
+                                </a>
                             </div>
                         </div>
                         <div class="col-6">
@@ -37,11 +39,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
                                 @if ($clubs->director == null)
-                                    <h5 class="px-3 mt-1">
-                                        No asignado
-                                    </h5>
+                                    <a href="{{ route('asignar.director', $clubs) }}">
+                                        <button class="bg-green-400 center rounded w-full ml-2 mt-1"><span class="text-gray-900">Asignar</span></button>
+                                    </a>
                                 @else
-                                    <h5 class="px-3 mt-1"> {{ $clubs->director->name }}</h5>
+                                    <div class="bg-blue-100 rounded ml-2 mt-1">
+                                        <a href="{{ route('user.show', $clubs->director_id) }}">{{ $clubs->director->name }}</a>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -85,11 +89,13 @@
                                 <span class="input-group-text"><i class="fa fa-male"></i></span>
                                 
                                 @if ($clubs->pastor == null)
-                                    <h5 class="px-3 mt-1">
-                                        No asignado
-                                    </h5>
+                                    <a href="{{ route('asignar.pastor', $clubs) }}">
+                                        <button class="bg-green-400 center rounded w-full ml-2 mt-1"><span class="text-gray-900">Asignar</span></button>
+                                    </a>
                                 @else
-                                    <h5 class="px-3 mt-1"> {{ $clubs->pastor->name }}</h5>
+                                    <div class="bg-blue-100 rounded ml-2 mt-1">
+                                        <a href="{{ route('user.show', $clubs->pastor_id) }}">{{ $clubs->pastor->name }}</a>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -143,7 +149,6 @@
                     </div>
                     <br>
                     <br>
-
 
                     {{-- Asignacion de roles --}}
                     <h5 class="text-yellow-600" id="asignacionCategorias">Asignacion de Directores de categoria</h5>

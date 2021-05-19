@@ -12,7 +12,7 @@ class Club extends Model
     
     protected $fillable = ['nombreClub','significado','iglesia','tesorero','anciano','secretario',
     'director_id','pastor_id','subdirector','subdirectora','fechaAprobacion','numeroVoto','foto','directorAventurero_id',
-     'directorConquistador_id', 'directorGuiasMayores_id', 'distrito_id'];
+    'directorConquistador_id', 'directorGuiasMayores_id', 'distrito_id'];
 
     public function distrito()
     {

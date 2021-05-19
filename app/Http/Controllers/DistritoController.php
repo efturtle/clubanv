@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Distrito;
+use App\Models\User;
 
 class DistritoController extends Controller
 {
@@ -61,18 +62,54 @@ class DistritoController extends Controller
 
     public function delete(Distrito $distrito)
     {
-        return 'delete method district';
-        $distrito->delete();
-        return redirect('/distrito')
-        ->with('message', 'Se dio de baja un distrito');
-    }
+        if($this->readyForDelete($distrito)){
+            $distrito->delete();
+            return redirect('/distrito')
+            ->with('message', 'Se dio de baja un distrito');
+        }else{
+            return redirect(route('distrito.show', $distrito))
+            ->with('message', 'Hay clubes bajo este distrito, eliminar tales clubes antes de dar de baja a este distrito');
+        }
+        
+    }        
 
     public function destroy(Distrito $distrito)
     {
-        return 'destroy method district';
-        $distrito->forceDelete();
-        return redirect('/distrito')
-        ->with('message', 'Se elimino un distrito');
+        //same as delete but with forceDelete method.
+        if($this->readyForDelete($distrito)){
+            $distrito->forceDelete();
+            return redirect('/distrito')
+            ->with('message', 'Se elimino un distrito');
+        }else{
+            return redirect(route('distrito.show', $distrito))
+            ->with('message', 'Hay clubes bajo este distrito, eliminar tales clubes antes de dar de baja a este distrito');
+        }
+    }
+
+    protected function readyForDelete(Distrito $distrito)
+    {
+        //check for this id on clubs tables
+        $count = DB::table('clubs')->where('distrito_id', '=', $distrito->id)->count();
+        if($count != 0){
+            //return false if there is clubs in this district
+            return false;
+        }
+        //check for coordinador and set asignado to 0 if was assigned to this district
+        if($distrito->coordinador_id != 0){
+            $user = User::find($distrito->coordinador_id);
+            $user->directorinfo->update([
+                'asignado' => 0,
+            ]);
+        }
+        //same goes for pastor
+        if($distrito->pastor_id != 0){
+            $user = User::find($distrito->pastor_id);
+            $user->directorinfo->update([
+                'asignado' => 0,
+            ]);
+        }
+        //exits with true if no clubs where in this district
+        return true;
     }
 
     protected function validarDistrito($request){

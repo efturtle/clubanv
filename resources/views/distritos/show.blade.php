@@ -1,14 +1,12 @@
 <x-app-layout>
     <x-distrito-slot/>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (session('message'))
-                        <p class="text-success">{{ session('message') }}</p>
+                        <p class="text-red-600">{{ session('message') }}</p>
                     @endif
-
                     <div class="row pb-2">
                         <div class="col-6">
                             <h6 class="text-bold">Nombre del Distrito</h6>
@@ -39,20 +37,18 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
                                 @if ($distrito->coordinador_id == null)
-                                        <td>
-                                            <div class="pl-2">
-                                                <a href="{{ route('asignar.distrito', ['type' => 2, 'distrito' => $distrito]) }}">
-                                                    <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
-                                                </a>
-                                            </div>
-                                        </td>    
-                                    @else
-                                    <td>
-                                        <a href="{{ route('user.show', $distrito->coordinador) }}">
-                                            {{ $distrito->coordinador->name }}
+                                    <div class="pl-2">
+                                        <a href="{{ route('asignar.distrito', ['type' => 2, 'distrito' => $distrito]) }}">
+                                            <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
                                         </a>
-                                    </td>
-                                        
+                                    </div>
+
+                                @else
+                                    <div class="bg-pink-300 rounded mt-1 ml-2">
+                                        <a href="{{ route('user.show', $distrito->coordinador) }}">
+                                            <span class="text-white">{{ $distrito->coordinador->name }}</span>
+                                        </a>
+                                    </div>        
                                 @endif
                             </div>
                         </div>
@@ -63,19 +59,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-church"></i></span>
                                 @if ($distrito->pastor_id == null)
-                                        <td>
-                                            <div class="pl-2">
-                                                <a href="{{ route('asignar.distrito', ['type' => 1, 'distrito' => $distrito]) }}">
-                                                    <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
-                                                </a>
-                                            </div>
-                                        </td>    
-                                    @else
-                                        <td>
-                                            <a href="{{ route('user.show', $distrito->pastor) }}">
-                                                {{ $distrito->pastor->name }}
-                                            </a>
-                                        </td>
+                                    <div class="pl-2">
+                                        <a href="{{ route('asignar.distrito', ['type' => 1, 'distrito' => $distrito]) }}">
+                                            <span class="bg-green-600 center rounded w-1/2 text-white">Asignar</span>
+                                        </a>
+                                    </div>
+                                @else
+                                <div class="bg-pink-300 rounded ml-2 mt-1">
+                                    <a href="{{ route('user.show', $distrito->pastor) }}">
+                                        <span class="text-white">{{ $distrito->pastor->name }}</span>
+                                    </a>
+                                </div>
                                 @endif
                             </div>
                         </div>

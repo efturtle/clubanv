@@ -19,13 +19,13 @@ class CreatePostsTable extends Migration
             $table->text('sobre');
             $table->text('cuerpo');
             $table->string('club');
-            $table->string('category');
+            $table->integer('category');
+            $table->string('clubBroadcast');
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')
             ->references('id')
             ->on('users');
-            
             $table->softDeletes();
             $table->timestamps();
         });
