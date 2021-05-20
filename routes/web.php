@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubsController;
-use App\Http\Controllers\MiembrosInfoController;
+use App\Http\Controllers\MiembroController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\DirectorInfoController;
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\DistritoController;
 use App\Http\Controllers\AsignacionRoles;
 use App\Http\Controllers\ContraNueva;
@@ -43,20 +43,20 @@ Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(
 
 
 /* Users */
-Route::get('/user', [DirectorInfoController::class, 'index'])->middleware(['auth', 'pastor'])->name('user.index');
-Route::get('/user/directors', [DirectorInfoController::class, 'indexDirector'])->middleware(['auth', 'director'])->name('directors.index');
-Route::get('/director/create/{type}', [DirectorInfoController::class, 'newDirector'])->middleware(['auth','pastor'])->name('director.create');
-Route::get('/directivos/create/{type}', [DirectorInfoController::class, 'newDirective'])->middleware(['auth','chief'])->name('directive.create');
-Route::post('/user/directive', [DirectorInfoController::class, 'storeDirective'])->middleware(['auth', 'chief'])->name('new.directive');
-Route::post('/user/director', [DirectorInfoController::class, 'storeDirector'])->middleware(['auth', 'pastor'])->name('new.director');
-Route::get('/user/{user}', [DirectorInfoController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
+Route::get('/user', [DirectorController::class, 'index'])->middleware(['auth', 'pastor'])->name('user.index');
+Route::get('/user/directors', [DirectorController::class, 'indexDirector'])->middleware(['auth', 'director'])->name('directors.index');
+Route::get('/director/create/{type}', [DirectorController::class, 'newDirector'])->middleware(['auth','pastor'])->name('director.create');
+Route::get('/directivos/create/{type}', [DirectorController::class, 'newDirective'])->middleware(['auth','chief'])->name('directive.create');
+Route::post('/user/directive', [DirectorController::class, 'storeDirective'])->middleware(['auth', 'chief'])->name('new.directive');
+Route::post('/user/director', [DirectorController::class, 'storeDirector'])->middleware(['auth', 'pastor'])->name('new.director');
+Route::get('/user/{user}', [DirectorController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
 
-Route::delete('/user/soft/{user}', [DirectorInfoController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
+Route::delete('/user/soft/{user}', [DirectorController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
 
 
-Route::delete('/user/{user}', [DirectorInfoController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
-Route::get('/user/edit/{user}', [DirectorInfoController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
-Route::put('user/{user}', [DirectorInfoController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
+Route::delete('/user/{user}', [DirectorController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
+Route::get('/user/edit/{user}', [DirectorController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
+Route::put('user/{user}', [DirectorController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
 
 
 /* Distritos */
@@ -71,14 +71,15 @@ Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middle
 
 
 /* Miembros */
-Route::get('miembros', [MiembrosInfoController::class, 'index'])->middleware(['auth', 'director'])->name('miembros.index');
+Route::get('miembros', [MiembroController::class, 'index'])->middleware(['auth', 'director'])->name('miembros.index');
 
-Route::post('/miembro', [MiembrosInfoController::class, 'store'])->middleware(['auth', 'isCreator']);
-Route::get('/miembros/{miembrosinfo}', [MiembrosInfoController::class, 'show'])->middleware(['auth', 'isCreator'])->name('miembro.show');
-Route::get('/miembros/edit/{miembrosinfo}', [MiembrosInfoController::class, 'edit'])->middleware('auth');
-Route::put('/miembro/{miembros}', [MiembrosInfoController::class, 'update'])->middleware('auth');
-Route::delete('/miembro/soft/{miembros}', [MiembrosInfoController::class, 'softDelete'])->middleware('auth');
-Route::delete('/miembro/{miembros}', [MiembrosInfoController::class, 'destroy'])->middleware('auth');  
+
+Route::post('/miembro', [MiembroController::class, 'store'])->middleware(['auth', 'isCreator']);
+Route::get('/miembros/{miembrosinfo}', [MiembroController::class, 'show'])->middleware(['auth', 'isCreator'])->name('miembro.show');
+Route::get('/miembros/edit/{miembrosinfo}', [MiembroController::class, 'edit'])->middleware('auth');
+Route::put('/miembro/{miembros}', [MiembroController::class, 'update'])->middleware('auth');
+Route::delete('/miembro/soft/{miembros}', [MiembroController::class, 'softDelete'])->middleware('auth');
+Route::delete('/miembro/{miembros}', [MiembroController::class, 'destroy'])->middleware('auth');  
 
 
 /* Asignacion */

@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\DirectorInfo;
+use App\Models\Director;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]));
 
-        DirectorInfo::create([
+        Director::create([
             'rol' => 0, 
             'asignado' => 1,
             'user_id' => $user->id,

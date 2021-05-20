@@ -49,7 +49,7 @@ class ClubsController extends Controller
     public function create()
     {
         //looks for directors that have not yet been assigned for assign process in creation
-        $users = User::whereHas('directorinfo', function(Builder $query){
+        $users = User::whereHas('director', function(Builder $query){
             $query
             ->where('rol', '>', 3)
             ->where('asignado', '=', 0);

@@ -27,7 +27,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @if (Auth::user()->directorinfo->rol < 6)
+            @if (Auth::user()->director->rol < 6)
                 @include('layouts.navigation')    
             @else
                 @include('layouts.directornav')

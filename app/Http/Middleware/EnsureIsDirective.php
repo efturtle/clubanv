@@ -17,11 +17,11 @@ class EnsureIsDirective
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->directorinfo == null){
+        if(Auth::user()->director == null){
             return redirect('/index')
             ->with('message', 'Accion no permitida, pedir ayuda');
         }
-        if(Auth::user()->directorinfo->rol>3){
+        if(Auth::user()->director->rol>3){
             return redirect('/index')
             ->with('message', 'Accion no permitida, pedir ayuda');
         }

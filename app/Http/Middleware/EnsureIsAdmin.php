@@ -17,7 +17,7 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->directorinfo->rol < 2){
+        if(Auth::user()->director->rol < 2){
             return $next($request);
         }
         return redirect(route('distritos.index'))

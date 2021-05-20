@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
+
 use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\DirectorInfo;
+use App\Models\Director;
 use App\Models\Distrito;
 
-class DirectorInfoController extends Controller
+class DirectorController extends Controller
 {
     public function index()
     {
         return view('users.index', [
-            'directors' => DirectorInfo::where('rol', '<', 7)->get(),
+            'directors' => Director::where('rol', '<', 7)->get(),
         ]); 
     }
 
     public function indexDirector()
     {
-        return view('users.index', ['directors' => DirectorInfo::where('rol', '>', 6)->where('rol', '!=', 0)->get()]);
+        return view('users.index', ['directors' => Director::where('rol', '>', 6)->where('rol', '!=', 0)->get()]);
     }
 
     public function newDirective($rol)
@@ -46,7 +48,7 @@ class DirectorInfoController extends Controller
             'password' => Hash::make($password)
         ]);
         
-        DirectorInfo::create([
+        Director::create([
             'rol' => $request->rol,
             'user_id' => $user->id
         ]);
@@ -77,7 +79,7 @@ class DirectorInfoController extends Controller
 
         //if it is a pastor or coordinator, start off not being assigned
         if($request->rol == 5 || $request->rol == 4){
-            DirectorInfo::create([
+            Director::create([
                 'rol' => $request->rol,
                 'user_id' => $user->id
             ]);
@@ -85,7 +87,7 @@ class DirectorInfoController extends Controller
             ->with('message', 'Nuevo usuario directivo creado! contraseña = '.$password);
         }
         //directive with assigned set to true, they don't belong to a specific club or district
-        DirectorInfo::create([
+        Director::create([
             'rol' => $request->rol,
             'asignado' => 1,
             'user_id' => $user->id
@@ -107,7 +109,7 @@ class DirectorInfoController extends Controller
     }
 
     public function show(User $user) {        
-        switch ($user->directorinfo->rol) {
+        switch ($user->director->rol) {
             case 4:
                 return view('users.show', [
                     'user' => $user,

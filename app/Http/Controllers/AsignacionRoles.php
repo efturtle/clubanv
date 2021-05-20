@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Club;
-use App\Models\DirectorInfo;
+use App\Models\Director;
 use App\Models\Distrito;
 
 class AsignacionRoles extends Controller
 {
-    public function usuario(DirectorInfo $director)
+    public function usuario(Director $director)
     {
         return $director;
     }
@@ -18,7 +18,7 @@ class AsignacionRoles extends Controller
     {
         return view('asignar.index', [
             'clubs' => $clubs,
-            'users' => DirectorInfo::where('rol', '=', 4)                
+            'users' => Director::where('rol', '=', 4)                
                 ->where('asignado', '=', 0)->get(),
             'type' => 1
         ]);
@@ -28,7 +28,7 @@ class AsignacionRoles extends Controller
     {
         return view('asignar.index', [
             'clubs' => $clubs,
-            'users' => DirectorInfo::where('rol', '=', 6)                
+            'users' => Director::where('rol', '=', 6)                
                 ->where('asignado', '=', 0)->get(),
             'type' => 2
         ]);
@@ -44,7 +44,7 @@ class AsignacionRoles extends Controller
             'pastor_id' => $request->pastor,
         ]);
         //put assign 1 on directorinfo
-        $directorinfo = DirectorInfo::find($request->pastor);
+        $directorinfo = Director::find($request->pastor);
         $directorinfo->update([
             'asignado' => 1
         ]);
@@ -61,7 +61,7 @@ class AsignacionRoles extends Controller
             'director_id' => $request->director,
         ]);
         //put assign 1 on directorinfo
-        $directorinfo = DirectorInfo::find($request->director);
+        $directorinfo = Director::find($request->director);
         $directorinfo->update([
             'asignado' => 1
         ]);
@@ -77,7 +77,7 @@ class AsignacionRoles extends Controller
             'directorAventurero_id' => $request->aventuras
         ]);
 
-        $directorinfo = DirectorInfo::find($request->aventuras);
+        $directorinfo = Director::find($request->aventuras);
         $directorinfo->update([
             'asignado' => 1
         ]);
@@ -93,7 +93,7 @@ class AsignacionRoles extends Controller
             'directorConquistador_id' => $request->conquistadores
         ]);
 
-        $directorinfo = DirectorInfo::find($request->conquistadores);
+        $directorinfo = Director::find($request->conquistadores);
         $directorinfo->update([
             'asignado' => 1
         ]);
@@ -109,7 +109,7 @@ class AsignacionRoles extends Controller
             'directorGuiasMayores_id' => $request->guias
         ]);
 
-        $directorinfo = DirectorInfo::find($request->guias);
+        $directorinfo = Director::find($request->guias);
         $directorinfo->update([
             'asignado' => 1
         ]);
@@ -124,7 +124,7 @@ class AsignacionRoles extends Controller
             case 1:
                 return view('asignar.categoria', [
                     'clubs' => $clubs,
-                    'users' => DirectorInfo::where('rol', '=', 7)                
+                    'users' => Director::where('rol', '=', 7)                
                         ->where('asignado', '=', 0)->get(),
                     'type' => 1
                 ]);
@@ -132,7 +132,7 @@ class AsignacionRoles extends Controller
             case 2:
                 return view('asignar.categoria', [
                     'clubs' => $clubs,
-                    'users' => DirectorInfo::where('rol', '=', 7)                
+                    'users' => Director::where('rol', '=', 7)                
                         ->where('asignado', '=', 0)->get(),
                     'type' => 2
                 ]);
@@ -140,7 +140,7 @@ class AsignacionRoles extends Controller
             case 3:
                 return view('asignar.categoria', [
                     'clubs' => $clubs,
-                    'users' => DirectorInfo::where('rol', '=', 7)                
+                    'users' => Director::where('rol', '=', 7)                
                         ->where('asignado', '=', 0)->get(),
                     'type' => 3
                 ]);
@@ -158,14 +158,14 @@ class AsignacionRoles extends Controller
         switch ($type) {
             case 1:
                 return view('asignar.distrito', [
-                    'users' => DirectorInfo::where('rol', '=', 4)
+                    'users' => Director::where('rol', '=', 4)
                     ->where('asignado', '=', 0)->get(),
                     'type' => 1,
                     'distrito' => $distrito
                 ]);
                 return view('asignar.distrito', [
                     'distrito' => $distrito,
-                    'users' => DirectorInfo::where('rol', '=', 4)
+                    'users' => Director::where('rol', '=', 4)
                     ->where('asignado', '=', 0)->get(),
                     'type' => 1
                 ]);
@@ -173,7 +173,7 @@ class AsignacionRoles extends Controller
             case 2:
                 return view('asignar.distrito', [
                     'distrito' => $distrito,
-                    'users' => DirectorInfo::where('rol', '=', 5)
+                    'users' => Director::where('rol', '=', 5)
                     ->where('asignado', '=', 0)->get(),
                     'type' => 2
                 ]);
@@ -192,7 +192,7 @@ class AsignacionRoles extends Controller
         $distrito->update([
             'pastor_id' => $request->pastor,
         ]);
-        $user = DirectorInfo::find($request->pastor);
+        $user = Director::find($request->pastor);
         $user->update([
             'asignado' => 1,
         ]);
@@ -207,7 +207,7 @@ class AsignacionRoles extends Controller
         $distrito->update([
             'coordinador_id' => $request->coordinador,
         ]);
-        $user = DirectorInfo::find($request->coordinador);
+        $user = Director::find($request->coordinador);
         $user->update([
             'asignado' => 1,
         ]);

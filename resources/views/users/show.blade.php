@@ -26,9 +26,9 @@
                     <div class="row pb-2">                        
                         <div class="col-6 mt-3 flex">
                             <div class="mr-3"><span class="input-group-text"><i class="fab fa-atlassian"></i></span></div>
-                            @if ($user->directorinfo->asignado == 0)
+                            @if ($user->director->asignado == 0)
                                 <div class="w-1/5 bg-green-400 px-3">
-                                    @if ($user->directorinfo->rol < 6)
+                                    @if ($user->director->rol < 6)
                                         <button class="rounded" data-toggle="modal" data-target="#asignarDistrito"><span class="text-gray-900">Asignar</span></button>
                                     @else
                                         <button class="rounded" data-toggle="modal" data-target="#asignarclub"><span class="text-gray-900">Asignar</span></button>
@@ -36,7 +36,7 @@
                                 </div>
                             @else
                                 <div><h6>Usuario ya asignado a </h6>
-                                    @switch($user->directorinfo->rol)
+                                    @switch($user->director->rol)
                                         @case(1)
                                              <h6 class="text-yellow-700">Director</h6>
                                             @break
@@ -118,7 +118,7 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    @switch($user->directorinfo->rol)
+                                    @switch($user->director->rol)
                                         @case(4)
                                             @if ($clubs->isEmpty())
                                                 <p>No hay Clubs en existencia, </p> <a href="{{ route('clubes.crear') }}">Crear</a>
@@ -171,7 +171,7 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    @switch($user->directorinfo->rol)
+                                    @switch($user->director->rol)
                                         @case(4)
                                             @foreach ($distritos as $distrito)
                                                 @if ($distrito->pastor_id == null)    
@@ -179,7 +179,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="distrito" id="distrito" value="{{ $distrito }}">
-                                                        <input type="hidden" name="pastor" id="pastor" value="{{ $user->directorinfo->id }}">
+                                                        <input type="hidden" name="pastor" id="pastor" value="{{ $user->director->id }}">
                                                         <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $distrito->nombre }}</span> </button>
                                                     </form>
                                                 @endif
@@ -191,7 +191,7 @@
                                                     <form action="{{ route('store.coordinador.distrito', $distrito) }}" method="POST">
                                                         @csrf
                                                         @method('PUT')
-                                                        <input type="hidden" name="coordinador" id="coordinador" value="{{ $user->directorinfo->id }}">
+                                                        <input type="hidden" name="coordinador" id="coordinador" value="{{ $user->director->id }}">
                                                         <button class="bg-gray-300 w-1/5 mt-3 h-12 rounded"> <span class="text-gray-700">{{ $distrito->nombre }}</span> </button>
                                                     </form>
                                                 @endif

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DirectorInfo;
+use App\Models\Director;
 
 class FiltrosUsuarios extends Controller
 {
@@ -13,19 +13,19 @@ class FiltrosUsuarios extends Controller
             case 1:
                 //sin asignar
                 return view('users.index', [
-                    'directors' => DirectorInfo::where('asignado', '=', 0)->get()
+                    'directors' => Director::where('asignado', '=', 0)->get()
                 ]);
                 break;
             case 2:
                 //asignados
                 return view('users.index', [
-                    'directors' => DirectorInfo::where('asignado', '=', 1)->get()
+                    'directors' => Director::where('asignado', '=', 1)->get()
                 ]);
                 break;
             case 3:
                 //directivos
                 return view('users.index', [
-                    'directors' => DirectorInfo::where('rol', '<', 5)->get()
+                    'directors' => Director::where('rol', '<', 5)->get()
                 ]);
                 break;
             

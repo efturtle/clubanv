@@ -44,13 +44,13 @@ class User extends Authenticatable
     ];
   
 
-    public function miembrosinfo()
+    public function miembro()
     {
-        return $this->hasOne(miembrosinfo::class);
+        return $this->hasOne(Miembro::class);
     }
 
-    public function directorinfo(){
-        return $this->hasOne(DirectorInfo::class);
+    public function director(){
+        return $this->hasOne(Director::class);
     }
 
     public function posts()

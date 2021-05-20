@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MiembrosInfo;
+use App\Models\Miembro;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class MiembrosInfoController extends Controller
+class MiembroController extends Controller
 {
     public function index()
     {
@@ -32,7 +32,7 @@ class MiembrosInfoController extends Controller
         //validate request member info
         $this->validarMiembroInfo();
         //create memberinfo
-        $miembrosinfo = miembrosinfo::create([
+        $miembrosinfo = Miembro::create([
             'nombre' => $request->nombre,
             'club' => $request->club,
             'categoria' => $request->category,
@@ -57,30 +57,30 @@ class MiembrosInfoController extends Controller
 
     }
 
-    public function show(miembrosinfo $miembrosinfo)
+    public function show(Miembro $miembrosinfo)
     {   
         return view('miembros.show', ['miembros'=> $miembrosinfo]);
     }
 
-    public function edit(miembrosinfo $miembros)
+    public function edit(Miembro $miembros)
     {
         return view('miembros.edit', compact('miembros'));
     }
 
-    public function update(miembrosinfo $miembros)
+    public function update(Miembro $miembros)
     {
         $miembros->update($this->validarMiembroInfo());
         return redirect (route('miembro.show', $miembros));
     }
 
-    public function destroy(miembrosinfo $miembros)
+    public function destroy(Miembro $miembros)
     {
         $miembros->forceDelete();
         return redirect('/miembros')
         ->with('message', 'Se ha eliminado un miembro');
     }
 
-    public function softDelete(miembrosinfo $miembros){
+    public function softDelete(Miembro $miembros){
         $miembros->delete();
         return redirect('/miembros')
         ->with('message', 'un miembro fue dado de baja');

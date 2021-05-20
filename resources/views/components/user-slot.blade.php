@@ -19,7 +19,7 @@
                         </a>
                     </div>
                     <div class="hidden sm:flex pr-2 pb-3">
-                        @if (Auth::user()->directorinfo->rol < 4) 
+                        @if (Auth::user()->director->rol < 4) 
                             <x-dropdown>
                                 <x-slot name="trigger">
                                     <button class="flex items-center py-1 px-3 lg:text-lg font-medium bg-green-500 rounded-full text-white focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">

@@ -81,7 +81,7 @@
                                                 <option value="">--Asignar Director Club--</option>
                                             @endif
                                             @foreach ($users as $user)
-                                                @if ($user->directorinfo->rol == 6)
+                                                @if ($user->director->rol == 6)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endif
                                             @endforeach
@@ -99,7 +99,7 @@
                                                 <option value="">--Asignar Pastor de Club--</option>
                                             @endif
                                             @foreach ($users as $user)
-                                                @if ($user->directorinfo->rol == 4)
+                                                @if ($user->director->rol == 4)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endif
                                             @endforeach
