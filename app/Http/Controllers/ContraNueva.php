@@ -20,16 +20,15 @@ class ContraNueva extends Controller
         $request->validate([
             'password' => 'required|string|confirmed|min:8',
         ]);
-        $user = Auth::user();
-        $use = User::find($user->id);
+        $user = User::find(Auth::user()->id);
         
         //update
-        $use->update([
+        $user->update([
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect(route('user.show', $use))
-        ->with('message', 'clave actualizada!');
+        return redirect(route('home'))
+        ->with('message', 'Su clave ha sido actualizada!');
     }
 
     public function resetPassword(User $user)

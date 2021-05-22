@@ -27,11 +27,21 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @if (Auth::user()->director->rol < 6)
-                @include('layouts.navigation')    
+            @if (is_null(Auth::user()->director))
+                @if (is_null(Auth::user()->member))
+                    @include('layouts.navigation')
+                @else
+                    @include('layouts.membernav')
+                @endif
             @else
-                @include('layouts.directornav')
+                @if (Auth::user()->director->rol < 6)
+                    @include('layouts.navigation')    
+                @else
+                    @include('layouts.directornav')
+                @endif
             @endif
+            
+            
             
 
             <!-- Page Heading -->

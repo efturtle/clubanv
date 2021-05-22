@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Miembro;
 use App\Models\User;
+use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class MiembroController extends Controller
 {
@@ -16,18 +18,29 @@ class MiembroController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        if (Auth::user()->director->rol < 6) {
+            return view('miembros.create', Club::all());    
+        }/* else{
+            $distrito = 
+            return view('');
+        } */
+        
+    }
+
     public function store(Request $request)
     {
         //get request info
         $this->validarUser();
+        //generate password
+        $password = $this->generatePassword($request->nombre);
         //create user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($password),
         ]);
-
-        //event(new Registered($user));
 
         //validate request member info
         $this->validarMiembroInfo();
@@ -97,7 +110,7 @@ class MiembroController extends Controller
 
     protected function validarMiembroInfo(){
         return request()->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|min:2',
             'club' => 'required',
             'category' => 'required',
             'fechaNacimiento' => 'required',
@@ -141,6 +154,14 @@ class MiembroController extends Controller
             'especialidad' => '',
             'estatus' => ''
         ]);
+    }
 
+    protected function generatePassword($name)
+    {
+        $name = strtok($name, ' ');
+        if (strlen($name) > 6) {
+            return $name.random_int(100,999);
+        }
+        return $name.random_int(10000, 99999);
     }
 }

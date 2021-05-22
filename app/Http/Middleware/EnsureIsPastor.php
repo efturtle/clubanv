@@ -17,7 +17,7 @@ class EnsureIsPastor
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->director == null){
+        if(is_null(Auth::user()->director)){
             return redirect('/index')
             ->with('message', 'Accion no permitida, pedir ayuda');
         }

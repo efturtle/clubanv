@@ -10,6 +10,7 @@ use App\Http\Controllers\AsignacionRoles;
 use App\Http\Controllers\ContraNueva;
 use App\Http\Controllers\FiltrosUsuarios;
 use App\Http\Controllers\EstadisticasController;
+use App\Http\Controllers\FichaTecnicaController;
 
 
 /*
@@ -30,6 +31,10 @@ Route::get('/', function () {
 Route::get('/dash', function(){
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+Route::get('/home', function(){
+    return view('home');
+})->middleware(['auth'])->name('home');
 
 /* Clubs */
 Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor'])->name('club');
@@ -72,6 +77,9 @@ Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middle
 
 /* Miembros */
 Route::get('miembros', [MiembroController::class, 'index'])->middleware(['auth', 'director'])->name('miembros.index');
+Route::get('miembro-create', [MiembroController::class, 'create'])->middleware(['auth', 'director'])->name('miembro.create');
+Route::get('miembro-store', [MiembroController::class, 'store'])->middleware(['auth', 'director'])->name('miembro.store');
+/* Pending work on the courses, can change individualy and also by category and club */
 
 
 Route::post('/miembro', [MiembroController::class, 'store'])->middleware(['auth', 'isCreator']);
@@ -97,6 +105,11 @@ Route::get('asignar-distrito/{type}/distrito/{distrito}', [AsignacionRoles::clas
 Route::put('spastor-distrito/{distrito}', [AsignacionRoles::class, 'storePastorDistrito'])->middleware(['auth', 'chief'])->name('store.pastor.distrito');
 Route::put('scoordinador-distrito/{distrito}', [AsignacionRoles::class, 'storeCoordinadorDistrito'])->middleware(['auth', 'chief'])->name('store.coordinador.distrito');
 
+
+/* Cursos */
+Route::get('crear-curso', [FichaTecnicaController::class, 'create'])->middleware(['auth', 'director'])->name('curso.create');
+Route::get('curso-store', [FichaTecnicaController::class, 'store'])->middleware(['auth', 'director'])->name('curso.store');
+Route::get('cambiar-curso', [FichaTecnicaController::class, 'cambiarCurso'])->middleware(['auth', 'director'])->name('curso.cambiar');
 
 /* Reset Password */
 Route::get('cambiar-contrasena', [ContraNueva::class, 'barra'])->middleware(['auth'])->name('cambiar.contra');

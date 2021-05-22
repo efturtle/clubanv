@@ -6,80 +6,54 @@ use App\Models\FichaTecnica;
 use Illuminate\Http\Request;
 
 class FichaTecnicaController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('cursos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FichaTecnica  $fichaTecnica
-     * @return \Illuminate\Http\Response
-     */
     public function show(FichaTecnica $fichaTecnica)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FichaTecnica  $fichaTecnica
-     * @return \Illuminate\Http\Response
-     */
     public function edit(FichaTecnica $fichaTecnica)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FichaTecnica  $fichaTecnica
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, FichaTecnica $fichaTecnica)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FichaTecnica  $fichaTecnica
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(FichaTecnica $fichaTecnica)
     {
         //
     }
+
+    public function cambiarCurso()
+    {
+        
+    }
+
+    /* 
+    Para cambiar el curso de alguien, estaria cool que no solo se pueda cambiar el curso individualmente, pero tambien grupalmente.
+     Menos trabajo para el que este cambiando el curso en el momento
+
+    Podria mostrar los miembros de la categoria y el club deseado, mostrar sus nombres solamente y su identificador de escuela si tienen,
+    y que muestre un boton que diga cambiar curso individualmente o cambiar para todos.
+    
+
+    */
 }

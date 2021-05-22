@@ -27,9 +27,9 @@
                     <x-nav-link :href="route('estadisticas.index')" :active="request()->routeIs('estadisticas.index')">
                         Estadisticas
                     </x-nav-link>
-                    {{-- <x-nav-link :href="#">
+                    <x-nav-link :href="route('curso.create')" :active="request()->routeIs('curso.create')">
                         Cursos
-                    </x-nav-link> --}}
+                    </x-nav-link>
                 </div>
             </div>
 
