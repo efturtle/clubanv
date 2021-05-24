@@ -9,22 +9,22 @@
             </button>
         </x-slot>
         <x-slot name="content">
-            <a href="#">
+            <a href="{{ route('filtro.miembros', ['categoria' => 1]) }}">
                 <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                     Categoria Aventureros
                 </span>
             </a>
-            <a href="#">
+            <a href="{{ route('filtro.miembros', ['categoria' => 2]) }}">
                 <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                     Categoria Conquistadores
                 </span>
             </a>
-            <a href="#">
+            <a href="{{ route('filtro.miembros', ['categoria' => 3]) }}">
                 <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                     Categoria Guias Mayores
                 </span>
             </a>
-            <a href="#">
+            <a href="{{ route('filtro.miembros', ['categoria' => 4]) }}">
                 <span class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                     Inactivos
                 </span>

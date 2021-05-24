@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\DirectorInfo;
+use App\Models\Director;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DirectorInfoFactory extends Factory
+class DirectorFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = DirectorInfo::class;
+    protected $model = Director::class;
 
     /**
      * Define the model's default state.

@@ -1,7 +1,7 @@
 <x-slot name="header">
     <nav>
         <div class="flex">
-            <a href="#" class="mr-3">
+            <a href="{{ route('miembros.index') }}" class="mr-3">
                 <p class="py-1 px-3 bg-indigo-500 rounded-full text-white">
                     Miembros
                 </p>

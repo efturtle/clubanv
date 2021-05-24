@@ -15,8 +15,6 @@ class CreateMiembrosTable extends Migration
     {
         Schema::create('miembros', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('club');
             $table->integer('category');
             $table->date('fechaNacimiento');
             $table->smallInteger('edad');
@@ -45,9 +43,10 @@ class CreateMiembrosTable extends Migration
             ->references('id')
             ->on('users');
 
+            $table->foreignId('club_id')->constrained();
+
             /* Datos del Conq./Aventurero */
                 $table->string('iglesia')->nullable();
-                $table->string('distrito')->nullable();
                 $table->string('clasePorCursar')->nullable();
                 $table->string('ultimaClaseCursada')->nullable();
                 $table->string('investidoUtimaClase')->nullable();
@@ -72,7 +71,6 @@ class CreateMiembrosTable extends Migration
                 $table->string('libros')->nullable();
                 $table->string('especialidad')->nullable();
                 $table->string('estatus')->nullable();
-                
             $table->softDeletes();
             $table->timestamps();
         });

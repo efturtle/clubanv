@@ -3,11 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Club;
-use App\Models\DirectorInfo;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(30)->create();
+        \App\Models\User::factory(20)->create();
         //districts
         \App\Models\Distrito::factory(2)->create();
 
@@ -47,13 +44,12 @@ class DatabaseSeeder extends Seeder
             'anciano' => 'paty',
             'distrito_id' => 1,
         ]);
-        //directorinfos
-        for ($i=1; $i < 11; $i++) { 
-            \App\Models\DirectorInfo::factory()->create(['user_id' => $i]);
+        //directors
+        for ($i=0; $i < 10; $i++) { 
+            \App\Models\Director::factory()->create(['user_id' => $i+1]);
         }
-
-        for ($i=11; $i < 31; $i++) { 
-            //\App\Models\MiembrosInfo::factory()->create(['user_id' => $i]);    
+        for ($i=10; $i < 20; $i++) { 
+            \App\Models\Miembro::factory()->create(['user_id' => $i+1, 'club_id' => 1]);
         }
     }
 }

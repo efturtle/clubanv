@@ -31,7 +31,10 @@ class CreateDirectorsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
 
-            $table->foreignId('club_id')->constrained();
+            $table->unsignedBigInteger('club_id')->nullable();
+            $table->foreign('club_id')
+            ->references('id')
+            ->on('clubs');
         });
     }
 

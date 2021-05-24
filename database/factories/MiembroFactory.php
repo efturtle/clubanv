@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\MiembrosInfo;
+use App\Models\Miembro;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MiembrosInfoFactory extends Factory
+class MiembroFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = MiembrosInfo::class;
+    protected $model = Miembro::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +22,6 @@ class MiembrosInfoFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->name,
-            'apellidos' => $this->faker->lastName,
-            'usuario' => $this->faker->userName,
-            'club' => $this->faker->word,
             'categoria' => $this->faker->randomElement([1,2,3]),
             'fechaNacimiento' => $this->faker->date,
             'edad' => $this->faker->randomElement([14,15,16]),

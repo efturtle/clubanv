@@ -10,17 +10,17 @@
 </script>
 <!-- Validation Errors -->
 <x-auth-validation-errors class="mb-4" :errors="$errors" />
-<form action="/miembro" method="POST">
+<form action="{{ route('miembro.store') }}" method="POST">
     @csrf
     <div class="row">
         <div class="col-6">
             <label for="exampleInputEmail1">Nombre Completo</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Inserte el nombre" required>
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" placeholder="Inserte el nombre" value="{{ old('nombre') }}" required>
             </div>
         </div>
-    </div>    
+    </div>
     <div class="row">
         <div class="col-6">
             <label for="club">Club</label>
@@ -29,14 +29,14 @@
                 <select class="form-control form-control-sm" name="club" id="club" required>
                     <option value="">--Porfavor elija un club--</option>
                     @foreach ($clubs as $club)
-                        <option value="{{ $club->nombreClub }}">{{ $club->nombreClub }}</option>
+                        <option value="{{ $club->id }}">{{ $club->nombreClub }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="col-6">
             <label for="category">Elija la categoria</label>
-            <select class="form-control form-control-sm" name="category" id="category" value="{{ old('category') }}" required>
+            <select class="form-control form-control-sm" name="category" id="category" required>
                 <option value="">--Porfavor elija una Categoria--</option>
                 <option value="1">Aventuras</option>
                 <option value="2">Conquistadores</option>
@@ -49,14 +49,14 @@
             <label for="exampleInputEmail1">Fecha de nacimiento</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                <input type="date" name="fechaNacimiento" id="fechaNacimiento" onchange="calcAge();" class="form-control form-control-sm" required>
+                <input type="date" name="fechaNacimiento" id="fechaNacimiento" onchange="calcAge();" class="form-control form-control-sm" value="{{ old('fechaNacimiento') }}" required>
             </div>
         </div>
         <div class="col-6">
             <label for="exampleInputEmail1">Edad</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                <input type="number" name="edad" id="edad" class="form-control form-control-sm" required>
+                <input type="number" name="edad" id="edad" class="form-control form-control-sm" value="{{ old('edad') }}" required>
             </div>
         </div>
     </div>
@@ -65,27 +65,27 @@
             <label for="exampleInputEmail1">Direccion</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-                <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" placeholder="Ejemplo: Calle, No.#" required>
+                <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" placeholder="Ejemplo: Calle, No.#" value="{{ old('direccion') }}" required>
             </div>
         </div>
         <div class="col-4">
             <label for="exampleInputEmail1">Provincia/Colonia</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-bullseye"></i></span>
-                <input type="text" name="provincia_colonia" id="provincia_colonia" class="form-control form-control-sm" placeholder="Ejemplo: Col. Tajín" required>
+                <input type="text" name="provincia_colonia" id="provincia_colonia" class="form-control form-control-sm" placeholder="Ejemplo: Col. Tajín" value="{{ old('provincia_colonia') }}" required>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-3">
             <label for="exampleInputEmail1">Código Postal</label>
-            <input type="text" name="codigoPostal" id="codigoPostal" class="form-control form-control-sm" placeholder="#####" required>
+            <input type="text" name="codigoPostal" id="codigoPostal" class="form-control form-control-sm" placeholder="#####" value="{{ old('codigoPostal') }}" required>
         </div>
         <div class="col-3">
             <label for="exampleInputEmail1">Nacionalidad</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-globe"></i></span>
-                <input type="text" name="nacionalidad" id="nacionalidad" class="form-control form-control-sm" placeholder="" required>
+                <input type="text" name="nacionalidad" id="nacionalidad" class="form-control form-control-sm" placeholder="" value="{{ old('nacionalidad') }}" required>
             </div>
         </div>
         <div class="col-3">
@@ -133,7 +133,7 @@
             <label for="exampleInputEmail1">Ciudad</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-building"></i></span>
-                <input type="text" name="ciudad" id="ciudad" class="form-control form-control-sm" placeholder="Ejemplo: Poza Rica" required>
+                <input type="text" name="ciudad" id="ciudad" class="form-control form-control-sm" placeholder="Ejemplo: Poza Rica" value="{{ old('ciudad') }}" required>
             </div>
         </div>
     </div>
@@ -166,7 +166,7 @@
         </div>
         <div class="col-3">
             <label for="exampleInputEmail1">¿Cuál?</label>
-            <input type="text" name="alergia" id="alergia" class="form-control form-control-sm" placeholder="Describa el tipo de alergia" >
+            <input type="text" name="alergia" id="alergia" class="form-control form-control-sm" placeholder="Describa el tipo de alergia" value="{{ old('alergia') }}">
         </div>
         <div class="col-3">
             <label for="exampleInputEmail1">Sexo</label>
@@ -193,21 +193,21 @@
                         <label for="exampleInputEmail1">Padre</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-house-user"></i></span>
-                            <input type="text" name="nombrePadre" id="nombrePadre" class="form-control form-control-sm" placeholder="Inserte el nombre del padre">
+                            <input type="text" name="nombrePadre" id="nombrePadre" class="form-control form-control-sm" placeholder="Inserte el nombre del padre" value="{{ old('nombrePadre') }}">
                         </div>
                     </div>
                     <div class="col-5">
                         <label for="exampleInputEmail1">Apellidos</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                            <input type="text" name="apellidosPadre" id="apellidosPadre" class="form-control form-control-sm" placeholder="">
+                            <input type="text" name="apellidosPadre" id="apellidosPadre" class="form-control form-control-sm" placeholder="" value="{{ old('apellidosPadre') }}">
                         </div>
                     </div>
                     <div class="col-4">
                         <label for="exampleInputEmail1">Contacto</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                            <input type="text" name="contactoPadre" id="contactoPadre" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                            <input type="text" name="contactoPadre" id="contactoPadre" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000" value="{{ old('contactoPadre') }}">
                         </div>
                     </div>
                 </div>
@@ -216,21 +216,21 @@
                         <label for="exampleInputEmail1">Madre</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-house-user"></i></span>
-                            <input type="text" name="nombreMadre" id="nombreMadre" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre">
+                            <input type="text" name="nombreMadre" id="nombreMadre" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre" value="{{ old('nombreMadre') }}">
                         </div>
                     </div>
                     <div class="col-5">
                         <label for="exampleInputEmail1">Apellidos</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                            <input type="text" name="apellidosMadre" id="apellidosMadre" class="form-control form-control-sm" placeholder="">
+                            <input type="text" name="apellidosMadre" id="apellidosMadre" class="form-control form-control-sm" placeholder="" value="{{ old('apellidosPadre') }}">
                         </div>
                     </div>
                     <div class="col-4">
                         <label for="exampleInputEmail1">Contacto</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                            <input type="text" name="contactoMadre" id="contactoMadre" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                            <input type="text" name="contactoMadre" id="contactoMadre" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000" value="{{ old('contactoMadre') }}">
                         </div>
                     </div>
                 </div>
@@ -248,21 +248,21 @@
                         <label for="exampleInputEmail1">Iglesia</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-house-user"></i></span>
-                            <input type="text" name="iglesia" id="iglesia" class="form-control form-control-sm" placeholder="Inserte el nombre del padre">
+                            <input type="text" name="iglesia" id="iglesia" class="form-control form-control-sm" placeholder="Inserte el nombre del padre" value="{{ old('iglesia') }}">
                         </div>
                     </div>
                     <div class="col-5">
                         <label for="exampleInputEmail1">Distrito</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                            <input type="text" name="distrito" id="distrito" class="form-control form-control-sm" placeholder="">
+                            <input type="text" name="distrito" id="distrito" class="form-control form-control-sm" placeholder="" value="{{ old('distrito') }}">
                         </div>
                     </div>
                     <div class="col-4">
                         <label for="exampleInputEmail1">Clase por Cursar</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                            <input type="text" name="claseCursar" id="claseCursar" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                            <input type="text" name="claseCursar" id="claseCursar" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000" value="{{ old('claseCursar') }}">
                         </div>
                     </div>
                 </div>
@@ -271,21 +271,21 @@
                         <label for="exampleInputEmail1">Ultima Clase Cursada</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-house-user"></i></span>
-                            <input type="text" name="ultimaClase" id="ultimaClase" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre">
+                            <input type="text" name="ultimaClase" id="ultimaClase" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre" value="{{ old('ultimaClase') }}">
                         </div>
                     </div>
                     <div class="col-5">
                         <label for="exampleInputEmail1">Investido en la ultima clase</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                            <input type="text" name="investidoClase" id="investidoClase" class="form-control form-control-sm" placeholder="">
+                            <input type="text" name="investidoClase" id="investidoClase" class="form-control form-control-sm" placeholder="" value="{{ old('investidoClase') }}">
                         </div>
                     </div>
                     <div class="col-4">
                         <label for="exampleInputEmail1">Bautizado</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                            <input type="text" name="bautizado" id="bautizado" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                            <input type="text" name="bautizado" id="bautizado" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000" value="{{ old('bautizado') }}">
                         </div>
                     </div>
                 </div>
@@ -303,21 +303,7 @@
                         <label for="exampleInputEmail1">Bautizado</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-house-user"></i></span>
-                            <input type="text" name="bautizado" id="bautizado" class="form-control form-control-sm" placeholder="Inserte el nombre del padre">
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <label for="exampleInputEmail1">Iglesia</label>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-caret-right"></i></span>
-                            <input type="text" name="iglesia" id="iglesia" class="form-control form-control-sm" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <label for="exampleInputEmail1">Distrito</label>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                            <input type="text" name="distrito" id="distrito" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                            <input type="text" name="bautizado" id="bautizado" class="form-control form-control-sm" placeholder="Inserte el nombre del padre" value="{{ old('bautizado') }}">
                         </div>
                     </div>
                 </div>
@@ -326,7 +312,7 @@
                         <label for="exampleInputEmail1">Investido</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-house-user"></i></span>
-                            <input type="text" name="investido" id="investido" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre">
+                            <input type="text" name="investido" id="investido" class="form-control form-control-sm" placeholder="Inserte el nombre de la madre" value="{{ old('investido') }}">
                         </div>
                     </div>
                     <div class="col-5">
@@ -341,7 +327,7 @@
                         <label for="exampleInputEmail1">Fecha de Investidura</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                            <input type="text" name="fechaInvestidura" id="fechaInvestidura" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000">
+                            <input type="text" name="fechaInvestidura" id="fechaInvestidura" class="form-control form-control-sm" placeholder="Ejemplo: #5555550000" value="{{ old('fechaInvestidura') }}">
                         </div>
                     </div>
                 </div>

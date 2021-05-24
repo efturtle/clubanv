@@ -14,31 +14,40 @@ class MiembroController extends Controller
     public function index()
     {
         return view('miembros.index', [
-            //'miembroslist' => MiembrosInfo::all(),
+            'miembros' => Miembro::take(3)->get()
         ]);
     }
 
     public function create()
     {
         if (Auth::user()->director->rol < 6) {
-            return view('miembros.create', Club::all());    
-        }/* else{
-            $distrito = 
-            return view('');
-        } */
+            //these users do not have a club assigned since they are higher level, display all
+            //i can display in order
+            return view('miembros.create', [
+                'clubs' => Club::all()->sortByDesc('distrito_id')
+            ]);
+        }else{
+            //get the distrito
+            //get the clubs inside this district
+            //return view with this data
+            return view('miembros.create', [
+                'clubs' => Club::where('distrito_id', '=', Auth::user()->director->club->distrito_id)->get()
+            ]);
+        }
         
     }
 
     public function store(Request $request)
     {
+        //return str_replace(' ', '', $request->nombre);
         //get request info
         $this->validarUser();
         //generate password
         $password = $this->generatePassword($request->nombre);
         //create user
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name' => $request->nombre,
+            'email' => str_replace(' ', '', $request->nombre).'@clubanv.com',
             'password' => Hash::make($password),
         ]);
 
@@ -47,8 +56,8 @@ class MiembroController extends Controller
         //create memberinfo
         $miembrosinfo = Miembro::create([
             'nombre' => $request->nombre,
-            'club' => $request->club,
-            'categoria' => $request->category,
+            'club_id' => $request->club,
+            'category' => $request->category,
             'fechaNacimiento' => $request->fechaNacimiento,
             'edad' => $request->edad,
             'direccion' => $request->direccion,
@@ -65,14 +74,13 @@ class MiembroController extends Controller
         ]);
 
         //return view with member info (show method)
-        return redirect(route('miembro.show', ['miembros', $miembrosinfo]))
+        return redirect(route('miembro.show', ['miembro', $miembrosinfo]))
         ->with('message', 'miembro registrado satisfactoriamente');
-
     }
 
-    public function show(Miembro $miembrosinfo)
+    public function show(Miembro $miembro)
     {   
-        return view('miembros.show', ['miembros'=> $miembrosinfo]);
+        return view('miembros.show', ['miembro'=> $miembro]);
     }
 
     public function edit(Miembro $miembros)
@@ -101,9 +109,7 @@ class MiembroController extends Controller
 
     protected function validarUser(){
         return request()->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',    
+            'nombre' => 'required|string|max:255',
         ]);
     }
 

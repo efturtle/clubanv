@@ -63,7 +63,8 @@ class AsignacionRoles extends Controller
         //put assign 1 on directorinfo
         $directorinfo = Director::find($request->director);
         $directorinfo->update([
-            'asignado' => 1
+            'asignado' => 1,
+            'club_id' => $club->id
         ]);
         //redirect
         return redirect(route('club'))
@@ -79,7 +80,8 @@ class AsignacionRoles extends Controller
 
         $directorinfo = Director::find($request->aventuras);
         $directorinfo->update([
-            'asignado' => 1
+            'asignado' => 1,
+            'club_id' => $club->id
         ]);
 
         return redirect(route('club.show', $club))
@@ -95,7 +97,8 @@ class AsignacionRoles extends Controller
 
         $directorinfo = Director::find($request->conquistadores);
         $directorinfo->update([
-            'asignado' => 1
+            'asignado' => 1,
+            'club_id' => $club->id
         ]);
 
         return redirect(route('club.show', $club))
@@ -111,7 +114,8 @@ class AsignacionRoles extends Controller
 
         $directorinfo = Director::find($request->guias);
         $directorinfo->update([
-            'asignado' => 1
+            'asignado' => 1,
+            'club_id' => $club->id
         ]);
 
         return redirect(route('club.show', $club))

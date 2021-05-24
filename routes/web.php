@@ -78,12 +78,12 @@ Route::put('distrito/{distrito}', [DistritoController::class, 'update'])->middle
 /* Miembros */
 Route::get('miembros', [MiembroController::class, 'index'])->middleware(['auth', 'director'])->name('miembros.index');
 Route::get('miembro-create', [MiembroController::class, 'create'])->middleware(['auth', 'director'])->name('miembro.create');
-Route::get('miembro-store', [MiembroController::class, 'store'])->middleware(['auth', 'director'])->name('miembro.store');
+Route::post('miembro-store', [MiembroController::class, 'store'])->middleware(['auth', 'director'])->name('miembro.store');
+Route::get('miembro/{miembro}', [MiembroController::class, 'show'])->middleware(['auth', 'director'])->name('miembro.show');
 /* Pending work on the courses, can change individualy and also by category and club */
 
 
-Route::post('/miembro', [MiembroController::class, 'store'])->middleware(['auth', 'isCreator']);
-Route::get('/miembros/{miembrosinfo}', [MiembroController::class, 'show'])->middleware(['auth', 'isCreator'])->name('miembro.show');
+
 Route::get('/miembros/edit/{miembrosinfo}', [MiembroController::class, 'edit'])->middleware('auth');
 Route::put('/miembro/{miembros}', [MiembroController::class, 'update'])->middleware('auth');
 Route::delete('/miembro/soft/{miembros}', [MiembroController::class, 'softDelete'])->middleware('auth');
@@ -119,6 +119,7 @@ Route::put('resetClave/{user}', [ContraNueva::class, 'resetPassword'])->middlewa
 
 /* Filtros */
 Route::get('filtros/{type}', [FiltrosUsuarios::class, 'usuarios'])->middleware(['auth', 'chief'])->name('filtro.usuario');
+Route::get('filtro-miembros/{categoria}/club/{club?}', [FiltrosUsuarios::class, 'miembros'])->middleware(['auth', 'director'])->name('filtro.miembros');
 
 /* Estadisticas */
 Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware(['auth', 'director'])->name('estadisticas.index');

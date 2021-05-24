@@ -164,7 +164,7 @@
                             </div>
                         @else
                             <div>
-                                <p>{{ $clubs->directorAventurero->name }}</p>
+                                <a href="{{ route('user.show', $clubs->directorAventurero_id) }}">{{ $clubs->directorAventurero->name }}</a>
                             </div>
                         @endif
 
@@ -177,7 +177,7 @@
                             </div>
                         @else
                             <div>
-                                <p>{{ $clubs->directorConquistador->name }}</p>
+                                <a href="{{ route('user.show', $clubs->directorConquistador_id) }}">{{ $clubs->directorConquistador->name }}</a>
                             </div>
                         @endif
 
@@ -190,7 +190,7 @@
                             </div>
                         @else
                             <div>
-                                <p>{{ $clubs->directorGuiasMayores->name }}</p>
+                                <a href="{{ route('user.show', $clubs->directorGuiasMayores_id) }}">{{ $clubs->directorGuiasMayores->name }}</a>
                             </div>
                         @endif
                     </div>                    

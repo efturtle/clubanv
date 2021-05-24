@@ -50,7 +50,7 @@ class DirectorController extends Controller
         
         Director::create([
             'rol' => $request->rol,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
         return redirect(route('user.index'))
         ->with('message', 'Nuevo usuario Director Creado! Contraseña = '.$password);

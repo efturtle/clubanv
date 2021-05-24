@@ -10,7 +10,6 @@
               @endif
               <x-filtro-miembros/>
               <br>
-              <h4 class="text-bold">Esto aun esta en mantenimiento, venga pronto!</h4>
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -22,9 +21,9 @@
                 <tbody>
                   {{-- Show the members here --}}
                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
+                    @foreach ($miembros as $miembro)
+                        <td>{{ $miembro->nombre }}</td>
+                    @endforeach
                   </tr>
                 </tbody>
               </table>
