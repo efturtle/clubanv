@@ -48,13 +48,14 @@ Route::delete('/club/{clubs}', [ClubsController::class, 'destroy'])->middleware(
 
 
 /* Users */
-Route::get('/user', [DirectorController::class, 'index'])->middleware(['auth', 'pastor'])->name('user.index');
-Route::get('/user/directors', [DirectorController::class, 'indexDirector'])->middleware(['auth', 'director'])->name('directors.index');
-Route::get('/director/create/{type}', [DirectorController::class, 'newDirector'])->middleware(['auth','pastor'])->name('director.create');
-Route::get('/directivos/create/{type}', [DirectorController::class, 'newDirective'])->middleware(['auth','chief'])->name('directive.create');
-Route::post('/user/directive', [DirectorController::class, 'storeDirective'])->middleware(['auth', 'chief'])->name('new.directive');
-Route::post('/user/director', [DirectorController::class, 'storeDirector'])->middleware(['auth', 'pastor'])->name('new.director');
-Route::get('/user/{user}', [DirectorController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
+Route::get('user', [DirectorController::class, 'index'])->middleware(['auth', 'pastor'])->name('user.index');
+Route::get('user/directors', [DirectorController::class, 'indexDirector'])->middleware(['auth', 'director'])->name('directors.index');
+Route::get('director/create/{type}', [DirectorController::class, 'newDirector'])->middleware(['auth','pastor'])->name('director.create');
+Route::get('directivos/create/{type}', [DirectorController::class, 'newDirective'])->middleware(['auth','chief'])->name('directive.create');
+Route::post('user/directive', [DirectorController::class, 'storeDirective'])->middleware(['auth', 'chief'])->name('new.directive');
+Route::post('user/director', [DirectorController::class, 'storeDirector'])->middleware(['auth', 'pastor'])->name('new.director');
+Route::get('user/{user}', [DirectorController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
+Route::get('user/miembro/{user}', [MiembroController::class, 'showUser'])->middleware(['auth', 'chief'])->name('user.miembro.show');
 
 Route::delete('/user/soft/{user}', [DirectorController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
 
@@ -114,7 +115,6 @@ Route::get('cambiar-curso', [FichaTecnicaController::class, 'cambiarCurso'])->mi
 /* Reset Password */
 Route::get('cambiar-contrasena', [ContraNueva::class, 'barra'])->middleware(['auth'])->name('cambiar.contra');
 Route::post('cambiar-c', [ContraNueva::class, 'storeCambio'])->middleware(['auth'])->name('store.cambio');
-
 Route::put('resetClave/{user}', [ContraNueva::class, 'resetPassword'])->middleware(['auth', 'pastor'])->name('store.reset');
 
 /* Filtros */

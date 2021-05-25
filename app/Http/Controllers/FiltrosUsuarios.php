@@ -30,7 +30,6 @@ class FiltrosUsuarios extends Controller
                     'directors' => Director::where('rol', '<', 5)->get()
                 ]);
                 break;
-            
             default:
                 return redirect(route('user.index'));
                 break;

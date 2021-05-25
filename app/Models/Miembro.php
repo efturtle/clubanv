@@ -10,12 +10,12 @@ class Miembro extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['nombre', 'category','fechaNacimiento', 'edad','direccion', 'provincia_colonia','codigoPostal','sexo',
-    'tipoSangre', 'confirmaAlergias', 'alergia', 'nacionalidad','estado','ciudad', 'user_id',
+    protected $fillable = ['category','fechaNacimiento', 'edad','direccion', 'provincia_colonia','codigoPostal','estado','ciudad', 'nacionalidad',
+    'tipoSangre', 'confirmaAlergias', 'alergia','sexo',
     'nombrePadre', 'apellidosPadre', 'contactoPadre',
     'nombreMadre', 'apellidosMadre', 'contactoMadre', 'iglesia', 'distrito', 'clasePorCursar', 'ultimaClaseCursada'
     , 'investidoUtimaClase', 'bautizado', 'investido', 'tipoAspirante_consejero', 'fechaInvestidura', 'tiempoServicio'
-    , 'nombreCurso','cursoActual', 'libros', 'especialidad', 'estatus','club_id'];
+    , 'nombreCurso','cursoActual', 'libros', 'especialidad', 'estatus','club_id', 'user_id'];
 
     public function user()
     {

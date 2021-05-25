@@ -17,7 +17,7 @@ class CreateMiembrosTable extends Migration
             $table->increments('id');
             $table->integer('category');
             $table->date('fechaNacimiento');
-            $table->smallInteger('edad');
+            $table->integer('edad');
             $table->string('direccion');
             $table->string('provincia_colonia');
             $table->string('codigoPostal');
@@ -38,11 +38,7 @@ class CreateMiembrosTable extends Migration
 
 
             /* Relationship with the users table */
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users');
-
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('club_id')->constrained();
 
             /* Datos del Conq./Aventurero */

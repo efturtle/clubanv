@@ -6,14 +6,23 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- Check for feedback accion message --}}
                     @if (session('message'))
-                    <h6>{{ session('message') }}</h6>                  
+                        <h6 class="text-green-500">{{ session('message') }}</h6>                  
                     @endif
                     <div class="row pb-2">
                         <div class="col-6">
                             <label>Nombre</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text "><i class="fas fa-smile"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $miembro->nombre }}</h5>
+                                <h5 class="px-3 mt-1"> {{ $miembro->user->name }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label>Correo y Contraseña</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "><i class="fas fa-smile"></i></span>
+                                <a href="{{ route('user.miembro.show', $miembro->user->id) }}" class="bg-green-600 rounded w-1/4 text-white text-center ml-2">
+                                    Ir
+                                </a>
                             </div>
                         </div>
                     </div>

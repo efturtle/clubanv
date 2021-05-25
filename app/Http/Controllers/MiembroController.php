@@ -14,7 +14,7 @@ class MiembroController extends Controller
     public function index()
     {
         return view('miembros.index', [
-            'miembros' => Miembro::take(3)->get()
+            'miembros' => Miembro::all(),
         ]);
     }
 
@@ -47,7 +47,7 @@ class MiembroController extends Controller
         //create user
         $user = User::create([
             'name' => $request->nombre,
-            'email' => str_replace(' ', '', $request->nombre).'@clubanv.com',
+            'email' => str_replace(' ', '', $request->nombre).random_int(1,9).'@clubanv.com',
             'password' => Hash::make($password),
         ]);
 
@@ -55,7 +55,6 @@ class MiembroController extends Controller
         $this->validarMiembroInfo();
         //create memberinfo
         $miembrosinfo = Miembro::create([
-            'nombre' => $request->nombre,
             'club_id' => $request->club,
             'category' => $request->category,
             'fechaNacimiento' => $request->fechaNacimiento,
@@ -74,13 +73,18 @@ class MiembroController extends Controller
         ]);
 
         //return view with member info (show method)
-        return redirect(route('miembro.show', ['miembro', $miembrosinfo]))
+        return redirect(route('miembro.show', ['miembro' => $miembrosinfo]))
         ->with('message', 'miembro registrado satisfactoriamente');
     }
 
     public function show(Miembro $miembro)
-    {   
+    {
         return view('miembros.show', ['miembro'=> $miembro]);
+    }
+
+    public function showUser(User $user)
+    {
+        return view('miembros.showUser', ['user'=> $user]);
     }
 
     public function edit(Miembro $miembros)

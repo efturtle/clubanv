@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContraNueva extends Controller
 {
@@ -33,8 +32,9 @@ class ContraNueva extends Controller
 
     public function resetPassword(User $user)
     {
+        //generate password
         $password = strtok($user->name, ' ');
-        //generate random password
+        //generate random number
         if(strlen($user->name) < 4){
             $number = random_int(10000, 20000);
         }else{
@@ -45,7 +45,13 @@ class ContraNueva extends Controller
             'password' => Hash::make($password.=$number),
         ]);
         //redirect screen with new password
-        return redirect(route('user.show', $user))
-        ->with('message', 'nueva contraseña: '.$password);
+        //same method for member and director, just redirect differently
+        if(!is_null($user->miembro)){
+            return redirect(route('user.miembro.show', $user))
+            ->with('message', 'nueva contraseña: '.$password);
+        }else if(!is_null($user->director)){
+            return redirect(route('user.show', $user))
+            ->with('message', 'nueva contraseña: '.$password);
+        }
     }
 }
