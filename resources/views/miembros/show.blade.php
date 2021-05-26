@@ -189,8 +189,8 @@
                             </div>
                         </div> --}}
                     </div>
-                    <x-baja-miembro :miembroId="$miembro->id" :miembroName="$miembro->nombre"></x-baja-club>
-                    <x-eliminar-miembro :miembroId="$miembro->id" :miembroName="$miembro->nombre"> </x-eliminar-club>
+                    <x-baja-miembro :miembro="$miembro"></x-baja-club>
+                    <x-eliminar-miembro :miembro="$miembro"> </x-eliminar-club>
                 </div>
             </div>
         </div>

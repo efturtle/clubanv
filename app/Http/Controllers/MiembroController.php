@@ -98,16 +98,16 @@ class MiembroController extends Controller
         return redirect (route('miembro.show', $miembros));
     }
 
-    public function destroy(Miembro $miembros)
+    public function destroy(Miembro $miembro)
     {
-        $miembros->forceDelete();
-        return redirect('/miembros')
+        $miembro->forceDelete();
+        return redirect(route('miembros.index'))
         ->with('message', 'Se ha eliminado un miembro');
     }
 
-    public function softDelete(Miembro $miembros){
-        $miembros->delete();
-        return redirect('/miembros')
+    public function delete(Miembro $miembro){
+        $miembro->delete();
+        return redirect(route('miembros.index'))
         ->with('message', 'un miembro fue dado de baja');
     }
 

@@ -82,6 +82,8 @@ Route::get('miembros', [MiembroController::class, 'index'])->middleware(['auth',
 Route::get('miembro-create', [MiembroController::class, 'create'])->middleware(['auth', 'director'])->name('miembro.create');
 Route::post('miembro-store', [MiembroController::class, 'store'])->middleware(['auth', 'director'])->name('miembro.store');
 Route::get('miembro/{miembro}', [MiembroController::class, 'show'])->middleware(['auth', 'director'])->name('miembro.show');
+Route::delete('baja-miembro/{miembro}', [MiembroController::class, 'delete'])->middleware(['auth', 'pastor'])->name('miembro.delete');
+Route::delete('eliminar-miembro/{miembro}', [MiembroController::class, 'destroy'])->middleware(['auth', 'pastor'])->name('miembro.destroy');
 /* Pending work on the courses, can change individualy and also by category and club */
 
 

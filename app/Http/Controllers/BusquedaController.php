@@ -52,13 +52,13 @@ class BusquedaController extends Controller
                 'miembros' => User::where('name', 'LIKE', "%{$request->busqueda}%")->get()
             ]);    
         }
-        if(is_null($club) && is_null($this->switchCategory($request->busqueda))){
+        /* if(is_null($club) && is_null($this->switchCategory($request->busqueda))){
             return view('miembros.search', [
                 'clubs' => 'name',
                 'categories' => 'name',
                 'miembros' => User::where('name', 'LIKE', "%{$request->busqueda}%")->get()
             ]);    
-        }
+        } */
 
         return view('miembros.search', [
             'clubs' => Miembro::where('club_id','=', $club->id)->get(),

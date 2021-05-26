@@ -12,7 +12,7 @@
             <br>
             <table class="table table-hover">
               <thead>
-                <tr>
+                <tr class="bg-gray-300">
                   <th scope="col">Nombre</th>
                   <th scope="col">Distrito</th>
                   <th scope="col">Club</th>
@@ -50,9 +50,9 @@
               <thead>
                 <tr>
                   <th scope="col" class="bg-gray-300">Por Club</th>
-                  <th scope="col" class="bg-gray-300">.</th>
-                  <th scope="col" class="bg-gray-300">.</th>
-                  <th scope="col" class="bg-gray-300">.</th>
+                  <th scope="col" class="bg-gray-300 text-gray-300">.</th>
+                  <th scope="col" class="bg-gray-300 text-gray-300">.</th>
+                  <th scope="col" class="bg-gray-300 text-gray-300">.</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,7 +90,7 @@
               </tbody>
             </table>
 
-            <table class="table table-hover">
+            {{-- <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col" class="bg-gray-300">Por Categoria</th>
@@ -131,7 +131,7 @@
                     @endforeach
                   @endif
               </tbody>
-            </table>
+            </table> --}}
           </div>
         </div>
       </div>
