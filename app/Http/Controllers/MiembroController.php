@@ -47,7 +47,7 @@ class MiembroController extends Controller
         //create user
         $user = User::create([
             'name' => $request->nombre,
-            'email' => str_replace(' ', '', $request->nombre).random_int(1,9).'@clubanv.com',
+            'email' => str_replace(' ', '', $request->nombre).random_int(1,4).'@clubanv.com',
             'password' => Hash::make($password),
         ]);
 

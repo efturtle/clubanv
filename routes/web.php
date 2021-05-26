@@ -11,6 +11,7 @@ use App\Http\Controllers\ContraNueva;
 use App\Http\Controllers\FiltrosUsuarios;
 use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\FichaTecnicaController;
+use App\Http\Controllers\BusquedaController;
 
 
 /*
@@ -127,9 +128,13 @@ Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware
 
 
 /* Search */
+Route::post('busqueda-miembro', [BusquedaController::class, 'miembro'])->middleware(['auth', 'director'])->name('busqueda.miembro');
+
 Route::post('busqueda/usuario', function(){
     return "Esto aun esta bajo mantenimiento Su busqueda: ".request()->busqueda;
 })->name('buscar.usuario');
+
+
 
 /* Posts */
     /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
