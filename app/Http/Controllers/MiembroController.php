@@ -8,6 +8,7 @@ use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MiembroController extends Controller
 {
@@ -87,15 +88,36 @@ class MiembroController extends Controller
         return view('miembros.showUser', ['user'=> $user]);
     }
 
-    public function edit(Miembro $miembros)
+    public function edit(Miembro $miembro)
     {
-        return view('miembros.edit', compact('miembros'));
+        //return view with member and clubs if they want to edit the members club
+        return view('miembros.edit', [
+            'miembro' => $miembro,
+            'clubs' => DB::table('clubs')->select('id','nombreClub')->get()
+        ]);
     }
 
-    public function update(Miembro $miembros)
+    public function update(Miembro $miembro, Request $request)
     {
-        $miembros->update($this->validarMiembroInfo());
-        return redirect (route('miembro.show', $miembros));
+        //if there is no change on the name, we just update member info
+        //get the previous name and compare to name in the request
+        $name = $miembro->user->name;
+        if($name == $request->nombre){
+            //no change in name, just update member info
+            $miembro->update($this->validarMiembroInfo());
+            return redirect (route('miembro.show', $miembro))
+            ->with('message', 'Miembro Actualizado!');
+        }
+        //there is a change in the name
+        //search user and update name
+        $user = User::find($miembro->user_id);
+        $user->update([
+            'name' => $request->nombre,
+        ]);
+        //update member info
+        $miembro->update($this->validarMiembroInfo());
+        return redirect (route('miembro.show', $miembro))
+        ->with('message', 'Miembro Actualizado!');
     }
 
     public function destroy(Miembro $miembro)
@@ -120,22 +142,20 @@ class MiembroController extends Controller
 
     protected function validarMiembroInfo(){
         return request()->validate([
-            'nombre' => 'required|min:2',
-            'club' => 'required',
+            'club_id' => 'required',
             'category' => 'required',
             'fechaNacimiento' => 'required',
+            'edad' => '',
             'direccion' => 'required',
             'provincia_colonia' => 'required',
             'codigoPostal' => 'required',
-            'nacionalidad' => 'required',
             'estado' => 'required',
             'ciudad' => 'required',
+            'nacionalidad' => 'required',
             'tipoSangre' => 'required',
             'confirmaAlergias' => 'required',
             'alergia' => '',
             'sexo' => 'required',
-            'user_id' => '',
-
 
             'nombrePadre' => '',
             'apellidosPadre' => '',
@@ -144,8 +164,6 @@ class MiembroController extends Controller
             'apellidosMadre' => '',
             'contactoMadre' => '',
 
-
-            
             'iglesia' => '', 
             'distrito' => '',
             'clase_por_cursar' => '',

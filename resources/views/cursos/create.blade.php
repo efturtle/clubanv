@@ -9,9 +9,10 @@
                         <p class="text-success">{{ session('message') }}</p>
                     @endif
 
-                    <form class="mt-10" method="POST" action="{{ route('curso.store') }}">
+                    Cursos bajo mantenimiento
+                    {{-- <form class="mt-10" method="POST" action="{{ route('curso.store') }}">
                         @csrf
-                        {{-- Nombre Curso --}}
+                        
                         <label for="email" class="block text-xs font-semibold text-gray-600 uppercase">E-mail</label>
                         <input id="email" type="text" name="email" placeholder="e-mail address" autocomplete="email"
                             class="block w-full py-3 px-1 mt-2 
@@ -28,7 +29,7 @@
                             focus:text-gray-500 focus:outline-none focus:border-gray-200"
                             required />
 
-                        <!-- Auth Buttton -->
+                        
                         <button type="submit"
                             class="w-1/2 py-3 mt-10 bg-gray-800 rounded-sm
                             font-medium text-white uppercase
@@ -36,7 +37,7 @@
                             Enviar
                         </button>
 
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>

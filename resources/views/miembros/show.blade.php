@@ -189,8 +189,13 @@
                             </div>
                         </div> --}}
                     </div>
-                    <x-baja-miembro :miembro="$miembro"></x-baja-club>
-                    <x-eliminar-miembro :miembro="$miembro"> </x-eliminar-club>
+                    <div class="flex items-center">
+                        <x-baja-miembro :miembro="$miembro"></x-baja-club>
+                        <div class="ml-2"><x-eliminar-miembro :miembro="$miembro"> </x-eliminar-club></div>
+                        <a href="{{ route('miembro.edit', $miembro) }}" class="btn btn-info text-white rounded ml-3">
+                            Editar Miembro
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

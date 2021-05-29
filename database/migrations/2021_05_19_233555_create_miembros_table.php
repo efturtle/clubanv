@@ -17,7 +17,7 @@ class CreateMiembrosTable extends Migration
             $table->increments('id');
             $table->integer('category');
             $table->date('fechaNacimiento');
-            $table->integer('edad');
+            $table->integer('edad')->nullable();
             $table->string('direccion');
             $table->string('provincia_colonia');
             $table->string('codigoPostal');

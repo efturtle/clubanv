@@ -42,6 +42,7 @@
                             <tr>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
+                                {{-- if user path, this is only for directives, it shows their role --}}
                                 @if (Request::path() == 'user')
                                     <th scope="col">Rol</th>
                                 @endif

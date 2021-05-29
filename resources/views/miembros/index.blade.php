@@ -20,6 +20,14 @@
               </tr>
             </thead>
             <tbody>
+              @if ($miembros->isEmpty())
+                  <td>No</td>
+                  <td>hay</td>
+                  <td>miembros</td>
+                  <td>
+                    <a href="{{ route('miembro.create') }}" class="bg-indigo-500 rounded-full text-white w-14">Crear</a>
+                  </td>
+              @endif
               {{-- Show the members here --}}
               @foreach ($miembros as $miembro)
                 <tr>

@@ -22,27 +22,29 @@
               <tbody>
                 {{-- Show the members here --}}
                 @foreach ($miembros as $user)
-                  <tr>
-                    <td>
-                      <a href="{{ route('miembro.show', $user->id) }}">
-                        {{ $user->name }}
-                      </a>
-                    </td>
-                    <td>{{ $user->miembro->club->distrito->nombre }}</td>
-                    <td>{{ $user->miembro->club->nombreClub }}</td>
-                    @switch($user->miembro->category)
-                        @case(1)
-                            <td>Aventurero</td>
-                            @break
-                        @case(2)
-                            <td>Conquistador</td>
-                            @break
-                        @case(3)
-                            <td>Guias Mayores</td>
-                            @break
-                        @default
-                    @endswitch
-                  </tr>
+                @if (is_null($user->director))    
+                <tr>
+                  <td>
+                    <a href="{{ route('miembro.show', $user->id) }}">
+                      {{ $user->name }}
+                    </a>
+                  </td>
+                  <td>{{ $user->miembro->club->distrito->nombre }}</td>
+                  <td>{{ $user->miembro->club->nombreClub }}</td>
+                  @switch($user->miembro->category)
+                      @case(1)
+                          <td>Aventurero</td>
+                          @break
+                      @case(2)
+                          <td>Conquistador</td>
+                          @break
+                      @case(3)
+                          <td>Guias Mayores</td>
+                          @break
+                      @default
+                  @endswitch
+                </tr>
+                @endif
                 @endforeach
               </tbody>
             </table>
@@ -63,27 +65,29 @@
                       <td class="bg-indigo-200">.</td>
                   @else
                 @foreach ($clubs as $miembro)
-                    <tr>
-                        <td>
-                        <a href="{{ route('miembro.show', $miembro->id) }}">
-                            {{ $miembro->user->name }}
-                        </a>
-                        </td>
-                        <td>{{ $miembro->club->distrito->nombre }}</td>
-                        <td>{{ $miembro->club->nombreClub }}</td>
-                        @switch($miembro->category)
-                            @case(1)
-                                <td>Aventurero</td>
-                                @break
-                            @case(2)
-                                <td>Conquistador</td>
-                                @break
-                            @case(3)
-                                <td>Guias Mayores</td>
-                                @break
-                            @default
-                        @endswitch
-                    </tr>
+                  @if (is_null($user->director))    
+                  <tr>
+                      <td>
+                      <a href="{{ route('miembro.show', $miembro->id) }}">
+                          {{ $miembro->user->name }}
+                      </a>
+                      </td>
+                      <td>{{ $miembro->club->distrito->nombre }}</td>
+                      <td>{{ $miembro->club->nombreClub }}</td>
+                      @switch($miembro->category)
+                          @case(1)
+                              <td>Aventurero</td>
+                              @break
+                          @case(2)
+                              <td>Conquistador</td>
+                              @break
+                          @case(3)
+                              <td>Guias Mayores</td>
+                              @break
+                          @default
+                      @endswitch
+                  </tr>
+                  @endif
                 @endforeach
                   @endif
                 

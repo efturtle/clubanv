@@ -17,7 +17,13 @@
             </div>
         </div>
         <div>
-            <p>Buscar Distrito</p>
+            <form action="{{ route('busqueda.distrito') }}" method="POST">
+                @csrf
+                <div class="flex">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar" class="rounded appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter">
+                    <button class="bg-pink-700 text-white rounded-full w-14 ml-1">Ir</button>
+                </div>
+            </form>
         </div>
     </div>
 </x-slot>

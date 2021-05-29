@@ -59,8 +59,6 @@ Route::get('user/{user}', [DirectorController::class, 'show'])->middleware(['aut
 Route::get('user/miembro/{user}', [MiembroController::class, 'showUser'])->middleware(['auth', 'chief'])->name('user.miembro.show');
 
 Route::delete('/user/soft/{user}', [DirectorController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
-
-
 Route::delete('/user/{user}', [DirectorController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
 Route::get('/user/edit/{user}', [DirectorController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
 Route::put('user/{user}', [DirectorController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
@@ -85,14 +83,8 @@ Route::get('miembro/{miembro}', [MiembroController::class, 'show'])->middleware(
 Route::delete('baja-miembro/{miembro}', [MiembroController::class, 'delete'])->middleware(['auth', 'pastor'])->name('miembro.delete');
 Route::delete('eliminar-miembro/{miembro}', [MiembroController::class, 'destroy'])->middleware(['auth', 'pastor'])->name('miembro.destroy');
 /* Pending work on the courses, can change individualy and also by category and club */
-
-
-
-Route::get('/miembros/edit/{miembrosinfo}', [MiembroController::class, 'edit'])->middleware('auth');
-Route::put('/miembro/{miembros}', [MiembroController::class, 'update'])->middleware('auth');
-Route::delete('/miembro/soft/{miembros}', [MiembroController::class, 'softDelete'])->middleware('auth');
-Route::delete('/miembro/{miembros}', [MiembroController::class, 'destroy'])->middleware('auth');  
-
+Route::get('miembro/edit/{miembro}', [MiembroController::class, 'edit'])->middleware(['auth', 'director'])->name('miembro.edit');
+Route::put('miembro/{miembro}', [MiembroController::class, 'update'])->middleware(['auth', 'director'])->name('miembro.update');
 
 /* Asignacion */
 Route::get('asignar-usuario/{director}', [AsignacionRoles::class, 'usuario'])->middleware(['auth', 'chief'])->name('asignar.usuario');
@@ -131,6 +123,10 @@ Route::get('estadisticas', [EstadisticasController::class, 'index'])->middleware
 
 /* Search */
 Route::post('busqueda-miembro', [BusquedaController::class, 'miembro'])->middleware(['auth', 'director'])->name('busqueda.miembro');
+Route::post('busqueda-usuarios', [BusquedaController::class, 'usuarios'])->middleware(['auth', 'director'])->name('busqueda.usuario');
+Route::post('busqueda-club', [BusquedaController::class, 'club'])->middleware(['auth', 'pastor'])->name('busqueda.club');
+Route::post('busqueda-distrito', [BusquedaController::class, 'distrito'])->middleware(['auth', 'pastor'])->name('busqueda.distrito');
+
 
 Route::post('busqueda/usuario', function(){
     return "Esto aun esta bajo mantenimiento Su busqueda: ".request()->busqueda;
