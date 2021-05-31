@@ -98,6 +98,21 @@ class BusquedaController extends Controller
         return view('distritos.search', [
             'distritos' => Distrito::where('nombre', 'LIKE', "%{$request->busqueda}%")->select('id', 'nombre', 'ciudad', 'estado', 'coordinador_id', 'pastor_id')->get()
         ]);
+
+
+        //busqueda por estado, ciudad, pastor o coordinador
+
+        /* Estado */    
+        //mejora que si al inicio ponen un * sea busqueda por estado o algo asi, de esa manera el codigo sabra que busca y sera mas rapido
+        //$estado = Distrito::where('estado', 'LIKE', "%{$request->busqueda}%")->select('id', 'nombre', 'ciudad', 'estado', 'coordinador_id', 'pastor_id')->get();
+        
+        /* Ciudad */
+        //$ciudad = Distrito::where('ciudad', 'LIKE', "%{$request->busqueda}%")->select('id', 'nombre', 'ciudad', 'estado', 'coordinador_id', 'pastor_id')->get();
+
+        /* pastor */
+
+        //$pastor = Distrito::where('pastor_id',)
+
     }
 
     protected function switchCategory($busqueda)

@@ -8,14 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Storage;
 
 class ClubsController extends Controller
 {
     public function index()
     {
         return view('clubes.index', [
-            'clublist' => Club::all()
+            'clublist' => Club::latest()->paginate(7),
         ]);
     }
 

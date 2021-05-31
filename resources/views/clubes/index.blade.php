@@ -47,7 +47,9 @@
                                         @endif
                                         
                                         {{-- Distrito --}}
-                                        <td> {{ $clubs->distrito->nombre }} </td>
+                                        <td>
+                                            <a href="{{ route('distrito.show', $clubs->distrito) }}">{{ $clubs->distrito->nombre }}</a>
+                                        </td>
 
 
                                         {{-- Pastor --}}
@@ -68,6 +70,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $clublist->links() }}
                     @endif
                 </div>
             </div>

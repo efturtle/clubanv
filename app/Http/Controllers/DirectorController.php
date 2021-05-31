@@ -16,7 +16,7 @@ class DirectorController extends Controller
     public function index()
     {
         return view('users.index', [
-            'directors' => Director::where('rol', '<', 7)->get(),
+            'directors' => Director::where('rol', '<', 7)->latest()->paginate(7),
         ]); 
     }
 

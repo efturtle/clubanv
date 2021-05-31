@@ -6,14 +6,14 @@
                 <div class="flex justiy-around items-center">
                     <div class="pr-2 ">
                         <a href="{{ route('user.index') }}">
-                            <p class="py-1 px-3 lg:text-lg bg-green-500 rounded-full text-white">
+                            <p class="py-1 px-3 bg-green-500 rounded-full text-white">
                                 Lista de Usuarios
                             </p>
                         </a>
                     </div>
                     <div class="pr-2 ">
                         <a href="{{ route('directors.index') }}">
-                            <p class="py-1 px-3 lg:text-lg bg-green-500 rounded-full text-white">
+                            <p class="py-1 px-3 bg-green-500 rounded-full text-white">
                                 Directores de Categoria
                             </p>
                         </a>

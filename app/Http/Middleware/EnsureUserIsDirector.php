@@ -18,7 +18,7 @@ class EnsureUserIsDirector
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()->director == null){
-            return redirect('/posts')
+            return redirect('/home')
             ->with('message', 'accion no permitida, pedir ayuda');
         }
         return $next($request);

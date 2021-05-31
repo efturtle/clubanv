@@ -18,11 +18,11 @@ class EnsureIsPastor
     public function handle(Request $request, Closure $next)
     {
         if(is_null(Auth::user()->director)){
-            return redirect('/index')
+            return redirect('/home')
             ->with('message', 'Accion no permitida, pedir ayuda');
         }
         if(Auth::user()->director->rol > 6){
-            return redirect('/index')
+            return redirect('/home')
             ->with('message', 'Accion no permitida, pedir ayuda');
         }
         return $next($request);

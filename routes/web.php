@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembroController;
 use App\Http\Controllers\PostsController;
@@ -36,6 +37,15 @@ Route::get('/dash', function(){
 Route::get('/home', function(){
     return view('home');
 })->middleware(['auth'])->name('home');
+
+Route::get('usercheck', function(){
+    if(!is_null(Auth::user()->director)){
+        return Auth::user()->director;
+    }
+    if(!is_null(Auth::user()->miembro)){
+        return Auth::user()->miembro;
+    }
+});
 
 /* Clubs */
 Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor'])->name('club');

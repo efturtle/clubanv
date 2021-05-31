@@ -53,6 +53,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $distritos->links() }}
                 </div>
             </div>
         </div>

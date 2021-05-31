@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Director;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DirectorFactory extends Factory
@@ -22,7 +23,8 @@ class DirectorFactory extends Factory
     public function definition()
     {
         return [
-            'rol' => $this->faker->randomElement([6,7]),
+            'user_id' => User::factory()->create(),
+            'rol' => $this->faker->randomDigitNot(0),
             'asignado' => 0,
         ];
     }

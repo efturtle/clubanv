@@ -15,22 +15,30 @@ class MiembroController extends Controller
     public function index()
     {
         return view('miembros.index', [
-            'miembros' => Miembro::all(),
+            'miembros' => Miembro::paginate(7),
         ]);
     }
 
     public function create()
     {
+        //if rol is under coordinador or if club id is empty show all clubs for this member.
         if (Auth::user()->director->rol < 6) {
             //these users do not have a club assigned since they are higher level, display all
             //i can display in order
             return view('miembros.create', [
-                'clubs' => Club::all()->sortByDesc('distrito_id')
+                'clubs' => Club::all()->sortBy('distrito_id')
             ]);
-        }else{
+        }
+        //else show the club from where the user belongs and this will be assigned to the member.
+        else{
             //get the distrito
             //get the clubs inside this district
             //return view with this data
+            if(is_null(Auth::user()->director->club_id)){
+                return view('miembros.create', [
+                    'clubs' => Club::all()->sortBy('distrito_id')
+                ]); 
+            }
             return view('miembros.create', [
                 'clubs' => Club::where('distrito_id', '=', Auth::user()->director->club->distrito_id)->get()
             ]);
@@ -56,7 +64,7 @@ class MiembroController extends Controller
         $this->validarMiembroInfo();
         //create memberinfo
         $miembrosinfo = Miembro::create([
-            'club_id' => $request->club,
+            'club_id' => $request->club_id,
             'category' => $request->category,
             'fechaNacimiento' => $request->fechaNacimiento,
             'edad' => $request->edad,

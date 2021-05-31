@@ -20,7 +20,7 @@ class EnsureIsAdmin
         if(Auth::user()->director->rol < 2){
             return $next($request);
         }
-        return redirect(route('distritos.index'))
+        return redirect(route('home'))
         ->with('message', 'No tiene permiso para esta operacion, solicite ayuda');
         
     }

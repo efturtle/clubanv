@@ -26,7 +26,7 @@
             <label for="club">Club</label>
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                <select class="form-control form-control-sm" name="club" id="club" required>
+                <select class="form-control form-control-sm" name="club_id" id="club_id" required>
                     <option value="">--Porfavor elija un club--</option>
                     @foreach ($clubs as $club)
                         <option value="{{ $club->id }}">{{ $club->nombreClub }}</option>

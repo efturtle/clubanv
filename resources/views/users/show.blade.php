@@ -19,7 +19,7 @@
                             <label>Email</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-question-circle"></i></span>
-                                <h5 class="px-3 mt-1"> {{ $user->email }}</h5>
+                                <h5 class="px-1 mt-1"> {{ $user->email }}</h5>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <div class="col-6 mt-3 flex">
                             <div class="mr-3"><span class="input-group-text"><i class="fab fa-atlassian"></i></span></div>
                             @if ($user->director->asignado == 0)
-                                <div class="w-1/5 bg-green-400 px-3">
+                                <div class=" bg-green-400 px-3">
                                     @if ($user->director->rol < 6)
                                         <button class="rounded" data-toggle="modal" data-target="#asignarDistrito"><span class="text-gray-900">Asignar</span></button>
                                     @else

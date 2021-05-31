@@ -37,7 +37,7 @@ class MiembroFactory extends Factory
             'alergia' => $this->faker->randomElement([$this->faker->words(1,true),$this->faker->words(2,true), $this->faker->words(3,true)]),
             'sexo' => $this->faker->randomElement(['hombre', 'mujer']),
             'user_id' => User::factory()->create(),
-            'club_id' => $this->faker->randomElement([1,2,3]),
+            'club_id' => $this->faker->numberBetween(1,50),
         ];
     }
 }

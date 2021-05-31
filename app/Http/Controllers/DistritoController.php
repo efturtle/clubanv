@@ -12,7 +12,7 @@ class DistritoController extends Controller
     
     public function index()
     {
-        return view('distritos.index', ['distritos' => Distrito::all()]);
+        return view('distritos.index', ['distritos' => Distrito::paginate(7)]);
     }
 
     public function create()

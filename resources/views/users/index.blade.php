@@ -96,6 +96,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $directors->links() }}
                 </div>
 
             </div>
