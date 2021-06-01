@@ -67,11 +67,12 @@ Route::post('user/directive', [DirectorController::class, 'storeDirective'])->mi
 Route::post('user/director', [DirectorController::class, 'storeDirector'])->middleware(['auth', 'pastor'])->name('new.director');
 Route::get('user/{user}', [DirectorController::class, 'show'])->middleware(['auth', 'chief'])->name('user.show');
 Route::get('user/miembro/{user}', [MiembroController::class, 'showUser'])->middleware(['auth', 'chief'])->name('user.miembro.show');
+Route::get('/user/edit/{user}', [DirectorController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
+Route::put('user/{user}', [DirectorController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
 
 Route::delete('/user/soft/{user}', [DirectorController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
 Route::delete('/user/{user}', [DirectorController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
-Route::get('/user/edit/{user}', [DirectorController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
-Route::put('user/{user}', [DirectorController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
+
 
 
 /* Distritos */

@@ -26,16 +26,7 @@
                     <div class="row pb-2">                        
                         <div class="col-6 mt-3 flex">
                             <div class="mr-3"><span class="input-group-text"><i class="fab fa-atlassian"></i></span></div>
-                            @if ($user->director->asignado == 0)
-                                <div class=" bg-green-400 px-3">
-                                    @if ($user->director->rol < 6)
-                                        <button class="rounded" data-toggle="modal" data-target="#asignarDistrito"><span class="text-gray-900">Asignar</span></button>
-                                    @else
-                                        <button class="rounded" data-toggle="modal" data-target="#asignarclub"><span class="text-gray-900">Asignar</span></button>
-                                    @endif
-                                </div>
-                            @else
-                                <div><h6>Usuario ya asignado a </h6>
+                                <div><h6>Usuario ya asignado como </h6>
                                     @switch($user->director->rol)
                                         @case(1)
                                              <h6 class="text-yellow-700">Director</h6>
@@ -62,7 +53,6 @@
                                             <h6 class="text-yellow-700">Admin</h6>
                                     @endswitch
                                 </div>
-                            @endif
                         </div>
                         <div class="col-6 mt-3">
                             @if ($user == Auth::user())
@@ -82,10 +72,6 @@
                         <div class="pt-2"><span class="mr-2">Editar Usuario</span>
                             <a href="{{ route('user.edit', $user) }}"> <button class="btn btn-info"><i class="fa fa-ban" aria-hidden="true"></i></button></a></div>
                     </div>
-
-
-
-
                     <div class="modal fade" id="resetClave">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
