@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\ClubsController;
 use App\Http\Controllers\MiembroController;
 use App\Http\Controllers\PostsController;
@@ -45,7 +46,12 @@ Route::get('usercheck', function(){
     if(!is_null(Auth::user()->miembro)){
         return Auth::user()->miembro;
     }
+})->middleware('auth');
+
+Route::post('tester', function () {
+    return request();
 });
+
 
 /* Clubs */
 Route::get('/club', [ClubsController::class, 'index'])->middleware(['auth', 'pastor'])->name('club');
@@ -69,7 +75,6 @@ Route::get('user/{user}', [DirectorController::class, 'show'])->middleware(['aut
 Route::get('user/miembro/{user}', [MiembroController::class, 'showUser'])->middleware(['auth', 'chief'])->name('user.miembro.show');
 Route::get('/user/edit/{user}', [DirectorController::class, 'edit'])->middleware(['auth', 'chief'])->name('user.edit');
 Route::put('user/{user}', [DirectorController::class, 'update'])->middleware(['auth', 'chief'])->name('user.update');
-
 Route::delete('/user/soft/{user}', [DirectorController::class, 'delete'])->middleware(['auth', 'chief'])->name('user.delete');
 Route::delete('/user/{user}', [DirectorController::class, 'destroy'])->middleware(['auth', 'chief'])->name('user.destroy'); 
 
@@ -93,9 +98,9 @@ Route::post('miembro-store', [MiembroController::class, 'store'])->middleware(['
 Route::get('miembro/{miembro}', [MiembroController::class, 'show'])->middleware(['auth', 'director'])->name('miembro.show');
 Route::delete('baja-miembro/{miembro}', [MiembroController::class, 'delete'])->middleware(['auth', 'pastor'])->name('miembro.delete');
 Route::delete('eliminar-miembro/{miembro}', [MiembroController::class, 'destroy'])->middleware(['auth', 'pastor'])->name('miembro.destroy');
-/* Pending work on the courses, can change individualy and also by category and club */
 Route::get('miembro/edit/{miembro}', [MiembroController::class, 'edit'])->middleware(['auth', 'director'])->name('miembro.edit');
 Route::put('miembro/{miembro}', [MiembroController::class, 'update'])->middleware(['auth', 'director'])->name('miembro.update');
+/* Pending work on the courses, can change individualy and also by category and club */
 
 /* Asignacion */
 Route::get('asignar-usuario/{director}', [AsignacionRoles::class, 'usuario'])->middleware(['auth', 'chief'])->name('asignar.usuario');
@@ -139,15 +144,8 @@ Route::post('busqueda-club', [BusquedaController::class, 'club'])->middleware(['
 Route::post('busqueda-distrito', [BusquedaController::class, 'distrito'])->middleware(['auth', 'pastor'])->name('busqueda.distrito');
 
 
-Route::post('busqueda/usuario', function(){
-    return "Esto aun esta bajo mantenimiento Su busqueda: ".request()->busqueda;
-})->name('buscar.usuario');
-
-
-
 /* Posts */
-    /* index */Route::get('/posts', [PostsController::class, 'index'])->middleware('auth');
-    /* store */Route::post('/posts', [PostsController::class, 'store'])->middleware(['auth', 'director']);
-    /* delete */Route::get('/posts/soft/{post}', [PostsController::class, 'delete'])->middleware(['auth', 'director']);
+Route::get('posts', [PostsController::class, 'index'])->middleware(['auth', 'director'])->name('posts.index');
+Route::get('posts-create', [PostsController::class, 'create'])->middleware(['auth', 'director'])->name('posts.create');
 
 require __DIR__.'/auth.php';

@@ -23,7 +23,7 @@ class DirectorController extends Controller
 
     public function indexDirector()
     {
-        return view('users.index', ['directors' => Director::where('rol', '>', 6)->where('rol', '!=', 0)->get()]);
+        return view('users.index', ['directors' => Director::where('rol', '>', 6)->where('rol', '!=', 0)->paginate(7)]);
     }
 
     public function newDirective($rol)
@@ -167,7 +167,7 @@ class DirectorController extends Controller
             $director->delete();
             $user->delete();
             return redirect(route('user.index'))
-            ->with('message', 'Se ha eliminado un usuario');
+            ->with('message', 'Se ha dado de baja un usuario');
         }
 
         /* Assigned user */
@@ -178,7 +178,7 @@ class DirectorController extends Controller
         $director->delete();
         $user->delete();
         return redirect(route('user.index'))
-        ->with('message', 'Se ha eliminado un usuario');
+        ->with('message', 'Se ha dado de baja un usuario');
     }
 
     public function destroy(User $user)
@@ -304,6 +304,7 @@ class DirectorController extends Controller
 
     public function update(Request $request, User $user)
     {
+        //2 variables to check if either the name or email where changed or both
         $namemod = 0;
         $emailmod = 0;
 

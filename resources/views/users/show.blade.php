@@ -48,6 +48,9 @@
                                             @break
                                         @case(7)
                                             <h6 class="text-yellow-700">Director de Categoria</h6>
+                                            @if (Auth::user()->director->asignado == 0)
+                                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#asignarUsuario"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+                                            @endif
                                             @break
                                         @default
                                             <h6 class="text-yellow-700">Admin</h6>
@@ -189,7 +192,30 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- The Modal -->
+                    <div class="modal fade" id="deleteUser">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Elegir una Categoria</h5>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <h5>Esta accion no se puede deshacer, ¿Eliminar <mark class="text-uppercase">{{ $user->name }} </mark> ?</h5>
+                                    <form action="{{ route('user.destroy', $user) }}" method="post">
+                                        
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger">Eliminar</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
