@@ -86,11 +86,9 @@
                                     @endswitch
                                     @endif
                                     @if ($director->asignado == 1)
-                                        <td class="bg-green-500 text-center">Si</td>
+                                        <td class="text-center w-14"><span class="bg-green-500">Si</span></td>
                                     @else
-                                        <td class="bg-yellow-600 text-center">
-                                            <span>No</span>
-                                        </td>
+                                        <td class="text-center w-14"><span class="bg-yellow-500">No</span></td>                                    
                                     @endif
                                 </tr>
                             @endforeach

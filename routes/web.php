@@ -126,7 +126,7 @@ Route::get('cambiar-curso', [FichaTecnicaController::class, 'cambiarCurso'])->mi
 /* Reset Password */
 Route::get('cambiar-contrasena', [ContraNueva::class, 'barra'])->middleware(['auth'])->name('cambiar.contra');
 Route::post('cambiar-c', [ContraNueva::class, 'storeCambio'])->middleware(['auth'])->name('store.cambio');
-Route::put('resetClave/{user}', [ContraNueva::class, 'resetPassword'])->middleware(['auth', 'pastor'])->name('store.reset');
+Route::put('resetClave/{user}', [ContraNueva::class, 'resetPassword'])->middleware(['auth', 'chief'])->name('store.reset');
 
 /* Filtros */
 Route::get('filtros/{type}', [FiltrosUsuarios::class, 'usuarios'])->middleware(['auth', 'chief'])->name('filtro.usuario');

@@ -15,19 +15,19 @@ class FiltrosUsuarios extends Controller
             case 1:
                 //sin asignar
                 return view('users.index', [
-                    'directors' => Director::where('asignado', '=', 0)->get()
+                    'directors' => Director::where('asignado', '=', 0)->paginate(7)
                 ]);
                 break;
             case 2:
                 //asignados
                 return view('users.index', [
-                    'directors' => Director::where('asignado', '=', 1)->get()
+                    'directors' => Director::where('asignado', '=', 1)->paginate(7)
                 ]);
                 break;
             case 3:
                 //directivos
                 return view('users.index', [
-                    'directors' => Director::where('rol', '<', 5)->get()
+                    'directors' => Director::where('rol', '<', 5)->paginate(7)
                 ]);
                 break;
             default:

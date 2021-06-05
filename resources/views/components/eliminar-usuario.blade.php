@@ -1,6 +1,6 @@
 {{-- Modal Trigger --}}
 <span class="text-danger">Eliminar Usuario</span>
-<button class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteUser"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteUser"> <i class="fa fa-ban" aria-hidden="true"></i></button>
 
 <!-- The Modal -->
 <div class="modal fade" id="deleteUser">
@@ -20,7 +20,7 @@
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button class="btn btn-danger">Eliminar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
             </div>
