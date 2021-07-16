@@ -7,11 +7,8 @@
         {{-- FontAwesome --}}
         <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
-        {{-- Bootstrap 4.6 --}}
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="{{ asset('summernote/summernote-lite.min.css') }}">
+        <script src="{{ asset('summernote/summernote-lite.min.js') }}"></script>
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -22,8 +19,12 @@
         tailwind-->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        {{-- A tag underline removal  --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/underline.css') }}">
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

@@ -10,14 +10,14 @@
                     <div class="row pb-2">
                         <div class="col-6">
                             <label>Nombre de usuario</label>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <h5 class="px-3 mt-1">{{ $user->name }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
                             <label>Email</label>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-question-circle"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $user->email }}</h5>
                             </div>
@@ -57,7 +57,7 @@
                         <div class="col-6 mt-3">
                             <div class="flex">
                                 <div> <span class="text-bold">Clave</span> </div>
-                                <div class="ml-3"><button class="bg-purple-800 rounded w-14" data-toggle="modal" data-target="#resetClave"> <span class="text-white">Reset</span></button></div>
+                                <div class="ml-3"><button class="bg-purple-800 rounded w-14" data-bs-toggle="modal" data-bs-target="#resetClave"> <span class="text-white">Reset</span></button></div>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h5>Resetear Contraseña para {{ $user->name }}?</h5>
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <button type="button" class="close" data-bs-dismiss="modal">×</button>
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
@@ -79,7 +79,7 @@
                                     <input type="hidden" value="{{ $user }}">
                                     <button class="bg-yellow-500 w-1/5 rounded">Si</button>
                                     </form>
-                                    <button type="button" class="close" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="close" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>
                         </div>

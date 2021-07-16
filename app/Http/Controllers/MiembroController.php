@@ -36,7 +36,7 @@ class MiembroController extends Controller
             //return view with this data
             if(is_null(Auth::user()->director->club_id)){
                 return view('miembros.create', [
-                    'clubs' => Club::all()->sortBy('distrito_id')
+                    'clubs' => Club::all()->sortBy('distrito_id')->select('id', 'nombreClub')
                 ]); 
             }
             return view('miembros.create', [
@@ -93,6 +93,7 @@ class MiembroController extends Controller
 
     public function showUser(User $user)
     {
+        //this is a separate method, because it shows the login info for this user.
         return view('miembros.showUser', ['user'=> $user]);
     }
 

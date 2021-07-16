@@ -30,6 +30,9 @@
                     <x-nav-link :href="route('curso.create')" :active="request()->routeIs('curso.create')">
                         Cursos
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                        Posts
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -95,6 +98,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('estadisticas.index')" :active="request()->routeIs('estadisticas.index')">
                 Estadisticas
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                Posts
             </x-responsive-nav-link>
             {{-- <x-responsive-nav-link :href="#" >
                 Cursos

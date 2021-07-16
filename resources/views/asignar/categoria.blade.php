@@ -32,7 +32,9 @@
                                 <tbody>
                                     @foreach ($users as $aventuras)
                                         <tr>
-                                            <td>{{ $aventuras->user->name }}</td>
+                                            <td>
+                                                <a href="{{ route('user.show', $aventuras->user->id) }}">{{ $aventuras->user->name }}</a>
+                                            </td>
                                             <td>{{ $aventuras->user->email }}</td>
                                             <td>
                                                 <form action="{{ route('store.aventuras') }}" method="POST">

@@ -11,20 +11,12 @@ class PostsController extends Controller
 {
     public function index()
     {
-        if(!Auth::user()->miembrosinfo == null){
-            return view('posts.index', [
-                'postlist' => Posts::all()
-                ->where('club', '=', Auth::user()->miembrosinfo->club)
-                ->where('club', '=', Auth::user()->miembrosinfo->category)
-            ]);
-        }
-        if(!Auth::user()->directorinfo == null){
-            return view('posts.index', [
-                'postlist' => Posts::all()
-                ->where('club', '=', Auth::user()->directorinfo->club)
-                ->where('category', '=', Auth::user()->directorinfo->category)
-            ]);
-        }
+        return view('posts.index');
+    }
+
+    public function create()
+    {
+        return view('posts.create');
     }
 
     public function store(Request $request)

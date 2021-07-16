@@ -10,14 +10,14 @@
                     <div class="row pb-2">
                         <div class="col-6">
                             <h6 class="text-bold">Nombre del Distrito</h6>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
                                 <h5 class="px-3 mt-1">{{ $distrito->nombre }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
                             <h6 class="text-bold">Ciudad</h6>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
                                 <h5 class="px-3 mt-1">{{ $distrito->ciudad }}</h5>
                             </div>
@@ -27,14 +27,14 @@
                     <div class="row pb-2">
                         <div class="col-6">
                             <h6 class="text-bold">Estado</h6>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-church"></i></span>
                                 <h5 class="px-3 mt-1"> {{ $distrito->estado }}</h5>
                             </div>
                         </div>
                         <div class="col-6">
                             <h6 class="text-bold">Coordinador</h6>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
                                 @if ($distrito->coordinador_id == null)
                                     <div class="pl-2">
@@ -56,7 +56,7 @@
                     <div class="row pb-2">
                         <div class="col-6">
                             <h6 class="text-bold">Pastor</h6>
-                            <div class="input-group-prepend">
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-church"></i></span>
                                 @if ($distrito->pastor_id == null)
                                     <div class="pl-2">
@@ -79,12 +79,12 @@
                         {{-- Baja --}}
                         <div class="pr-2">
                             <span class="text-yellow-600 mr-2">Dar de baja</span>
-                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#deleteDistrict"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+                            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#deleteDistrict"> <i class="fa fa-ban" aria-hidden="true"></i></button>
                         </div>
                         {{-- Delete --}}
                         <div class="pr-2">
                             <span class="text-red-600 mr-2">Eliminar</span>
-                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#destroyDistrict"> <i class="fa fa-ban" aria-hidden="true"></i></button>
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#destroyDistrict"> <i class="fa fa-ban" aria-hidden="true"></i></button>
                         </div>
                         {{-- Edit --}}
                         <div class="pr-2">
@@ -100,7 +100,7 @@
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h5 class="modal-title">¿Dar de baja a este distrito?</h5>
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <button type="button" class="close" data-bs-dismiss="modal">×</button>
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
@@ -111,7 +111,7 @@
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
                                             <button class="btn btn-warning">Baja</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -125,7 +125,7 @@
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h5 class="modal-title">¿Eliminar Distrito?</h5>
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <button type="button" class="close" data-bs-dismiss="modal">×</button>
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
@@ -136,7 +136,7 @@
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
                                             <button class="btn btn-danger">Eliminar</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </form>
                                 </div>
